@@ -51,7 +51,7 @@ For example, if your Duolingo id is "23141883", add the following line:
 
 ## 🎨 THEMES 🎨
 
-Want to spice up the look and feel of your badge showcase?
+Want to spice up the look and feel of your stats card?
 You can choose your favorite among 15 different themes!
 
 - light (default)
@@ -74,68 +74,29 @@ Simply add the *theme* parameter to the url like so:
 
 `<img src="https://duolingo-stats-card.vercel.app/api?id={your-duoling-id}&theme={your-theme}" alt="Duolingo Stats"/>`
 
-<div style="display:grid; grid-template-columns: 1fr 1fr 1fr; justify-items: center;">
-  <div style="text-align: center;">
-    <h4>light</h4>
-    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=light" title="light" alt="Duolingo Stats"/>
-  </div>
-  <div style="text-align: center;">
-    <h4>dark</h4>
-    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=dark" title="dark" alt="Duolingo Stats"/>
-  </div>
-  <div style="text-align: center;">
-    <h4>github-dark</h4>
-    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=github-dark" title="Github Dark" alt="Duolingo Stats"/>
-  </div>
-  <div style="text-align: center;">
-    <h4>monokai</h4>
-    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=monokai" title="monokai" alt="Duolingo Stats"/>
-  </div>
-  <div style="text-align: center;">
-    <h4>tokyonight</h4>
-    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=tokyonight" title="tokyonight" alt="Duolingo Stats"/>
-  </div>
-  <div style="text-align: center;">
-    <h4>nightowl</h4>
-    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=nightowl" title="nightowl" alt="Duolingo Stats"/>
-  </div>
-  <div style="text-align: center;">
-    <h4>onedark</h4>
-    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=onedark" title="onedark" alt="Duolingo Stats"/>
-  </div>
-  <div style="text-align: center;">
-    <h4>shades-of-purple</h4>
-    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=shades-of-purple" title="shades-of-purple" alt="Duolingo Stats"/>
-  </div>
-  <div style="text-align: center;">
-    <h4>dracula</h4>
-    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=dracula" title="dracula" alt="Duolingo Stats"/>
-  </div>
-  <div style="text-align: center;">
-    <h4>cobalt2</h4>
-    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=cobalt2" title="cobalt2" alt="Duolingo Stats"/>
-  </div>
-  <div style="text-align: center;">
-    <h4>sky</h4>
-    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=sky" title="sky" alt="Duolingo Stats"/>
-  </div>
-  <div style="text-align: center;">
-    <h4>beach</h4>
-    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=beach" title="beach" alt="Duolingo Stats"/>
-  </div>
-  <div style="text-align: center;">
-    <h4>purple-gang</h4>
-    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=purple-gang" title="purple-gang" alt="Duolingo Stats"/>
-  </div>
-  <div style="text-align: center;">
-    <h4>mint</h4>
-    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=mint" title="mint" alt="Duolingo Stats"/>
-  </div>
-  <div style="text-align: center;">
-    <h4>leafy</h4>
-    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=leafy" title="leafy" alt="Duolingo Stats"/>
-  </div>
-</div>
+| | | |
+| :--: | :--: | :--: |
+| `light` ![light][light] | `dark` ![dark][dark] | `github-dark` ![github-dark][github-dark] |
+| `monokai` ![monokai][monokai] | `tokyonight` ![tokyonight][tokyonight] | `nightowl` ![nightowl][nightowl] |
+| `onedark` ![onedark][onedark] | `shades-of-purple` ![shades-of-purple][shades-of-purple] | `dracula` ![dracula][dracula] |
+| `cobalt2` ![cobalt2][cobalt2] | `sky` ![sky][sky] | `beach` ![beach][beach] |
+| `purple-gang` ![purple-gang][purple-gang] | `mint` ![mint][mint] | `leafy` ![leafy][leafy] |
+
+[light]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=light
+[dark]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=dark
+[github-dark]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=github-dark
+[monokai]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=monokai
+[tokyonight]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=tokyonight
+[nightowl]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=nightowl
+[onedark]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=onedark
+[shades-of-purple]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=shades-of-purple
+[dracula]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=dracula
+[cobalt2]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=cobalt2
+[sky]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=sky
+[beach]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=beach
+[purple-gang]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=purple-gang
+[mint]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=mint
+[leafy]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=leafy
 
 <br/>
 
