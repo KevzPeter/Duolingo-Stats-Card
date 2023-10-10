@@ -2,43 +2,41 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/KevzPeter/Leetcode-Badge-Showcase">
-    <img src="images/guardian.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/KevzPeter/Duolingo-Stats-Card">
+    <img src="public/svg/Duo_PencilBoarding.svg" alt="Logo" width="150" height="150">
   </a>
 
-  <h3 align="center">LeetCode Badge Showcase</h3>
+  <h3 align="center">Duolingo Stats Card</h3>
 
   <p align="center">
-    Showcase your LeetCode badges on your Github README page 🤩
+    🦉 Duolingo Stats Card that you can embed in README files ✨
     <br />
-    <a href="https://leetcode-badge-showcase.vercel.app/">✨ View Demo</a>
+    <a href="https://duolingo-stats-card.vercel.app/">✨ View Demo</a>
     ·
-    <a href="https://github.com/KevzPeter/Leetcode-Badge-Showcase/issues">🐛 Report Bug</a>
+    <a href="https://github.com/KevzPeter/duolingo-stats-card/issues">🐛 Report Bug</a>
     ·
-    <a href="https://github.com/KevzPeter/Leetcode-Badge-Showcase/issues">💁🏽 Request Feature</a>
+    <a href="https://github.com/KevzPeter/duolingo-stats-card/issues">💁🏽 Request Feature</a>
   </p>
 </div>
 
 <div align="center">
-<img src="https://leetcode-badge-showcase.vercel.app/api?username=kevzpeter" />
+<img src="https://duolingo-stats-card.vercel.app/api?id=23141883" />
 </div>
 
 ## ⭐ Add to your README page ⭐
 <br/>
 
-Add the following line to your Github README.md page and replace {your-leetcode-username} ⤵️
+Add the following line to your Github README.md page and replace {your-duolingo-id} ⤵️
 
-`<img src="https://leetcode-badge-showcase.vercel.app/api?username={your-leetcode-username}" alt="LeetCode Badges"/>`
+`<img src="https://duolingo-stats-card.vercel.app/api?id={your-duolingo-id}" alt="Duolingo Stats"/>`
  
  Or even this way ⤵️
 
-`![LeetCode Badges](https://leetcode-badge-showcase.vercel.app/api?username={your-leetcode-username})`
+`![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?id={your-duolingo-id})`
 
-For example, if your Leetcode username is "kevzpeter", add the following line:
+For example, if your Duolingo id is "23141883", add the following line:
 
-`![LeetCode Badges](https://leetcode-badge-showcase.vercel.app/api?username=kevzpeter)`
-
-👉🏼 *Image not rendering? Simply refresh the page!* 
+`![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?id=23141883)`
 <br/>
 
 ## 🎨 THEMES 🎨
@@ -64,81 +62,72 @@ You can choose your favorite among 15 different themes!
 
 Simply add the *theme* parameter to the url like so:
 
-`<img src="https://leetcode-badge-showcase.vercel.app/api?username={your-leetcode-username}&theme={your-theme}" alt="LeetCode Badges"/>`
+`<img src="https://duolingo-stats-card.vercel.app/api?id={your-duoling-id}&theme={your-theme}" alt="Duolingo Stats"/>`
 
 <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; justify-items: center;">
   <div style="text-align: center;">
     <h4>light</h4>
-    <img src="https://leetcode-badge-showcase.vercel.app/api?username=lee215&theme=light" title="light" alt="LeetCode Badges"/>
+    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=light" title="light" alt="Duolingo Stats"/>
   </div>
   <div style="text-align: center;">
     <h4>dark</h4>
-    <img src="https://leetcode-badge-showcase.vercel.app/api?username=lee215&theme=dark" title="dark" alt="LeetCode Badges"/>
+    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=dark" title="dark" alt="Duolingo Stats"/>
   </div>
   <div style="text-align: center;">
     <h4>github-dark</h4>
-    <img src="https://leetcode-badge-showcase.vercel.app/api?username=lee215&theme=github-dark" title="Github Dark" alt="LeetCode Badges"/>
+    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=github-dark" title="Github Dark" alt="Duolingo Stats"/>
   </div>
   <div style="text-align: center;">
     <h4>monokai</h4>
-    <img src="https://leetcode-badge-showcase.vercel.app/api?username=lee215&theme=monokai" title="monokai" alt="LeetCode Badges"/>
+    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=monokai" title="monokai" alt="Duolingo Stats"/>
   </div>
   <div style="text-align: center;">
     <h4>tokyonight</h4>
-    <img src="https://leetcode-badge-showcase.vercel.app/api?username=lee215&theme=tokyonight" title="tokyonight" alt="LeetCode Badges"/>
+    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=tokyonight" title="tokyonight" alt="Duolingo Stats"/>
   </div>
   <div style="text-align: center;">
     <h4>nightowl</h4>
-    <img src="https://leetcode-badge-showcase.vercel.app/api?username=lee215&theme=nightowl" title="nightowl" alt="LeetCode Badges"/>
+    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=nightowl" title="nightowl" alt="Duolingo Stats"/>
   </div>
   <div style="text-align: center;">
     <h4>onedark</h4>
-    <img src="https://leetcode-badge-showcase.vercel.app/api?username=lee215&theme=onedark" title="onedark" alt="LeetCode Badges"/>
+    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=onedark" title="onedark" alt="Duolingo Stats"/>
   </div>
   <div style="text-align: center;">
     <h4>shades-of-purple</h4>
-    <img src="https://leetcode-badge-showcase.vercel.app/api?username=lee215&theme=shades-of-purple" title="shades-of-purple" alt="LeetCode Badges"/>
+    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=shades-of-purple" title="shades-of-purple" alt="Duolingo Stats"/>
   </div>
   <div style="text-align: center;">
     <h4>dracula</h4>
-    <img src="https://leetcode-badge-showcase.vercel.app/api?username=lee215&theme=dracula" title="dracula" alt="LeetCode Badges"/>
+    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=dracula" title="dracula" alt="Duolingo Stats"/>
   </div>
   <div style="text-align: center;">
     <h4>cobalt2</h4>
-    <img src="https://leetcode-badge-showcase.vercel.app/api?username=lee215&theme=cobalt2" title="cobalt2" alt="LeetCode Badges"/>
+    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=cobalt2" title="cobalt2" alt="Duolingo Stats"/>
   </div>
   <div style="text-align: center;">
     <h4>sky</h4>
-    <img src="https://leetcode-badge-showcase.vercel.app/api?username=lee215&theme=sky" title="sky" alt="LeetCode Badges"/>
+    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=sky" title="sky" alt="Duolingo Stats"/>
   </div>
   <div style="text-align: center;">
     <h4>beach</h4>
-    <img src="https://leetcode-badge-showcase.vercel.app/api?username=lee215&theme=beach" title="beach" alt="LeetCode Badges"/>
+    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=beach" title="beach" alt="Duolingo Stats"/>
   </div>
   <div style="text-align: center;">
     <h4>purple-gang</h4>
-    <img src="https://leetcode-badge-showcase.vercel.app/api?username=lee215&theme=purple-gang" title="purple-gang" alt="LeetCode Badges"/>
+    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=purple-gang" title="purple-gang" alt="Duolingo Stats"/>
   </div>
   <div style="text-align: center;">
     <h4>mint</h4>
-    <img src="https://leetcode-badge-showcase.vercel.app/api?username=lee215&theme=mint" title="mint" alt="LeetCode Badges"/>
+    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=mint" title="mint" alt="Duolingo Stats"/>
   </div>
   <div style="text-align: center;">
     <h4>leafy</h4>
-    <img src="https://leetcode-badge-showcase.vercel.app/api?username=lee215&theme=leafy" title="leafy" alt="LeetCode Badges"/>
+    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883&theme=leafy" title="leafy" alt="Duolingo Stats"/>
   </div>
 </div>
 
 <br/>
-
-## ✂️ FILTERS ✂️
-
-Wanna only show a specific set of badges ? Add a filter parameter like so :
-
-- Competitive: &filter=comp
-- Daily Challenge: &filter=daily
-- Study Plan: &filter=study
-
 
 <!-- BUILT WITH -->
 ## 🔧 Built With 🔧
@@ -146,8 +135,6 @@ Wanna only show a specific set of badges ? Add a filter parameter like so :
 
 * [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- SET UP -->
 ## 🏗️ Set Up your own Server 🏗️
@@ -158,7 +145,7 @@ Wanna only show a specific set of badges ? Add a filter parameter like so :
 * Run *npm run dev* to make sure everything's working fine
 * Replace BASEURL in *utils/config.ts* to the deployment url of your choice 
 * Deploy to Vercel with the same deployment url
-* Head over to https://{your-vercel-deployment-url}/api?username={your-leetcode-username} to view the results
+* Head over to https://{your-vercel-deployment-url}/api?id={your-duoling-id} to view the results
 * Oh, and make sure to update the links in your README file as well :P
 
 <br/>
