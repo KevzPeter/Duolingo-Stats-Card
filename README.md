@@ -39,6 +39,16 @@ For example, if your Duolingo id is "23141883", add the following line:
 `![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?id=23141883)`
 <br/>
 
+### 💡 Wait! How do I get my Duolingo id ?
+
+1. Login at [duolingo.com](duolingo.com)
+2. Go to Developer Tools in your browser (hit F12 key)
+3. Go to Application tab ➡️ Local Storage ➡️ duolingo.com
+4. The number that you see here 👇🏽 repeated multiple times is your Duolingo profile id
+
+   <img src="media/devtools.png" alt="Devtools" height="200" width="697">
+
+
 ## 🎨 THEMES 🎨
 
 Want to spice up the look and feel of your badge showcase?
