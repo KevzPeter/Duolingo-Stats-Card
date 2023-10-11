@@ -111,12 +111,12 @@ Simply add the *theme* parameter to the url like so:
 ## 🐋 Deploy using Docker 🐋
 - Using docker compose
   * Run `docker compose -f docker-compose.production.yml up -d`
-  * Go to https://localhost:3000 to use the app
+  * Go to http://localhost:3000 to use the app
 
 - Using docker
   * Run `docker build -t duoling-stats-card .`
   * Run `docker run -p 3000:3000 duolingo-stats-card`
-  * Go to https://localhost:3000 to use the app
+  * Go to http://localhost:3000 to use the app
 
 <!-- SET UP -->
 ## 🏗️ Set Up your own Server 🏗️
