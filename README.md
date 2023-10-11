@@ -107,17 +107,29 @@ Simply add the *theme* parameter to the url like so:
 * [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
 
+<!--DEPLOYMENT-->
+## 🐋 Deploy using Docker 🐋
+- Using docker compose
+  * Run `docker compose -f docker-compose.production.yml up -d`
+  * Go to https://localhost:3000 to use the app
+
+- Using docker
+  * Run `docker build -t duoling-stats-card .`
+  * Run `docker run -p 3000:3000 duolingo-stats-card`
+  * Go to https://localhost:3000 to use the app
+
 <!-- SET UP -->
 ## 🏗️ Set Up your own Server 🏗️
-
-* Make sure you have Node.js installed
-* Clone the repository
-* Run *npm i* in the root directory
-* Run *npm run dev* to make sure everything's working fine
-* Replace BASEURL in *utils/config.ts* to the deployment url of your choice 
-* Deploy to Vercel with the same deployment url
-* Head over to https://{your-vercel-deployment-url}/api?id={your-duoling-id} to view the results
-* Oh, and make sure to update the links in your README file as well :P
+- Optional steps
+  * Make sure you have Node.js installed
+  * Clone the repository
+  * Run *npm i* in the root directory
+  * Run *npm run dev* to make sure everything's working fine
+- Required
+  * Replace BASEURL in *utils/config.ts* to the deployment url of your choice 
+  * Deploy to Vercel with the same deployment url
+  * Head over to https://{your-vercel-deployment-url}/api?id={your-duoling-id} to view the results
+  * Oh, and make sure to update the links in your README file as well :P
 
 <br/>
 

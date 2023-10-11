@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  # this service should use the web image after you build it
+  app:
+    build: 
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
