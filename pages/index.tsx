@@ -16,40 +16,40 @@ const Home: NextPage = () => {
   const router = useRouter();
   const themes = THEME_NAMES;
 
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
 
     let id = e.target.id.value;
     let theme = e.target.theme.value;
 
-    if(id){
+    if (id) {
       let href = `/api?id=${id}`
-      if(theme)
+      if (theme)
         href += `&theme=${theme}`
       router.push(href)
-      .then(()=>setLoading(false))
-      .catch(err => {
-        console.error(err);
-        setLoading(false);
-      });
+        .then(() => setLoading(false))
+        .catch(err => {
+          console.error(err);
+          setLoading(false);
+        });
     }
     else setLoading(false);
   }
   return (
     <div className={styles.container}>
       <Head>
-        <title>Leetcode Badge Showcase</title>
+        <title>🦉 Duolingo Stats Card</title>
         <meta name="description" content="Duolingo stats card for your Github readme page" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.container}>
-        <form className={styles.form} onSubmit={e=>handleSubmit(e)}>
+        <form className={styles.form} onSubmit={e => handleSubmit(e)}>
           <label htmlFor="id">🧑🏽 User ID</label>
           <input id="id" name="id" type="text"></input>
           <label htmlFor="theme">🎨 Theme</label>
           <select name='theme'>
-            {themes.map((theme, index)=>{
+            {themes.map((theme, index) => {
               return <option key={index} value={theme}>{theme}</option>
             })}
           </select>
