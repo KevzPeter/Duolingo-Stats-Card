@@ -78,10 +78,10 @@ export default function SvgWidget({ response, theme }): JSX.Element {
     };
 
     const duoIcons = [
-        { icon: Duo_Waving, viewBox: "0 0 281 349" },
+        { icon: Duo_Waving, viewBox: "-30 0 330 330" },
         { icon: Duo_PencilBoarding, viewBox: "40 50 225 200" },
         { icon: Duo_Jolly, viewBox: "0 0 185 180", style: 'flip' },
-        { icon: Duo_Excited, viewBox: "0 0 160 210", style: 'flip' },
+        { icon: Duo_Excited, viewBox: "0 -15 160 240", style: 'flip' },
         { icon: Duo_Daunting, viewBox: "0 0 190 150" },
         { icon: Duo_Cannonball, viewBox: "0 0 160 150" },
         { icon: Duo_Amour, viewBox: "0 0 185 30", style: 'flip' },
