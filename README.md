@@ -54,7 +54,7 @@ For example, if your Duolingo id is "23141883", add the following line:
 Want to spice up the look and feel of your stats card?
 You can choose your favorite among 15 different themes!
 
-- light (default)
+- light
 - dark
 - github-dark
 - monokai
