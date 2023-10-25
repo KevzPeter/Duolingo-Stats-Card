@@ -9,7 +9,7 @@
   <h3 align="center">Duolingo Stats Card</h3>
 
   <p align="center">
-    🦉 Duolingo Stats Card that you can embed in README files ✨
+    🦉 A real-time Duolingo Stats Card that you can embed on your website or markdown files ✨
     <br />
     <a href="https://duolingo-stats-card.vercel.app/">✨ View Demo</a>
     ·
