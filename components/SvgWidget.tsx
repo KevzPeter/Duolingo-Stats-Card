@@ -39,6 +39,7 @@ import Sw from "../public/svg/logo_0026_sw.svg";
 import Eo from "../public/svg/logo_0027_eo.svg";
 import World from "../public/svg/logo_0036_world.svg";
 import themes from "../utils/themes.json";
+import { Course } from "../utils/models";
 /**
  * The main SVG widget.
  */
@@ -85,17 +86,21 @@ export default function SvgWidget({ response, theme }): JSX.Element {
         { icon: Duo_Cannonball, viewBox: "0 0 160 150" },
         { icon: Duo_Amour, viewBox: "0 0 185 30", style: 'flip' },
     ];
-
+    // Randomly generate a Duo icon
     const randomIndex = Math.floor(Math.random() * 7);
     const DuoIconComponent = duoIcons[randomIndex].icon;
     const viewBox = duoIcons[randomIndex].viewBox;
     const iconStyle = duoIcons[randomIndex].style;
+    // Display top 3 languages with most crowns
+    response.courses = response.courses.slice(0, Math.min(3, response.courses.length));
+    const cardStyle = theme ? { "background": `${themes[theme].background}!important`, color: `${themes[theme].colorPrimary}` } : null;
+    const courseStyle = theme ? { color: `${themes[theme].colorSecondary}` } : null;
 
     return (
         <g>
             <foreignObject x="0" y="0" width="100%" height="100%">
                 <div xmlns="http://www.w3.org/1999/xhtml">
-                    <div className="card" style={{ "background-color": `${themes[theme].background}`, color: `${themes[theme].colorPrimary}` }}>
+                    <div className="card" style={cardStyle}>
                         <div className="content">
                             <div className="stats">
                                 <span id="streak">
@@ -104,12 +109,14 @@ export default function SvgWidget({ response, theme }): JSX.Element {
                                 </span>
                                 <span id="xp">⚡{response.totalXp} XP</span>
                             </div>
-                            <div className="courses" style={{ color: `${themes[theme].colorSecondary}` }}>
-                                {response.courses.slice(0, Math.min(3, response.courses.length)).map((course, idx) => {
+                            <div className="courses" style={courseStyle}>
+                                {response.courses.map((course: Course) => {
                                     const FlagComponent = flagComponents[course.learningLanguage] || flagComponents.world;
                                     return (
-                                        <div className="language" key={idx}>
-                                            <Crown width={17} height={13} viewBox="0 0 353 268" />
+                                        <div className="language" key={course.id}>
+                                            <div className="crown">
+                                                <Crown width={17} height={13} viewBox="0 0 353 268" />
+                                            </div>
                                             <span id="crown-count">{course.crowns}</span>
                                             <FlagComponent height={37} width={50} viewBox="0 0 78 62" />
                                         </div>

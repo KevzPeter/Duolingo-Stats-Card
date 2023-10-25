@@ -18,11 +18,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         }
         //theme query validation
         if (!theme || theme.length === 0) {
-            theme = 'light';
+            theme = null;
         }
         else theme = theme.trim().toLowerCase();
         if (!THEME_NAMES.includes(theme)) {
-            theme = 'light';
+            theme = null;
         }
         const headers = {
             'User-Agent': 'duolingo-stats-card',
