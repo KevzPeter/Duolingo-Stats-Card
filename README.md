@@ -3,13 +3,14 @@
 <br />
 <div align="center">
   <a href="https://github.com/KevzPeter/Duolingo-Stats-Card">
-    <img src="public/svg/Duo_PencilBoarding.svg" alt="Logo" width="150" height="150">
+    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883" alt="Logo">
   </a>
 
   <h3 align="center">Duolingo Stats Card</h3>
 
   <p align="center">
-    🦉 A real-time Duolingo Stats Card that you can embed on your website or markdown files ✨
+    🦉 A real-time, customizable Duolingo widget that you can embed on your website or markdown files ✨
+    <br />
     <br />
     <a href="https://duolingo-stats-card.vercel.app/">✨ View Demo</a>
     ·
@@ -19,9 +20,8 @@
   </p>
 </div>
 
-<div align="center">
-<img src="https://duolingo-stats-card.vercel.app/api?id=23141883" />
-</div>
+<br />
+<br />
 
 ## ⭐ Add to your README page ⭐
 <br/>
