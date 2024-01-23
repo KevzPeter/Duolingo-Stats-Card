@@ -58,7 +58,7 @@ export default function SvgWidget({ response, theme }): JSX.Element {
         pt: Pt,
         ru: Ru,
         tr: Tr,
-        nl: Nl,
+        'nl-NL': Nl,
         sv: Sv,
         el: El,
         iw: Iw,
