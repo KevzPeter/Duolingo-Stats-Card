@@ -9,35 +9,47 @@ import Duo_Daunting from "../public/svg/Duo_Daunting.svg";
 import Crown from "../public/svg/crown.svg";
 import Streak from "../public/svg/streak.svg";
 import Duo from "../public/svg/logo_0037_duo.svg";
-import En from "../public/svg/logo_0000_en.svg";
-import Es from "../public/svg/logo_0001_es.svg";
-import Fr from "../public/svg/logo_0002_fr.svg";
-import De from "../public/svg/logo_0003_de.svg";
-import Hi from "../public/svg/logo_0004_hi.svg";
-import Ja from "../public/svg/logo_0005_ja.svg";
-import It from "../public/svg/logo_0006_it.svg";
-import Ko from "../public/svg/logo_0007_ko.svg";
-import Zh from "../public/svg/logo_0008_zh.svg";
-import Pt from "../public/svg/logo_0009_pt.svg";
-import Ru from "../public/svg/logo_0010_ru.svg";
-import Tr from "../public/svg/logo_0011_tr.svg";
-import Nl from "../public/svg/logo_0012_nl.svg";
-import Sv from "../public/svg/logo_0013_sv.svg";
-import El from "../public/svg/logo_0014_el.svg";
-import Iw from "../public/svg/logo_0015_iw.svg";
-import Pl from "../public/svg/logo_0016_pl.svg";
-import No from "../public/svg/logo_0017_no.svg";
-import Vi from "../public/svg/logo_0018_vi.svg";
-import Da from "../public/svg/logo_0019_da.svg";
-import Ar from "../public/svg/logo_0020_ar.svg";
-import Uk from "../public/svg/logo_0021_uk.svg";
-import Ga from "../public/svg/logo_0022_ga.svg";
-import La from "../public/svg/logo_0023_la.svg";
-import Hv from "../public/svg/logo_0024_hv.svg";
-import Ro from "../public/svg/logo_0025_ro.svg";
-import Sw from "../public/svg/logo_0026_sw.svg";
-import Eo from "../public/svg/logo_0027_eo.svg";
-import World from "../public/svg/logo_0036_world.svg";
+import En from "../public/svg/logo_0000_en.svg"; // English
+import Es from "../public/svg/logo_0001_es.svg"; // Spanish
+import Fr from "../public/svg/logo_0002_fr.svg"; // French
+import De from "../public/svg/logo_0003_de.svg"; // German
+import Hi from "../public/svg/logo_0004_hi.svg"; // Hindi
+import Ja from "../public/svg/logo_0005_ja.svg"; // Japanese
+import It from "../public/svg/logo_0006_it.svg"; // Italian
+import Ko from "../public/svg/logo_0007_ko.svg"; // Korean
+import Zh from "../public/svg/logo_0008_zh.svg"; // Chinese
+import Pt from "../public/svg/logo_0009_pt.svg"; // Portuguese
+import Ru from "../public/svg/logo_0010_ru.svg"; // Russian
+import Tr from "../public/svg/logo_0011_tr.svg"; // Turkish
+import Nl from "../public/svg/logo_0012_nl.svg"; // Dutch
+import Sv from "../public/svg/logo_0013_sv.svg"; // Swedish
+import El from "../public/svg/logo_0014_el.svg"; // Greek
+import Iw from "../public/svg/logo_0015_iw.svg"; // Hebrew
+import Pl from "../public/svg/logo_0016_pl.svg"; // Polish
+import No from "../public/svg/logo_0017_no.svg"; // Norwegian
+import Vi from "../public/svg/logo_0018_vi.svg"; // Vietnamese
+import Da from "../public/svg/logo_0019_da.svg"; // Danish
+import Ar from "../public/svg/logo_0020_ar.svg"; // Arabic
+import Uk from "../public/svg/logo_0021_uk.svg"; // Ukrainian
+import Ga from "../public/svg/logo_0022_ga.svg"; // Irish
+import La from "../public/svg/logo_0023_la.svg"; // Latin
+import Hv from "../public/svg/logo_0024_hv.svg"; // High Valyrian
+import Ro from "../public/svg/logo_0025_ro.svg"; // Romanian
+import Sw from "../public/svg/logo_0026_sw.svg"; // Swahili
+import Eo from "../public/svg/logo_0027_eo.svg"; // Esperanto
+import Hu from "../public/svg/logo_0028_hu.svg"; // Hungarian
+import Cy from "../public/svg/logo_0029_cy.svg"; // Welsh
+import Cz from "../public/svg/logo_0030_cz.svg"; // Czech
+import Id from "../public/svg/logo_0031_id.svg"; // Indonesian
+import Hw from "../public/svg/logo_0032_hw.svg"; // Hawaiian
+import Gd from "../public/svg/logo_0033_gd.svg"; // Gaelic (Scottish)
+import Fi from "../public/svg/logo_0034_fi.svg"; // Finnish
+import Zu from "../public/svg/logo_0035_zu.svg"; // Zulu
+import Kl from "../public/svg/logo_0046_kl.svg"; // Klingon
+import Nv from "../public/svg/logo_0048_nv.svg"; // Navajo
+import Ht from "../public/svg/logo_0043_ht.svg"; // Haitian Creole
+import Yi from "../public/svg/logo_0049_yi.svg"; // Yiddish
+import World from "../public/svg/logo_0036_world.svg"; // Default world language icon
 import themes from "../utils/themes.json";
 import { Course } from "../utils/models";
 /**
@@ -74,6 +86,18 @@ export default function SvgWidget({ response, theme }): JSX.Element {
         ro: Ro,
         sw: Sw,
         eo: Eo,
+        hu: Hu,
+        cy: Cy,
+        cz: Cz,
+        id: Id,
+        hw: Hw,
+        gd: Gd,
+        fi: Fi,
+        zu: Zu,
+        kl: Kl,
+        nv: Nv,
+        ht: Ht,
+        yi: Yi,
         world: World,
     };
 
