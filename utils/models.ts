@@ -4,7 +4,8 @@ export type Data = {
 }
 export interface Params {
     id: string,
-    theme: string
+    theme: string,
+    sort: string
 }
 export interface Metadata {
     "achievements": Array<any>,

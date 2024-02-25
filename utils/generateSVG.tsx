@@ -6,11 +6,11 @@ import { Metadata } from './models';
 /**
  * Returns SVG as a string.
  */
-export function generateSvg(metadata: Metadata, theme: string): string {
+export function generateSvg(metadata: Metadata, theme: string, sort: string): string {
     const height = 180;
     const width = 420;
     const svgBody = ReactDOMServer.renderToStaticMarkup(
-        <SvgWidget response={metadata} theme={theme} />
+        <SvgWidget response={metadata} theme={theme} sort={sort} />
     );
 
     return `
