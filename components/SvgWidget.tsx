@@ -52,10 +52,11 @@ import Yi from "../public/svg/logo_0049_yi.svg"; // Yiddish
 import World from "../public/svg/logo_0036_world.svg"; // Default world language icon
 import themes from "../utils/themes.json";
 import { Course } from "../utils/models";
+import { numberFormatter } from "../utils/numberFormatter";
 /**
  * The main SVG widget.
  */
-export default function SvgWidget({ response, theme }): JSX.Element {
+export default function SvgWidget({ response, theme, sort }): JSX.Element {
     const flagComponents = {
         duo: Duo,
         en: En,
@@ -138,10 +139,20 @@ export default function SvgWidget({ response, theme }): JSX.Element {
                                     const FlagComponent = flagComponents[course.learningLanguage] || flagComponents.world;
                                     return (
                                         <div className="language" key={course.id}>
-                                            <div className="crown">
-                                                <Crown width={17} height={13} viewBox="0 0 353 268" />
-                                            </div>
-                                            <span id="crown-count">{course.crowns}</span>
+                                            {sort ? (
+                                                <>
+                                                    <span className="xp">⚡</span>
+                                                    <span id="xp-count">{numberFormatter(course.xp)}</span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <div className="crown">
+                                                        <Crown width={17} height={13} viewBox="0 0 353 268" />
+                                                    </div>
+                                                    <span id="crown-count">{numberFormatter(course.crowns)}</span>
+                                                </>
+                                            )}
+
                                             <FlagComponent height={37} width={50} viewBox="0 0 78 62" />
                                         </div>
                                     );

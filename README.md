@@ -23,10 +23,10 @@
 <br />
 <br />
 
-## ⭐ Add to your README page ⭐
+## ⭐ How to add to your page ⭐
 <br/>
 
-Add the following line to your Github README.md page and replace {your-duolingo-id} ⤵️
+Add the following line to your Github README.md page / website / any markdown support file and replace {your-duolingo-id} ⤵️
 
 `<img src="https://duolingo-stats-card.vercel.app/api?id={your-duolingo-id}" alt="Duolingo Stats"/>`
  
@@ -48,6 +48,10 @@ For example, if your Duolingo id is "23141883", add the following line:
 
    <img src="media/devtools.png" alt="Devtools" height="200" width="697">
 
+<br />
+
+  >  The card displays your top 3 languages based on the number of **crowns** you've unlocked. If you'd like to sort it based on the **XP** you've gained, add "sort" parameter like so:
+  >>`![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?id=23141883&sort=xp)`
 
 ## 🎨 THEMES 🎨
 

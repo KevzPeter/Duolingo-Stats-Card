@@ -55,7 +55,7 @@ body {
   font-size: 10px;
   align-items: center;
 }
-.language #crown-count{
+.language #crown-count, .language #xp-count{
   font-weight: bold;
 }
 @keyframes gradient-animation {
@@ -74,6 +74,9 @@ body {
   width:17px;
   position: relative;
   z-index: 0;
+}
+.xp{
+  font-size: 1rem;
 }
 .crown:after {
 	content:'';
