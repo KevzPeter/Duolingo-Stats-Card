@@ -28,15 +28,21 @@
 
 Add the following line to your Github README.md page / website / any markdown support file and replace {your-duolingo-id} ⤵️
 
-`<img src="https://duolingo-stats-card.vercel.app/api?id={your-duolingo-id}" alt="Duolingo Stats"/>`
+```html
+<img src="https://duolingo-stats-card.vercel.app/api?id={your-duolingo-id}" alt="Duolingo Stats"/>
+```
  
- Or even this way ⤵️
+Or even this way ⤵️
 
-`![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?id={your-duolingo-id})`
+```mark
+![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?id={your-duolingo-id})`
+```
 
 For example, if your Duolingo id is "23141883", add the following line:
 
-`![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?id=23141883)`
+```mark
+![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?id=23141883)
+```
 <br/>
 
 ### 💡 Wait! How do I get my Duolingo id ?
@@ -51,32 +57,20 @@ For example, if your Duolingo id is "23141883", add the following line:
 <br />
 
   >  The card displays your top 3 languages based on the number of **crowns** you've unlocked. If you'd like to sort it based on the **XP** you've gained, add "sort" parameter like so:
-  >>`![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?id=23141883&sort=xp)`
+  > ```mark
+  > ![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?id=23141883&sort=xp)
+  > ```
 
 ## 🎨 THEMES 🎨
 
 Want to spice up the look and feel of your stats card?
 You can choose your favorite among 15 different themes!
 
-- light
-- dark
-- github-dark
-- monokai
-- tokyonight
-- nightowl
-- onedark
-- shades-of-purple
-- dracula
-- cobalt2
-- sky
-- beach
-- purple-gang
-- mint
-- leafy
-
 Simply add the *theme* parameter to the url like so:
 
-`<img src="https://duolingo-stats-card.vercel.app/api?id={your-duoling-id}&theme={your-theme}" alt="Duolingo Stats"/>`
+```html
+<img src="https://duolingo-stats-card.vercel.app/api?id={your-duolingo-id}&theme={your-theme}" alt="Duolingo Stats"/>
+```
 
 | | | |
 | :--: | :--: | :--: |
@@ -102,40 +96,20 @@ Simply add the *theme* parameter to the url like so:
 [mint]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=mint
 [leafy]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=leafy
 
-<br/>
 
 <!-- BUILT WITH -->
 ## 🔧 Built With 🔧
-<br/>
 
 * [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
+* [![Duolingo][Duolingo]][Duolingo-url]
+* [![Docker][Docker]][Docker-url]
 
 <!--DEPLOYMENT-->
 ## 🐋 Deploy using Docker 🐋
 - Using docker compose
   * Run `docker compose -f docker-compose.production.yml up -d`
   * Go to http://localhost:3000 to use the app
-
-- Using docker
-  * Run `docker build -t duoling-stats-card .`
-  * Run `docker run -p 3000:3000 duolingo-stats-card`
-  * Go to http://localhost:3000 to use the app
-
-<!-- SET UP -->
-## 🏗️ Set Up your own Server 🏗️
-- Optional steps
-  * Make sure you have Node.js installed
-  * Clone the repository
-  * Run *npm i* in the root directory
-  * Run *npm run dev* to make sure everything's working fine
-- Required
-  * Replace BASEURL in *utils/config.ts* to the deployment url of your choice 
-  * Deploy to Vercel with the same deployment url
-  * Head over to https://{your-vercel-deployment-url}/api?id={your-duoling-id} to view the results
-  * Oh, and make sure to update the links in your README file as well :P
-
-<br/>
 
 <!-- CONTRIBUTING -->
 ## 🙌🏼 Contributing 🙌🏼
@@ -171,6 +145,10 @@ Don't forget to give the project a star! Thanks again!
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
+[Docker]: https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
+[Docker-url]: https://docker.com/
+[Duolingo]: https://img.shields.io/badge/Duolingo-%234DC730.svg?style=for-the-badge&logo=Duolingo&logoColor=white
+[Duolingo-url]: https://duolingo.com/
 [Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
 [Vue-url]: https://vuejs.org/
 [Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
