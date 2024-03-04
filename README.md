@@ -26,7 +26,7 @@
 ## ⭐ How to add to your page ⭐
 <br/>
 
-Add the following line to your Github README.md page / website / any markdown support file and replace {your-duolingo-id} ⤵️
+Add the following line to your Github README.md page / website / any markdown file and replace {your-duolingo-id} ⤵️
 
 ```html
 <img src="https://duolingo-stats-card.vercel.app/api?id={your-duolingo-id}" alt="Duolingo Stats"/>
@@ -35,7 +35,7 @@ Add the following line to your Github README.md page / website / any markdown su
 Or even this way ⤵️
 
 ```mark
-![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?id={your-duolingo-id})`
+![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?id={your-duolingo-id})
 ```
 
 For example, if your Duolingo id is "23141883", add the following line:
