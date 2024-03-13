@@ -36,10 +36,7 @@ body {
   font-size: 25px;
   font-weight: bold;
 }
-.stats #xp{
-  margin-left: 5px;
-}
-.stats #streak{
+.stats #streak, .stats #xp{
   display: flex;
   align-items: center;
 }
@@ -76,7 +73,10 @@ body {
   z-index: 0;
 }
 .xp{
-  font-size: 1rem;
+  height:20px;
+  width:20px;
+  position: relative;
+  z-index: 0;
 }
 .crown:after {
 	content:'';

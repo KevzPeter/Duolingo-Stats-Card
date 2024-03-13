@@ -7,6 +7,7 @@ import Duo_Amour from "../public/svg/Duo_Amour.svg";
 import Duo_Cannonball from "../public/svg/Duo_Cannonball.svg";
 import Duo_Daunting from "../public/svg/Duo_Daunting.svg";
 import Crown from "../public/svg/crown.svg";
+import Xp from "../public/svg/xp.svg";
 import Streak from "../public/svg/streak.svg";
 import Duo from "../public/svg/logo_0037_duo.svg";
 import En from "../public/svg/logo_0000_en.svg"; // English
@@ -132,7 +133,10 @@ export default function SvgWidget({ response, theme, sort }): JSX.Element {
                                     <Streak height={40} width={40} viewBox="0 0 250 283" />
                                     {response.streak} Day streak
                                 </span>
-                                <span id="xp">⚡{response.totalXp} XP</span>
+                                <span id="xp">
+                                    <Xp width={40} height={40} viewBox="0 0 56 56" />
+                                    {response.totalXp} XP
+                                </span>
                             </div>
                             <div className="courses" style={courseStyle}>
                                 {response.courses.map((course: Course) => {
@@ -141,7 +145,9 @@ export default function SvgWidget({ response, theme, sort }): JSX.Element {
                                         <div className="language" key={course.id}>
                                             {sort ? (
                                                 <>
-                                                    <span className="xp">⚡</span>
+                                                    <div className="xp">
+                                                        <Xp width={20} height={20} viewBox="0 0 56 56" />
+                                                    </div>
                                                     <span id="xp-count">{numberFormatter(course.xp)}</span>
                                                 </>
                                             ) : (
