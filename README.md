@@ -1,9 +1,9 @@
-<a id="readme-top"></a>
+<a username="readme-top"></a>
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/KevzPeter/Duolingo-Stats-Card">
-    <img src="https://duolingo-stats-card.vercel.app/api?id=23141883" alt="Logo">
+    <img src="https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter" alt="Logo">
   </a>
 
   <h3 align="center">Duolingo Stats Card</h3>
@@ -26,40 +26,36 @@
 ## ⭐ How to add to your page ⭐
 <br/>
 
-Add the following line to your Github README.md page / website / any markdown file and replace {your-duolingo-id} ⤵️
+Add the following line to your Github README.md page / website / any markdown file and replace {your-duolingo-username} ⤵️
 
 ```html
-<img src="https://duolingo-stats-card.vercel.app/api?id={your-duolingo-id}" alt="Duolingo Stats"/>
+<img src="https://duolingo-stats-card.vercel.app/api?username={your-duolingo-username}" alt="Duolingo Stats"/>
 ```
  
 Or even this way ⤵️
 
 ```mark
-![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?id={your-duolingo-id})
+![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?username={your-duolingo-username})
 ```
 
-For example, if your Duolingo id is "23141883", add the following line:
+For example, if your Duolingo username is "John_Smith", add the following line:
 
 ```mark
-![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?id=23141883)
+![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?username=John_Smith)
 ```
-<br/>
 
-### 💡 Wait! How do I get my Duolingo id ?
-
-1. Login at [duolingo.com](duolingo.com)
-2. Go to Developer Tools in your browser (hit F12 key)
-3. Go to Application tab ➡️ Local Storage ➡️ duolingo.com
-4. The number that you see here 👇🏽 repeated multiple times is your Duolingo profile id
-
-   <img src="media/devtools.png" alt="Devtools" height="200" width="697">
-
-<br />
-
-  >  The card displays your top 3 languages based on the number of **crowns** you've unlocked. If you'd like to sort it based on the **XP** you've gained, add "sort" parameter like so:
+>  The card displays your top 3 languages based on the number of **crowns** you've unlocked. If you'd like to sort it based on the **XP** you've gained, add "sort" parameter like so:
   > ```mark
-  > ![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?id=23141883&sort=xp)
+  > ![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?username={your-duolingo-username}&sort=xp)
   > ```
+
+
+> The current version is 1.2.0. For versions <= 1.1.0, you need to add your Duolingo ID instead of username. Click [here](#getting-your-duolingo-id) to get your Duolingo ID
+> ```
+> ![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?id={your-duolingo-id})
+> ```
+
+<br/>
 
 ## 🎨 THEMES 🎨
 
@@ -69,7 +65,7 @@ You can choose your favorite among 15 different themes!
 Simply add the *theme* parameter to the url like so:
 
 ```html
-<img src="https://duolingo-stats-card.vercel.app/api?id={your-duolingo-id}&theme={your-theme}" alt="Duolingo Stats"/>
+<img src="https://duolingo-stats-card.vercel.app/api?username={your-duolingo-username}&theme={your-theme}" alt="Duolingo Stats"/>
 ```
 
 | | | |
@@ -80,21 +76,33 @@ Simply add the *theme* parameter to the url like so:
 | `cobalt2` ![cobalt2][cobalt2] | `sky` ![sky][sky] | `beach` ![beach][beach] |
 | `purple-gang` ![purple-gang][purple-gang] | `mint` ![mint][mint] | `leafy` ![leafy][leafy] |
 
-[light]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=light
-[dark]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=dark
-[github-dark]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=github-dark
-[monokai]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=monokai
-[tokyonight]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=tokyonight
-[nightowl]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=nightowl
-[onedark]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=onedark
-[shades-of-purple]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=shades-of-purple
-[dracula]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=dracula
-[cobalt2]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=cobalt2
-[sky]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=sky
-[beach]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=beach
-[purple-gang]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=purple-gang
-[mint]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=mint
-[leafy]: https://duolingo-stats-card.vercel.app/api?id=23141883&theme=leafy
+[light]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=light
+[dark]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=dark
+[github-dark]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=github-dark
+[monokai]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=monokai
+[tokyonight]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=tokyonight
+[nightowl]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=nightowl
+[onedark]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=onedark
+[shades-of-purple]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=shades-of-purple
+[dracula]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=dracula
+[cobalt2]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=cobalt2
+[sky]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=sky
+[beach]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=beach
+[purple-gang]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=purple-gang
+[mint]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=mint
+[leafy]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=leafy
+
+
+### 💡 Getting your Duolingo ID
+
+1. Login at [duolingo.com](duolingo.com)
+2. Go to Developer Tools in your browser (hit F12 key)
+3. Go to Application tab ➡️ Local Storage ➡️ duolingo.com
+4. The number that you see here 👇🏽 repeated multiple times is your Duolingo profile id
+
+   <img src="media/devtools.png" alt="Devtools" height="200" width="697">
+
+<br />
 
 
 <!-- BUILT WITH -->
