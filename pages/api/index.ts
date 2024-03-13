@@ -8,12 +8,12 @@ import { sampleData } from '../../utils/sample-data';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>): Promise<any> {
     try {
-        let { id, theme, sort }: Params = <any>req.query;
-        // id query validation
-        if (!id || typeof id !== 'string' || !id.trim().length) {
-            res.status(400).send({
+        let { username, id, theme, sort }: Params = <any>req.query;
+        // username / id query validation
+        if ((!username?.trim().length) && (!id?.trim().length)) {
+            return res.status(400).send({
                 status: 'error',
-                body: 'Missing id parameter in query'
+                body: 'Missing username / id parameter in query'
             });
         }
         //theme query validation
@@ -38,8 +38,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         const axiosConfig = {
             headers: headers
         };
-        const response = await axios.get(`https://www.duolingo.com/2017-06-30/users/${id}`, axiosConfig);
-        const metadata: Metadata = response.data;
+        let path = "users";
+        if (username) {
+            path += `?username=${username}`;
+        }
+        else {
+            path += `/${id}`
+        }
+
+        const response = await axios.get(`https://www.duolingo.com/2017-06-30/${path}`, axiosConfig);
+        const metadata: Metadata = username ? response.data.users[0] : response.data;
 
         if (sort === 'xp') {
             // Sort the courses by xp

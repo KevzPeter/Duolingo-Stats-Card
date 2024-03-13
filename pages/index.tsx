@@ -20,11 +20,11 @@ const Home: NextPage = () => {
     e.preventDefault();
     setLoading(true);
 
-    let id = e.target.id.value;
+    let username = e.target.username.value;
     let theme = e.target.theme.value;
 
-    if (id) {
-      let href = `/api?id=${id}`
+    if (username) {
+      let href = `/api?username=${username}`
       if (theme)
         href += `&theme=${theme}`
       router.push(href)
@@ -45,8 +45,8 @@ const Home: NextPage = () => {
       </Head>
       <main className={styles.container}>
         <form className={styles.form} onSubmit={e => handleSubmit(e)}>
-          <label htmlFor="id">🧑🏽 User ID</label>
-          <input id="id" name="id" type="text"></input>
+          <label htmlFor="username">🧑🏽 Username</label>
+          <input id="username" name="username" type="text"></input>
           <label htmlFor="theme">🎨 Theme</label>
           <select name='theme'>
             {themes.map((theme, index) => {

@@ -4,6 +4,7 @@ export type Data = {
 }
 export interface Params {
     id: string,
+    username: string,
     theme: string,
     sort: string
 }
