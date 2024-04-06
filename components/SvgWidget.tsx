@@ -69,6 +69,7 @@ export default function SvgWidget({ response, theme, sort }): JSX.Element {
         it: It,
         ko: Ko,
         zh: Zh,
+        'zh-HK': Zh,
         pt: Pt,
         ru: Ru,
         tr: Tr,
