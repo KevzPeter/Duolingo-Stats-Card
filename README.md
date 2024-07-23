@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/KevzPeter/Duolingo-Stats-Card">
-    <img src="https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter" alt="Logo">
+    <img src="https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&sort=xp" alt="Logo">
   </a>
 
   <h3 align="center">Duolingo Stats Card</h3>
@@ -21,9 +21,8 @@
 </div>
 
 <br />
-<br />
 
-## ⭐ How to add to your page ⭐
+## 🚀 How to add to your page 
 <br/>
 
 Add the following line to your Github README.md page / website / any markdown file and replace {your-duolingo-username} ⤵️
@@ -44,20 +43,22 @@ For example, if your Duolingo username is "John_Smith", add the following line:
 ![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?username=John_Smith)
 ```
 
->  The card displays your top 3 languages based on the number of **crowns** you've unlocked. If you'd like to sort it based on the **XP** you've gained, add "sort" parameter like so:
-  > ```mark
-  > ![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?username={your-duolingo-username}&sort=xp)
-  > ```
-
-
-> The current version is 1.2.0. For versions <= 1.1.0, you need to add your Duolingo ID instead of username. Click [here](#getting-your-duolingo-id) to get your Duolingo ID
+> [!TIP] 
+> The card displays your top 3 languages based on the number of **crowns** you've unlocked. 
+> If you'd like to sort it based on the **XP** you've gained, add "sort" parameter like so:
+> ```mark
+> ![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?username={your-duolingo-username}&sort=xp)
 > ```
+
+
+> [!NOTE]
+> The current version is 1.2.0. For versions <= 1.1.0, you need to add your Duolingo ID instead of username. Click [here](#getting-your-duolingo-id) to get your Duolingo ID. 
+> ⚠️ The crowns may not be accurately reflected as the Duolingo API returns weird results.
+> ```mark
 > ![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?id={your-duolingo-id})
 > ```
 
-<br/>
-
-## 🎨 THEMES 🎨
+## 🎨 Themes
 
 Want to spice up the look and feel of your stats card?
 You can choose your favorite among 15 different themes!
@@ -67,6 +68,9 @@ Simply add the *theme* parameter to the url like so:
 ```html
 <img src="https://duolingo-stats-card.vercel.app/api?username={your-duolingo-username}&theme={your-theme}" alt="Duolingo Stats"/>
 ```
+
+> [!NOTE]
+> If you don't specify a theme, it would be rendered like how it's displayed at the top of this doc!
 
 | | | |
 | :--: | :--: | :--: |
@@ -93,7 +97,7 @@ Simply add the *theme* parameter to the url like so:
 [leafy]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=leafy
 
 
-### 💡 Getting your Duolingo ID
+### Getting your Duolingo ID
 
 1. Login at [duolingo.com](duolingo.com)
 2. Go to Developer Tools in your browser (hit F12 key)
@@ -106,7 +110,7 @@ Simply add the *theme* parameter to the url like so:
 
 
 <!-- BUILT WITH -->
-## 🔧 Built With 🔧
+## 🔧 Built With
 
 * [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
@@ -114,13 +118,13 @@ Simply add the *theme* parameter to the url like so:
 * [![Docker][Docker]][Docker-url]
 
 <!--DEPLOYMENT-->
-## 🐋 Deploy using Docker 🐋
+## 🐋 Deploy using Docker
 - Using docker compose
   * Run `docker compose -f docker-compose.production.yml up -d`
   * Go to http://localhost:3000 to use the app
 
 <!-- CONTRIBUTING -->
-## 🙌🏼 Contributing 🙌🏼
+## 🙌🏼 Contributing
 
 If you wanna add your custom theme or suggest enhancements, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
@@ -146,7 +150,6 @@ Don't forget to give the project a star! Thanks again!
 [issues-url]: https://github.com/othneildrew/Best-README-Template/issues
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: images/screenshot.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
@@ -157,7 +160,3 @@ Don't forget to give the project a star! Thanks again!
 [Docker-url]: https://docker.com/
 [Duolingo]: https://img.shields.io/badge/Duolingo-%234DC730.svg?style=for-the-badge&logo=Duolingo&logoColor=white
 [Duolingo-url]: https://duolingo.com/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
