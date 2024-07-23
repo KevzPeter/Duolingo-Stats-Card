@@ -2,12 +2,10 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.scss'
-import { useState, CSSProperties } from "react";
-import ClipLoader from "react-spinners/ClipLoader";
+import { CSSProperties } from "react";
 import { THEME_NAMES } from '../utils/config';
 
 const Home: NextPage = () => {
-  let [loading, setLoading] = useState(false);
   const override: CSSProperties = {
     display: "block",
     margin: "0 auto",
@@ -15,26 +13,23 @@ const Home: NextPage = () => {
   };
   const router = useRouter();
   const themes = THEME_NAMES;
+  themes.unshift("default")
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
 
     let username = e.target.username.value;
     let theme = e.target.theme.value;
+    let stats = e.target.stats.value;
 
     if (username) {
       let href = `/api?username=${username}`
-      if (theme)
+      if (theme !== 'default')
         href += `&theme=${theme}`
-      router.push(href)
-        .then(() => setLoading(false))
-        .catch(err => {
-          console.error(err);
-          setLoading(false);
-        });
+      if (stats === 'xp')
+        href += `&sort=xp`
+      router.push(href);
     }
-    else setLoading(false);
   }
   return (
     <div className={styles.container}>
@@ -52,6 +47,11 @@ const Home: NextPage = () => {
             {themes.map((theme, index) => {
               return <option key={index} value={theme}>{theme}</option>
             })}
+          </select>
+          <label htmlFor="stats">⚙️ Stats</label>
+          <select name='stats'>
+            <option value="crowns">Crowns</option>
+            <option value="xp">XP</option>
           </select>
           <button className={styles.btn} type="submit">Submit</button>
         </form>
