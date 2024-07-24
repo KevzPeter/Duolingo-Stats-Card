@@ -17,8 +17,8 @@ body {
   padding: 10px 20px 10px 10px;
   gap: 10px;
   border-radius: 10px;
-  background-color: #FF3CAC;
-  background-image: linear-gradient(225deg, #d46002 0%, #784BA0 50%, #2B86C5 100%);
+  background-color: #21D4FD;
+  background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
   background-size: 200% 200%;
   animation: gradient-animation 4s ease-in-out infinite;
 }
