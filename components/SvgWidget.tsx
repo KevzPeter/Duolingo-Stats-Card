@@ -50,6 +50,10 @@ import Kl from "../public/svg/logo_0046_kl.svg"; // Klingon
 import Nv from "../public/svg/logo_0048_nv.svg"; // Navajo
 import Ht from "../public/svg/logo_0043_ht.svg"; // Haitian Creole
 import Yi from "../public/svg/logo_0049_yi.svg"; // Yiddish
+import Ha from "../public/svg/logo_0050_ha.svg"; // Hausa
+import Ca from "../public/svg/logo_0051_ca.svg"; // Catalan, Valencian
+import Th from "../public/svg/logo_0052_th.svg"; // Thai
+import Gn from "../public/svg/logo_0053_gn.svg"; // Guarani
 import World from "../public/svg/logo_0036_world.svg"; // Default world language icon
 import themes from "../utils/themes.json";
 import { Course } from "../utils/models";
@@ -73,12 +77,15 @@ export default function SvgWidget({ response, theme, sort }): JSX.Element {
         pt: Pt,
         ru: Ru,
         tr: Tr,
+        nl: Nl,
         'nl-NL': Nl,
         sv: Sv,
         el: El,
+        he: Iw,
         iw: Iw,
         pl: Pl,
         no: No,
+        'no-BO': No,
         vi: Vi,
         da: Da,
         ar: Ar,
@@ -91,6 +98,7 @@ export default function SvgWidget({ response, theme, sort }): JSX.Element {
         eo: Eo,
         hu: Hu,
         cy: Cy,
+        cs: Cz,
         cz: Cz,
         id: Id,
         hw: Hw,
@@ -101,6 +109,10 @@ export default function SvgWidget({ response, theme, sort }): JSX.Element {
         nv: Nv,
         ht: Ht,
         yi: Yi,
+        ha: Ha,
+        ca: Ca,
+        th: Th,
+        gn: Gn,
         world: World,
     };
 
