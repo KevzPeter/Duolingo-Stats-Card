@@ -134,56 +134,65 @@ export default function SvgWidget({ response, theme, sort }): JSX.Element {
     const iconStyle = duoIcons[randomIndex].style;
     // Display top 3 languages with most crowns
     response.courses = response.courses.slice(0, Math.min(3, response.courses.length));
-    const cardStyle = theme ? { "background": `${themes[theme].background}!important`, color: `${themes[theme].colorPrimary}` } : null;
+    const fillParent = {
+        "height": "100%",
+        "width": "100%",
+        "box-sizing": "border-box"
+    }
+    const cardStyle = theme ? {
+        "background": `${themes[theme].background}!important`,
+        color: `${themes[theme].colorPrimary}`,
+        ...fillParent
+    } : fillParent;
+
     const courseStyle = theme ? { color: `${themes[theme].colorSecondary}` } : null;
 
     return (
         <g>
             <foreignObject x="0" y="0" width="100%" height="100%">
-                <div xmlns="http://www.w3.org/1999/xhtml">
-                    <div className="card" style={cardStyle}>
-                        <div className="content">
-                            <div className="stats">
+                <div xmlns="http://www.w3.org/1999/xhtml" className="card" style={cardStyle}>
+                    <div className="content">
+                        <div className="stats">
                                 <span id="streak">
-                                    <Streak height={40} width={40} viewBox="0 0 250 283" />
+                                    <Streak height={40} width={40} viewBox="0 0 250 283"/>
                                     {response.streak} Day streak
                                 </span>
-                                <span id="xp">
-                                    <Xp width={40} height={40} viewBox="0 0 56 56" />
-                                    {response.totalXp} XP
+                            <span id="xp">
+                                    <Xp width={40} height={40} viewBox="0 0 56 56"/>
+                                {response.totalXp} XP
                                 </span>
-                            </div>
-                            <div className="courses" style={courseStyle}>
-                                {response.courses.map((course: Course) => {
-                                    const FlagComponent = flagComponents[course.learningLanguage] || flagComponents.world;
-                                    return (
-                                        <div className="language" key={course.id}>
-                                            {sort ? (
-                                                <>
-                                                    <div className="xp">
-                                                        <Xp width={20} height={20} viewBox="0 0 56 56" />
-                                                    </div>
-                                                    <span id="xp-count">{numberFormatter(course.xp)}</span>
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <div className="crown">
-                                                        <Crown width={17} height={13} viewBox="0 0 353 268" />
-                                                    </div>
-                                                    <span id="crown-count">{numberFormatter(course.crowns)}</span>
-                                                </>
-                                            )}
-
-                                            <FlagComponent height={37} width={50} viewBox="0 0 78 62" />
-                                        </div>
-                                    );
-                                })}
-                            </div>
                         </div>
-                        {iconStyle === 'flip' ?
-                            <DuoIconComponent height={152} width={122} viewBox={viewBox} style={{ 'display': 'block', 'transform': 'scale(-1, 1)' }} /> :
-                            <DuoIconComponent height={152} width={122} viewBox={viewBox} />}
+                        <div className="courses" style={courseStyle}>
+                            {response.courses.map((course: Course) => {
+                                const FlagComponent = flagComponents[course.learningLanguage] || flagComponents.world;
+                                return (
+                                    <div className="language" key={course.id}>
+                                        {sort ? (
+                                            <>
+                                                <div className="xp">
+                                                    <Xp width={20} height={20} viewBox="0 0 56 56"/>
+                                                </div>
+                                                <span id="xp-count">{numberFormatter(course.xp)}</span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <div className="crown">
+                                                    <Crown width={17} height={13} viewBox="0 0 353 268"/>
+                                                </div>
+                                                <span id="crown-count">{numberFormatter(course.crowns)}</span>
+                                            </>
+                                        )}
+
+                                        <FlagComponent height={37} width={50} viewBox="0 0 78 62"/>
+                                    </div>
+                                );
+                            })}
+                        </div>
                     </div>
+                    {iconStyle === 'flip' ?
+                        <DuoIconComponent height={152} width={122} viewBox={viewBox}
+                                          style={{'display': 'block', 'transform': 'scale(-1, 1)'}}/> :
+                        <DuoIconComponent height={152} width={122} viewBox={viewBox}/>}
                 </div>
             </foreignObject>
         </g>
