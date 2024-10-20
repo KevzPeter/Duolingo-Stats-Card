@@ -172,7 +172,7 @@ export default function SvgWidget({ response, theme, sort }): JSX.Element {
                                                 </>
                                             )}
 
-                                            <FlagComponent height={37} width={50} viewBox="0 0 78 62" />
+                                            <FlagComponent height={37} width={50} viewBox="0 0 82 66" />
                                         </div>
                                     );
                                 })}
