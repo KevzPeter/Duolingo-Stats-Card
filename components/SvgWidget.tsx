@@ -115,13 +115,13 @@ export default function SvgWidget({ response, theme, sort }): JSX.Element {
     };
 
     const duoIcons = [
-        { icon: Duo_Waving, viewBox: "-30 0 330 330" },
-        { icon: Duo_PencilBoarding, viewBox: "40 50 225 200" },
-        { icon: Duo_Jolly, viewBox: "0 0 185 180", style: 'flip' },
-        { icon: Duo_Excited, viewBox: "0 -15 160 240", style: 'flip' },
-        { icon: Duo_Daunting, viewBox: "0 0 190 150" },
-        { icon: Duo_Cannonball, viewBox: "0 0 160 150" },
-        { icon: Duo_Amour, viewBox: "0 0 185 30", style: 'flip' },
+        { icon: Duo_Waving, viewBox: "0 -3 148 174" },
+        { icon: Duo_PencilBoarding, viewBox: "0 -48 225 183" },
+        { icon: Duo_Jolly, viewBox: "0 -27 189 200", style: 'flip' },
+        { icon: Duo_Excited, viewBox: "0 -10 162 220", style: 'flip' },
+        { icon: Duo_Daunting, viewBox: "0 -58 191 204" },
+        { icon: Duo_Cannonball, viewBox: "0 0 158 171" },
+        { icon: Duo_Amour, viewBox: "0 -69 194 123", style: 'flip' },
     ];
     // Randomly generate a Duo icon
     const randomIndex = Math.floor(Math.random() * 7);
