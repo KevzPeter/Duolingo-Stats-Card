@@ -115,13 +115,13 @@ export default function SvgWidget({ response, theme, sort }): JSX.Element {
     };
 
     const duoIcons = [
-        { icon: Duo_Waving, viewBox: "-30 0 330 330" },
-        { icon: Duo_PencilBoarding, viewBox: "40 50 225 200" },
-        { icon: Duo_Jolly, viewBox: "0 0 185 180", style: 'flip' },
-        { icon: Duo_Excited, viewBox: "0 -15 160 240", style: 'flip' },
-        { icon: Duo_Daunting, viewBox: "0 0 190 150" },
-        { icon: Duo_Cannonball, viewBox: "0 0 160 150" },
-        { icon: Duo_Amour, viewBox: "0 0 185 30", style: 'flip' },
+        { icon: Duo_Waving, viewBox: "0 -3 148 174" },
+        { icon: Duo_PencilBoarding, viewBox: "0 -48 225 183" },
+        { icon: Duo_Jolly, viewBox: "0 -27 189 200", style: 'flip' },
+        { icon: Duo_Excited, viewBox: "0 -10 162 220", style: 'flip' },
+        { icon: Duo_Daunting, viewBox: "0 -58 191 204" },
+        { icon: Duo_Cannonball, viewBox: "0 0 158 171" },
+        { icon: Duo_Amour, viewBox: "0 -69 194 123", style: 'flip' },
     ];
     // Randomly generate a Duo icon
     const randomIndex = Math.floor(Math.random() * 7);
@@ -130,56 +130,64 @@ export default function SvgWidget({ response, theme, sort }): JSX.Element {
     const iconStyle = duoIcons[randomIndex].style;
     // Display top 3 languages with most crowns
     response.courses = response.courses.slice(0, Math.min(3, response.courses.length));
-    const cardStyle = theme ? { "background": `${themes[theme].background}!important`, color: `${themes[theme].colorPrimary}` } : null;
+    const fillParent = {
+        "height": "100%",
+        "width": "100%",
+        "box-sizing": "border-box"
+    }
+    const cardStyle = theme ? {
+        "background": `${themes[theme].background}!important`,
+        color: `${themes[theme].colorPrimary}`,
+        ...fillParent
+    } : fillParent;
+
     const courseStyle = theme ? { color: `${themes[theme].colorSecondary}` } : null;
 
     return (
         <g>
             <foreignObject x="0" y="0" width="100%" height="100%">
-                <div xmlns="http://www.w3.org/1999/xhtml">
-                    <div className="card" style={cardStyle}>
-                        <div className="content">
-                            <div className="stats">
+                <div xmlns="http://www.w3.org/1999/xhtml" className="card" style={cardStyle}>
+                    <div className="content">
+                        <div className="stats">
                                 <span id="streak">
-                                    <Streak height={40} width={40} viewBox="0 0 250 283" />
+                                    <Streak height={40} width={40} viewBox="0 0 250 283"/>
                                     {response.streak} Day streak
                                 </span>
-                                <span id="xp">
-                                    <Xp width={40} height={40} viewBox="0 0 56 56" />
-                                    {response.totalXp} XP
+                            <span id="xp">
+                                    <Xp width={40} height={40} viewBox="0 0 56 56"/>
+                                {response.totalXp} XP
                                 </span>
-                            </div>
-                            <div className="courses" style={courseStyle}>
-                                {response.courses.map((course: Course) => {
-                                    const FlagComponent = flagComponents[course.learningLanguage] || flagComponents.world;
-                                    return (
-                                        <div className="language" key={course.id}>
-                                            {sort ? (
-                                                <>
-                                                    <div className="xp">
-                                                        <Xp width={20} height={20} viewBox="0 0 56 56" />
-                                                    </div>
-                                                    <span id="xp-count">{numberFormatter(course.xp)}</span>
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <div className="crown">
-                                                        <Crown width={17} height={13} viewBox="0 0 353 268" />
-                                                    </div>
-                                                    <span id="crown-count">{numberFormatter(course.crowns)}</span>
-                                                </>
-                                            )}
-
-                                            <FlagComponent height={37} width={50} viewBox="0 0 82 66" />
-                                        </div>
-                                    );
-                                })}
-                            </div>
                         </div>
-                        {iconStyle === 'flip' ?
-                            <DuoIconComponent height={152} width={122} viewBox={viewBox} style={{ 'display': 'block', 'transform': 'scale(-1, 1)' }} /> :
-                            <DuoIconComponent height={152} width={122} viewBox={viewBox} />}
+                        <div className="courses" style={courseStyle}>
+                            {response.courses.map((course: Course) => {
+                                const FlagComponent = flagComponents[course.learningLanguage] || flagComponents.world;
+                                return (
+                                    <div className="language" key={course.id}>
+                                        {sort ? (
+                                            <>
+                                                <div className="xp">
+                                                    <Xp width={20} height={20} viewBox="0 0 56 56"/>
+                                                </div>
+                                                <span id="xp-count">{numberFormatter(course.xp)}</span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <div className="crown">
+                                                    <Crown width={17} height={13} viewBox="0 0 353 268"/>
+                                                </div>
+                                                <span id="crown-count">{numberFormatter(course.crowns)}</span>
+                                            </>
+                                        )}
+                                        <FlagComponent height={37} width={50} viewBox="0 0 82 66"/>
+                                    </div>
+                                );
+                            })}
+                        </div>
                     </div>
+                    {iconStyle === 'flip' ?
+                        <DuoIconComponent height={152} width={122} viewBox={viewBox}
+                                          style={{'display': 'block', 'transform': 'scale(-1, 1)'}}/> :
+                        <DuoIconComponent height={152} width={122} viewBox={viewBox}/>}
                 </div>
             </foreignObject>
         </g>
