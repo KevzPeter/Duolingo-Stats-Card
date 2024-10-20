@@ -50,10 +50,9 @@ import Kl from "../public/svg/logo_0046_kl.svg"; // Klingon
 import Nv from "../public/svg/logo_0048_nv.svg"; // Navajo
 import Ht from "../public/svg/logo_0043_ht.svg"; // Haitian Creole
 import Yi from "../public/svg/logo_0049_yi.svg"; // Yiddish
-import Ha from "../public/svg/logo_0050_ha.svg"; // Hausa
+import Gn from "../public/svg/logo_0050_gn.svg"; // Guarani
 import Ca from "../public/svg/logo_0051_ca.svg"; // Catalan, Valencian
 import Th from "../public/svg/logo_0052_th.svg"; // Thai
-import Gn from "../public/svg/logo_0053_gn.svg"; // Guarani
 import World from "../public/svg/logo_0036_world.svg"; // Default world language icon
 import themes from "../utils/themes.json";
 import { Course } from "../utils/models";
@@ -109,7 +108,6 @@ export default function SvgWidget({ response, theme, sort }): JSX.Element {
         nv: Nv,
         ht: Ht,
         yi: Yi,
-        ha: Ha,
         ca: Ca,
         th: Th,
         gn: Gn,
@@ -117,13 +115,13 @@ export default function SvgWidget({ response, theme, sort }): JSX.Element {
     };
 
     const duoIcons = [
-        { icon: Duo_Waving, viewBox: "-10 -20 189 200" },
-        { icon: Duo_PencilBoarding, viewBox: "40 50 225 200" },
-        { icon: Duo_Jolly, viewBox: "0 0 185 180", style: 'flip' },
-        { icon: Duo_Excited, viewBox: "0 -15 160 240", style: 'flip' },
-        { icon: Duo_Daunting, viewBox: "0 0 190 150" },
-        { icon: Duo_Cannonball, viewBox: "0 0 160 150" },
-        { icon: Duo_Amour, viewBox: "0 0 185 30", style: 'flip' },
+        { icon: Duo_Waving, viewBox: "0 -3 148 174" },
+        { icon: Duo_PencilBoarding, viewBox: "0 -48 225 183" },
+        { icon: Duo_Jolly, viewBox: "0 -27 189 200", style: 'flip' },
+        { icon: Duo_Excited, viewBox: "0 -10 162 220", style: 'flip' },
+        { icon: Duo_Daunting, viewBox: "0 -58 191 204" },
+        { icon: Duo_Cannonball, viewBox: "0 0 158 171" },
+        { icon: Duo_Amour, viewBox: "0 -69 194 123", style: 'flip' },
     ];
     // Randomly generate a Duo icon
     const randomIndex = Math.floor(Math.random() * 7);
@@ -180,7 +178,6 @@ export default function SvgWidget({ response, theme, sort }): JSX.Element {
                                                 <span id="crown-count">{numberFormatter(course.crowns)}</span>
                                             </>
                                         )}
-
                                         <FlagComponent height={37} width={50} viewBox="0 0 78 62"/>
                                     </div>
                                 );
