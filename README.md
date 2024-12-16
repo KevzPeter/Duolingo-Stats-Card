@@ -80,21 +80,21 @@ Simply add the *theme* parameter to the url like so:
 | `cobalt2` ![cobalt2][cobalt2] | `sky` ![sky][sky] | `beach` ![beach][beach] |
 | `purple-gang` ![purple-gang][purple-gang] | `mint` ![mint][mint] | `leafy` ![leafy][leafy] |
 
-[light]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=light
-[dark]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=dark
-[github-dark]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=github-dark
-[monokai]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=monokai
-[tokyonight]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=tokyonight
-[nightowl]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=nightowl
-[onedark]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=onedark
-[shades-of-purple]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=shades-of-purple
-[dracula]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=dracula
-[cobalt2]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=cobalt2
-[sky]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=sky
-[beach]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=beach
-[purple-gang]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=purple-gang
-[mint]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=mint
-[leafy]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=leafy
+[light]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=light&sort=xp
+[dark]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=dark&sort=xp
+[github-dark]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=github-dark&sort=xp
+[monokai]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=monokai&sort=xp
+[tokyonight]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=tokyonight&sort=xp
+[nightowl]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=nightowl&sort=xp
+[onedark]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=onedark&sort=xp
+[shades-of-purple]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=shades-of-purple&sort=xp
+[dracula]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=dracula&sort=xp
+[cobalt2]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=cobalt2&sort=xp
+[sky]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=sky&sort=xp
+[beach]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=beach&sort=xp
+[purple-gang]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=purple-gang&sort=xp
+[mint]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=mint&sort=xp
+[leafy]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=leafy&sort=xp
 
 
 ### Getting your Duolingo ID
