@@ -16,19 +16,19 @@ const Home: NextPage = () => {
   const themes = THEME_NAMES;
   themes.unshift("default")
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    let username = e.target.username.value;
-    let theme = e.target.theme.value;
-    let stats = e.target.stats.value;
+    const form = e.currentTarget;
+    const usernameInput = form.elements.namedItem('username') as HTMLInputElement | null;
+    const themeInput = form.elements.namedItem('theme') as HTMLSelectElement | null;
+
+    const username = usernameInput?.value.trim() ?? '';
+    const theme = themeInput?.value ?? 'default';
 
     if (username) {
-      let href = `/api?username=${username}`
-      if (theme !== 'default')
-        href += `&theme=${theme}`
-      if (stats === 'xp')
-        href += `&sort=xp`
+      let href = `/api?username=${encodeURIComponent(username)}`;
+      if (theme !== 'default') href += `&theme=${encodeURIComponent(theme)}`;
       router.push(href);
     }
   }
@@ -49,11 +49,6 @@ const Home: NextPage = () => {
               {themes.map((theme, index) => {
                 return <option key={index} value={theme}>{theme}</option>
               })}
-            </select>
-            <label htmlFor="stats">⚙️ Stats</label>
-            <select name='stats'>
-              <option value="xp">XP</option>
-              <option value="crowns">Crowns</option>
             </select>
             <button className={styles.btn} type="submit">Submit</button>
           </form>

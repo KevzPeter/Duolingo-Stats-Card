@@ -1,9 +1,10 @@
 <a username="readme-top"></a>
+
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/KevzPeter/Duolingo-Stats-Card">
-    <img src="https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&sort=xp" alt="Logo">
+    <img src="https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter" alt="Logo">
   </a>
 
   <h3 align="center">Duolingo Stats Card</h3>
@@ -22,15 +23,16 @@
 
 <br />
 
-## 🚀 How to add to your page 
+## 🚀 How to add to your page
+
 <br/>
 
 Add the following line to your Github README.md page / website / any markdown file and replace {your-duolingo-username} ⤵️
 
 ```html
-<img src="https://duolingo-stats-card.vercel.app/api?username={your-duolingo-username}" alt="Duolingo Stats"/>
+<img src="https://duolingo-stats-card.vercel.app/api?username={your-duolingo-username}" alt="Duolingo Stats" />
 ```
- 
+
 Or even this way ⤵️
 
 ```mark
@@ -43,59 +45,43 @@ For example, if your Duolingo username is "John_Smith", add the following line:
 ![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?username=John_Smith)
 ```
 
-> [!TIP] 
-> The card displays your top 3 languages based on the number of **crowns** you've unlocked. 
-> If you'd like to sort it based on the **XP** you've gained, add "sort" parameter like so:
-> ```mark
-> ![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?username={your-duolingo-username}&sort=xp)
-> ```
-
-
-> [!NOTE]
-> The current version is 1.2.0. For versions <= 1.1.0, you need to add your Duolingo ID instead of username. Click [here](#getting-your-duolingo-id) to get your Duolingo ID. 
-> ⚠️ The crowns may not be accurately reflected as the Duolingo API returns weird results.
-> ```mark
-> ![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?id={your-duolingo-id})
-> ```
-
 ## 🎨 Themes
 
 Want to spice up the look and feel of your stats card?
 You can choose your favorite among 15 different themes!
 
-Simply add the *theme* parameter to the url like so:
+Simply add the _theme_ parameter to the url like so:
 
 ```html
-<img src="https://duolingo-stats-card.vercel.app/api?username={your-duolingo-username}&theme={your-theme}" alt="Duolingo Stats"/>
+<img src="https://duolingo-stats-card.vercel.app/api?username={your-duolingo-username}&theme={your-theme}" alt="Duolingo Stats" />
 ```
 
 > [!NOTE]
 > If you don't specify a theme, it would be rendered like how it's displayed at the top of this doc!
 
-| | | |
-| :--: | :--: | :--: |
-| `light` ![light][light] | `dark` ![dark][dark] | `github-dark` ![github-dark][github-dark] |
-| `monokai` ![monokai][monokai] | `tokyonight` ![tokyonight][tokyonight] | `nightowl` ![nightowl][nightowl] |
-| `onedark` ![onedark][onedark] | `shades-of-purple` ![shades-of-purple][shades-of-purple] | `dracula` ![dracula][dracula] |
-| `cobalt2` ![cobalt2][cobalt2] | `sky` ![sky][sky] | `beach` ![beach][beach] |
-| `purple-gang` ![purple-gang][purple-gang] | `mint` ![mint][mint] | `leafy` ![leafy][leafy] |
+|                                           |                                                          |                                           |
+| :---------------------------------------: | :------------------------------------------------------: | :---------------------------------------: |
+|          `light` ![light][light]          |                   `dark` ![dark][dark]                   | `github-dark` ![github-dark][github-dark] |
+|       `monokai` ![monokai][monokai]       |          `tokyonight` ![tokyonight][tokyonight]          |     `nightowl` ![nightowl][nightowl]      |
+|       `onedark` ![onedark][onedark]       | `shades-of-purple` ![shades-of-purple][shades-of-purple] |       `dracula` ![dracula][dracula]       |
+|       `cobalt2` ![cobalt2][cobalt2]       |                    `sky` ![sky][sky]                     |          `beach` ![beach][beach]          |
+| `purple-gang` ![purple-gang][purple-gang] |                   `mint` ![mint][mint]                   |          `leafy` ![leafy][leafy]          |
 
-[light]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=light&sort=xp
-[dark]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=dark&sort=xp
-[github-dark]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=github-dark&sort=xp
-[monokai]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=monokai&sort=xp
-[tokyonight]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=tokyonight&sort=xp
-[nightowl]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=nightowl&sort=xp
-[onedark]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=onedark&sort=xp
-[shades-of-purple]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=shades-of-purple&sort=xp
-[dracula]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=dracula&sort=xp
-[cobalt2]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=cobalt2&sort=xp
-[sky]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=sky&sort=xp
-[beach]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=beach&sort=xp
-[purple-gang]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=purple-gang&sort=xp
-[mint]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=mint&sort=xp
-[leafy]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=leafy&sort=xp
-
+[light]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=light
+[dark]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=dark
+[github-dark]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=github-dark
+[monokai]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=monokai
+[tokyonight]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=tokyonight
+[nightowl]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=nightowl
+[onedark]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=onedark
+[shades-of-purple]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=shades-of-purple
+[dracula]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=dracula
+[cobalt2]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=cobalt2
+[sky]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=sky
+[beach]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=beach
+[purple-gang]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=purple-gang
+[mint]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=mint
+[leafy]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=leafy
 
 ### Getting your Duolingo ID
 
@@ -108,22 +94,25 @@ Simply add the *theme* parameter to the url like so:
 
 <br />
 
-
 <!-- BUILT WITH -->
+
 ## 🔧 Built With
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Duolingo][Duolingo]][Duolingo-url]
-* [![Docker][Docker]][Docker-url]
+- [![Next][Next.js]][Next-url]
+- [![React][React.js]][React-url]
+- [![Duolingo][Duolingo]][Duolingo-url]
+- [![Docker][Docker]][Docker-url]
 
 <!--DEPLOYMENT-->
+
 ## 🐋 Deploy using Docker
+
 - Using docker compose
-  * Run `docker compose -f docker-compose.production.yml up -d`
-  * Go to http://localhost:3000 to use the app
+  - Run `docker compose -f docker-compose.production.yml up -d`
+  - Go to http://localhost:3000 to use the app
 
 <!-- CONTRIBUTING -->
+
 ## 🙌🏼 Contributing
 
 If you wanna add your custom theme or suggest enhancements, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
@@ -137,9 +126,9 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge

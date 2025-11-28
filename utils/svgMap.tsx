@@ -1,0 +1,132 @@
+// Centralized SVG imports and mappings
+// Exports: flagComponents, duoIcons, Streak, Xp
+// Keep this file focused on mapping SVG assets to names used across the app.
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
+import Duo_Waving from "../public/svg/Duo_waving.svg";
+import Duo_PencilBoarding from "../public/svg/Duo_PencilBoarding.svg";
+import Duo_Excited from "../public/svg/Duo_Excited.svg";
+import Duo_Jolly from "../public/svg/Duo_Jolly.svg";
+import Duo_Amour from "../public/svg/Duo_Amour.svg";
+import Duo_Cannonball from "../public/svg/Duo_Cannonball.svg";
+import Duo_Daunting from "../public/svg/Duo_Daunting.svg";
+import Crown from "../public/svg/crown.svg";
+import Xp from "../public/svg/xp.svg";
+import Streak from "../public/svg/streak.svg";
+import Duo from "../public/svg/logo_0037_duo.svg";
+import En from "../public/svg/logo_0000_en.svg"; // English
+import Es from "../public/svg/logo_0001_es.svg"; // Spanish
+import Fr from "../public/svg/logo_0002_fr.svg"; // French
+import De from "../public/svg/logo_0003_de.svg"; // German
+import Hi from "../public/svg/logo_0004_hi.svg"; // Hindi
+import Ja from "../public/svg/logo_0005_ja.svg"; // Japanese
+import It from "../public/svg/logo_0006_it.svg"; // Italian
+import Ko from "../public/svg/logo_0007_ko.svg"; // Korean
+import Zh from "../public/svg/logo_0008_zh.svg"; // Chinese
+import Pt from "../public/svg/logo_0009_pt.svg"; // Portuguese
+import Ru from "../public/svg/logo_0010_ru.svg"; // Russian
+import Tr from "../public/svg/logo_0011_tr.svg"; // Turkish
+import Nl from "../public/svg/logo_0012_nl.svg"; // Dutch
+import Sv from "../public/svg/logo_0013_sv.svg"; // Swedish
+import El from "../public/svg/logo_0014_el.svg"; // Greek
+import Iw from "../public/svg/logo_0015_iw.svg"; // Hebrew
+import Pl from "../public/svg/logo_0016_pl.svg"; // Polish
+import No from "../public/svg/logo_0017_no.svg"; // Norwegian
+import Vi from "../public/svg/logo_0018_vi.svg"; // Vietnamese
+import Da from "../public/svg/logo_0019_da.svg"; // Danish
+import Ar from "../public/svg/logo_0020_ar.svg"; // Arabic
+import Uk from "../public/svg/logo_0021_uk.svg"; // Ukrainian
+import Ga from "../public/svg/logo_0022_ga.svg"; // Irish
+import La from "../public/svg/logo_0023_la.svg"; // Latin
+import Hv from "../public/svg/logo_0024_hv.svg"; // High Valyrian
+import Ro from "../public/svg/logo_0025_ro.svg"; // Romanian
+import Sw from "../public/svg/logo_0026_sw.svg"; // Swahili
+import Eo from "../public/svg/logo_0027_eo.svg"; // Esperanto
+import Hu from "../public/svg/logo_0028_hu.svg"; // Hungarian
+import Cy from "../public/svg/logo_0029_cy.svg"; // Welsh
+import Cz from "../public/svg/logo_0030_cz.svg"; // Czech
+import Id from "../public/svg/logo_0031_id.svg"; // Indonesian
+import Hw from "../public/svg/logo_0032_hw.svg"; // Hawaiian
+import Gd from "../public/svg/logo_0033_gd.svg"; // Gaelic (Scottish)
+import Fi from "../public/svg/logo_0034_fi.svg"; // Finnish
+import Zu from "../public/svg/logo_0035_zu.svg"; // Zulu
+import Kl from "../public/svg/logo_0046_kl.svg"; // Klingon
+import Nv from "../public/svg/logo_0048_nv.svg"; // Navajo
+import Ht from "../public/svg/logo_0043_ht.svg"; // Haitian Creole
+import Yi from "../public/svg/logo_0049_yi.svg"; // Yiddish
+import Gn from "../public/svg/logo_0050_gn.svg"; // Guarani
+import Ca from "../public/svg/logo_0051_ca.svg"; // Catalan, Valencian
+import Th from "../public/svg/logo_0052_th.svg"; // Thai
+import World from "../public/svg/logo_0036_world.svg"; // Default world language icon
+
+export const flagComponents = {
+    duo: Duo,
+    en: En,
+    es: Es,
+    fr: Fr,
+    de: De,
+    hi: Hi,
+    ja: Ja,
+    it: It,
+    ko: Ko,
+    zh: Zh,
+    'zh-HK': Zh,
+    pt: Pt,
+    ru: Ru,
+    tr: Tr,
+    nl: Nl,
+    'nl-NL': Nl,
+    sv: Sv,
+    el: El,
+    he: Iw,
+    iw: Iw,
+    pl: Pl,
+    no: No,
+    'no-BO': No,
+    vi: Vi,
+    da: Da,
+    ar: Ar,
+    uk: Uk,
+    ga: Ga,
+    la: La,
+    hv: Hv,
+    ro: Ro,
+    sw: Sw,
+    eo: Eo,
+    hu: Hu,
+    cy: Cy,
+    cs: Cz,
+    cz: Cz,
+    id: Id,
+    hw: Hw,
+    gd: Gd,
+    fi: Fi,
+    zu: Zu,
+    kl: Kl,
+    nv: Nv,
+    ht: Ht,
+    yi: Yi,
+    ca: Ca,
+    th: Th,
+    gn: Gn,
+    world: World,
+};
+
+export const duoIcons = [
+    { icon: Duo_Waving, viewBox: "0 -3 148 174" },
+    { icon: Duo_PencilBoarding, viewBox: "0 -48 225 183" },
+    { icon: Duo_Jolly, viewBox: "0 -27 189 200", style: 'flip' },
+    { icon: Duo_Excited, viewBox: "0 -10 162 220", style: 'flip' },
+    { icon: Duo_Daunting, viewBox: "0 -58 191 204" },
+    { icon: Duo_Cannonball, viewBox: "0 0 158 171" },
+    { icon: Duo_Amour, viewBox: "0 -69 194 123", style: 'flip' },
+];
+
+export { Streak, Xp };
+
+export default {
+    flagComponents,
+    duoIcons,
+    Streak,
+    Xp,
+};

@@ -6,7 +6,6 @@ export interface Params {
     id: string,
     username: string,
     theme: string,
-    sort: string
 }
 export interface Metadata {
     "achievements": Array<any>,
