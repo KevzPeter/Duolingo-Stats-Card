@@ -66,6 +66,7 @@ Simply add the _theme_ parameter to the url like so:
 |       `onedark` ![onedark][onedark]       | `shades-of-purple` ![shades-of-purple][shades-of-purple] |       `dracula` ![dracula][dracula]       |
 |       `cobalt2` ![cobalt2][cobalt2]       |                    `sky` ![sky][sky]                     |          `beach` ![beach][beach]          |
 | `purple-gang` ![purple-gang][purple-gang] |                   `mint` ![mint][mint]                   |          `leafy` ![leafy][leafy]          |
+| `jolly` ![jolly][jolly]
 
 [light]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=light
 [dark]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=dark
@@ -82,6 +83,7 @@ Simply add the _theme_ parameter to the url like so:
 [purple-gang]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=purple-gang
 [mint]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=mint
 [leafy]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=leafy
+[jolly]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=jolly
 
 <!-- ### Getting your Duolingo ID
 
