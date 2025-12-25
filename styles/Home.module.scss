@@ -56,7 +56,7 @@
 }
 
 .mainContent {
-  max-width: 900px;
+  margin: 0 4rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -110,7 +110,7 @@
 // Content Grid
 .contentGrid {
   display: grid;
-  grid-template-columns: 400px 1fr;
+  grid-template-columns: 1fr 2fr;
   gap: 2rem;
   align-items: start;
 }
@@ -279,16 +279,15 @@
 // Preview Card
 .previewCard {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .previewArea {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 250px;
-  border-radius: 1rem;
-  padding: 2rem;
-  position: relative;
 }
 
 .statsImage {
