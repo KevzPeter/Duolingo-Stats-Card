@@ -85,7 +85,7 @@ Simply add the _theme_ parameter to the url like so:
 [leafy]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=leafy
 [jolly]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=jolly
 
-### Getting your Duolingo ID
+<!-- ### Getting your Duolingo ID
 
 1. Login at [duolingo.com](duolingo.com)
 2. Go to Developer Tools in your browser (hit F12 key)
@@ -94,7 +94,7 @@ Simply add the _theme_ parameter to the url like so:
 
    <img src="media/devtools.png" alt="Devtools" height="200" width="697">
 
-<br />
+<br /> -->
 
 <!-- BUILT WITH -->
 
