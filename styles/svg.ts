@@ -25,15 +25,36 @@ body {
 .content{
   display: grid;
 }
+.header{
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.avatar{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  object-fit: cover;
+  flex-shrink: 0;
+}
 .stats{
   display: flex;
   flex-direction: column;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
 }
-.stats #streak, .stats #xp{
+.stats #streak, .stats #xp, .stats #joined{
   display: flex;
   align-items: center;
+  gap: 2px;
+}
+.stats #joined{
+  font-size: 14px;
+  opacity: 0.9;
+}
+.stats #joined svg{
+  margin-right: 2px;
 }
 .courses{
   display: flex;
