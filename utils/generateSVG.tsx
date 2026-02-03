@@ -2,15 +2,15 @@ import React from 'react'
 import ReactDOMServer from 'react-dom/server';
 import SvgWidget from '../components/SvgWidget';
 import { allStyles } from '../styles/svg';
-import { Metadata } from './models';
+import { Metadata, DisplayOptions } from './models';
 /**
  * Returns SVG as a string.
  */
-export function generateSvg(metadata: Metadata, theme: string): string {
+export function generateSvg(metadata: Metadata, theme: string, options: DisplayOptions = { showAvatar: true, showJoined: true }): string {
     const height = 185;
     const width = 420;
     const svgBody = ReactDOMServer.renderToStaticMarkup(
-        <SvgWidget response={metadata} theme={theme} />
+        <SvgWidget response={metadata} theme={theme} options={options} />
     );
 
     return `

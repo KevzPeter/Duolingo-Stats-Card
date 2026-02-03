@@ -6,6 +6,13 @@ export interface Params {
     id: string,
     username: string,
     theme: string,
+    showAvatar: string,
+    showJoined: string,
+}
+
+export interface DisplayOptions {
+    showAvatar: boolean,
+    showJoined: boolean,
 }
 export interface Metadata {
     "achievements": Array<any>,
@@ -35,7 +42,8 @@ export interface Metadata {
     "privacySettings": Array<String>,
     "learningLanguage": string,
     "location": string,
-    "username": string
+    "username": string,
+    "avatarBase64"?: string
 }
 export interface Course {
     "preload": boolean,
