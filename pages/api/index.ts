@@ -18,19 +18,30 @@ async function fetchImageAsBase64(url: string): Promise<string | null> {
             fullUrl = `https://${url}`;
         }
         
+        // Append /xlarge for better quality avatar
+        if (!fullUrl.includes('/xlarge') && !fullUrl.includes('/large') && !fullUrl.includes('/medium')) {
+            fullUrl = `${fullUrl}/xlarge`;
+        }
+        
+        console.log("[v0] Fetching avatar from:", fullUrl);
+        
         const response = await axios.get(fullUrl, {
             responseType: 'arraybuffer',
             headers: {
-                'User-Agent': 'duolingo-stats-card',
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+                'Accept-Language': 'en-US,en;q=0.9',
+                'Referer': 'https://www.duolingo.com/',
             },
-            timeout: 5000,
+            timeout: 10000,
         });
         
         const contentType = response.headers['content-type'] || 'image/png';
         const base64 = Buffer.from(response.data, 'binary').toString('base64');
+        console.log("[v0] Avatar fetched successfully, content-type:", contentType, "size:", base64.length);
         return `data:${contentType};base64,${base64}`;
-    } catch (error) {
-        console.error('Failed to fetch avatar image:', error);
+    } catch (error: any) {
+        console.error('[v0] Failed to fetch avatar image:', error.message, error.response?.status);
         return null;
     }
 }
@@ -76,8 +87,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         sortCourses(metadata, "xp");
         
         // Fetch avatar image and convert to base64 for embedding in SVG
+        console.log("[v0] metadata.picture:", metadata.picture);
         if (metadata.picture) {
             const avatarBase64 = await fetchImageAsBase64(metadata.picture);
+            console.log("[v0] avatarBase64 fetched:", avatarBase64 ? `${avatarBase64.substring(0, 50)}...` : null);
             if (avatarBase64) {
                 metadata.avatarBase64 = avatarBase64;
             }
