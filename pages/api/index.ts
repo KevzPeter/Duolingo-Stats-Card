@@ -18,12 +18,10 @@ async function fetchImageAsBase64(url: string): Promise<string | null> {
             fullUrl = `https://${url}`;
         }
         
-        // Append /xlarge for better quality avatar
+        // Append /medium for avatar size
         if (!fullUrl.includes('/xlarge') && !fullUrl.includes('/large') && !fullUrl.includes('/medium')) {
-            fullUrl = `${fullUrl}/xlarge`;
+            fullUrl = `${fullUrl}/medium`;
         }
-        
-        console.log("[v0] Fetching avatar from:", fullUrl);
         
         const response = await axios.get(fullUrl, {
             responseType: 'arraybuffer',
@@ -38,17 +36,16 @@ async function fetchImageAsBase64(url: string): Promise<string | null> {
         
         const contentType = response.headers['content-type'] || 'image/png';
         const base64 = Buffer.from(response.data, 'binary').toString('base64');
-        console.log("[v0] Avatar fetched successfully, content-type:", contentType, "size:", base64.length);
         return `data:${contentType};base64,${base64}`;
     } catch (error: any) {
-        console.error('[v0] Failed to fetch avatar image:', error.message, error.response?.status);
+        console.error('Failed to fetch avatar image:', error.message);
         return null;
     }
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>): Promise<any> {
     try {
-        let { username, id, theme }: Params = <any>req.query;
+        let { username, id, theme, showAvatar, showJoined }: Params = <any>req.query;
         // username / id query validation
         if ((!username?.trim().length) && (!id?.trim().length)) {
             return res.status(400).send({
@@ -64,6 +61,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         if (!THEME_NAMES.includes(theme)) {
             theme = null;
         }
+        
+        // Parse showAvatar and showJoined flags (default to true)
+        const displayAvatar = showAvatar !== 'false';
+        const displayJoined = showJoined !== 'false';
 
         const headers = {
             'User-Agent': 'duolingo-stats-card',
@@ -86,11 +87,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         // Sort courses by XP, since crowns are deprecated
         sortCourses(metadata, "xp");
         
-        // Fetch avatar image and convert to base64 for embedding in SVG
-        console.log("[v0] metadata.picture:", metadata.picture);
-        if (metadata.picture) {
+        // Fetch avatar image and convert to base64 for embedding in SVG (only if showAvatar is enabled)
+        if (displayAvatar && metadata.picture) {
             const avatarBase64 = await fetchImageAsBase64(metadata.picture);
-            console.log("[v0] avatarBase64 fetched:", avatarBase64 ? `${avatarBase64.substring(0, 50)}...` : null);
             if (avatarBase64) {
                 metadata.avatarBase64 = avatarBase64;
             }
@@ -99,7 +98,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         // Set cache options
         res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
         res.setHeader('Content-Type', 'image/svg+xml');
-        res.send(generateSvg(metadata, theme));
+        res.send(generateSvg(metadata, theme, { showAvatar: displayAvatar, showJoined: displayJoined }));
     }
     catch (err: any) {
         console.error(err.message);

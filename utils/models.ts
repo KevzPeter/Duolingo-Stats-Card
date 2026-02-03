@@ -6,6 +6,13 @@ export interface Params {
     id: string,
     username: string,
     theme: string,
+    showAvatar: string,
+    showJoined: string,
+}
+
+export interface DisplayOptions {
+    showAvatar: boolean,
+    showJoined: boolean,
 }
 export interface Metadata {
     "achievements": Array<any>,
