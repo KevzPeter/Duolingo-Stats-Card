@@ -35,7 +35,8 @@ export interface Metadata {
     "privacySettings": Array<String>,
     "learningLanguage": string,
     "location": string,
-    "username": string
+    "username": string,
+    "avatarBase64"?: string
 }
 export interface Course {
     "preload": boolean,

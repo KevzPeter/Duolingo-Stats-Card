@@ -14,21 +14,7 @@ function formatCreationDate(timestamp: number): string {
     return `${months[date.getMonth()]} ${date.getFullYear()}`;
 }
 
-/**
- * Normalizes the picture URL to include https protocol
- */
-function getAvatarUrl(picture: string): string {
-    if (!picture) return '';
-    // Handle protocol-relative URLs
-    if (picture.startsWith('//')) {
-        return `https:${picture}`;
-    }
-    // Handle already complete URLs
-    if (picture.startsWith('http')) {
-        return picture;
-    }
-    return `https://${picture}`;
-}
+
 
 /**
  * The main SVG widget.
@@ -43,7 +29,7 @@ export default function SvgWidget({ response, theme }: { response: any; theme?: 
         ? response.courses.slice(0, Math.min(3, response.courses.length))
         : [];
 
-    const avatarUrl = getAvatarUrl(response.picture);
+    const avatarBase64 = response.avatarBase64;
     const creationDate = response.creationDate ? formatCreationDate(response.creationDate) : null;
 
     const fillParent = {
@@ -65,10 +51,10 @@ export default function SvgWidget({ response, theme }: { response: any; theme?: 
                 <div xmlns="http://www.w3.org/1999/xhtml" className="card" style={cardStyle}>
                     <div className="content">
                         <div className="header">
-                            {avatarUrl && (
+                            {avatarBase64 && (
                                 <img 
                                     className="avatar" 
-                                    src={avatarUrl} 
+                                    src={avatarBase64} 
                                     alt="User avatar"
                                 />
                             )}
