@@ -17,12 +17,11 @@ async function fetchImageAsBase64(url: string): Promise<string | null> {
         } else if (!url.startsWith('http')) {
             fullUrl = `https://${url}`;
         }
-        
-        // Append /medium for avatar size
+
         if (!fullUrl.includes('/xlarge') && !fullUrl.includes('/large') && !fullUrl.includes('/medium')) {
-            fullUrl = `${fullUrl}/medium`;
+            fullUrl = `${fullUrl}/large`;
         }
-        
+
         const response = await axios.get(fullUrl, {
             responseType: 'arraybuffer',
             headers: {
@@ -33,7 +32,7 @@ async function fetchImageAsBase64(url: string): Promise<string | null> {
             },
             timeout: 10000,
         });
-        
+
         const contentType = response.headers['content-type'] || 'image/png';
         const base64 = Buffer.from(response.data, 'binary').toString('base64');
         return `data:${contentType};base64,${base64}`;
@@ -61,7 +60,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         if (!THEME_NAMES.includes(theme)) {
             theme = null;
         }
-        
+
         // Parse showAvatar and showJoined flags (default to true)
         const displayAvatar = showAvatar !== 'false';
         const displayJoined = showJoined !== 'false';
@@ -86,7 +85,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         const metadata: Metadata = username ? response.data.users[0] : response.data;
         // Sort courses by XP, since crowns are deprecated
         sortCourses(metadata, "xp");
-        
+
         // Fetch avatar image and convert to base64 for embedding in SVG (only if showAvatar is enabled)
         if (displayAvatar && metadata.picture) {
             const avatarBase64 = await fetchImageAsBase64(metadata.picture);
@@ -94,7 +93,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
                 metadata.avatarBase64 = avatarBase64;
             }
         }
-        
+
         // Set cache options
         res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
         res.setHeader('Content-Type', 'image/svg+xml');
