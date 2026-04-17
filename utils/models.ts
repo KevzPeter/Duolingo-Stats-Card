@@ -43,7 +43,8 @@ export interface Metadata {
     "learningLanguage": string,
     "location": string,
     "username": string,
-    "avatarBase64"?: string
+    "avatarBase64"?: string,
+    "duoGifBase64"?: string
 }
 export interface Course {
     "preload": boolean,

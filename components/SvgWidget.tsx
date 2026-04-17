@@ -30,7 +30,10 @@ function CalendarIcon(): JSX.Element {
  * The main SVG widget.
  */
 export default function SvgWidget({ response, theme, options = { showAvatar: true, showJoined: true } }: { response: any; theme?: string; options?: DisplayOptions }): JSX.Element {
-    // Select a random Duo icon once per component render
+    // Prefer a base64-embedded GIF (set in the API route) to avoid nested network requests.
+    const duoGifBase64: string | undefined = response?.duoGifBase64;
+
+    // Fallback to the SVG icons if the GIF isn't available.
     const randomIndex = useMemo(() => Math.floor(Math.random() * duoIcons.length), []);
     const { icon: DuoIconComponent, viewBox, style: iconStyle } = duoIcons[randomIndex];
 
@@ -102,10 +105,18 @@ export default function SvgWidget({ response, theme, options = { showAvatar: tru
                             })}
                         </div>
                     </div>
-                    {iconStyle === 'flip' ?
-                        <DuoIconComponent height={152} width={122} viewBox={viewBox}
-                            style={{ 'display': 'block', 'transform': 'scale(-1, 1)' }} /> :
-                        <DuoIconComponent height={152} width={122} viewBox={viewBox} />}
+                    {duoGifBase64 ? (
+                        <img
+                            className="duoGif"
+                            src={duoGifBase64}
+                            alt="Duo"
+                        />
+                    ) : (
+                        iconStyle === 'flip' ?
+                            <DuoIconComponent height={152} width={122} viewBox={viewBox}
+                                style={{ 'display': 'block', 'transform': 'scale(-1, 1)' }} /> :
+                            <DuoIconComponent height={152} width={122} viewBox={viewBox} />
+                    )}
                 </div>
             </foreignObject>
         </g>

@@ -4,6 +4,38 @@ import axios from 'axios';
 import { THEME_NAMES } from "../../utils/config";
 import { Metadata, Params } from '../../utils/models';
 import { sortCourses } from "../../utils/sort";
+import path from 'path';
+import { promises as fs } from 'fs';
+
+const DUO_GIF_FILES = [
+    'duo_backflip.gif',
+    'duo_flight.gif',
+    'duo_hop.gif',
+    'duo_waving.gif',
+    'duo_whistling.gif',
+] as const;
+
+const duoGifDataUriCache: Partial<Record<(typeof DUO_GIF_FILES)[number], string>> = {};
+
+async function getDuoGifDataUri(deterministicSeed: number): Promise<string | null> {
+    try {
+        const index = Math.abs(deterministicSeed) % DUO_GIF_FILES.length;
+        const fileName = DUO_GIF_FILES[index];
+
+        const cached = duoGifDataUriCache[fileName];
+        if (cached) return cached;
+
+        const filePath = path.join(process.cwd(), 'public', 'gif', fileName);
+        const bytes = await fs.readFile(filePath);
+        const dataUri = `data:image/gif;base64,${bytes.toString('base64')}`;
+
+        duoGifDataUriCache[fileName] = dataUri;
+        return dataUri;
+    } catch (error: any) {
+        console.error('Failed to load Duo GIF:', error?.message ?? error);
+        return null;
+    }
+}
 
 /**
  * Fetches an image and converts it to a base64 data URI
@@ -85,6 +117,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         const metadata: Metadata = username ? response.data.users[0] : response.data;
         // Sort courses by XP, since crowns are deprecated
         sortCourses(metadata, "xp");
+
+        // Embed a small Duo animation as base64 so it renders reliably in places like GitHub markdown
+        // (where external/nested image loads inside SVGs can be blocked or not proxied).
+        const deterministicSeed = Number(metadata?.id ?? 0);
+        metadata.duoGifBase64 = await getDuoGifDataUri(deterministicSeed);
 
         // Fetch avatar image and convert to base64 for embedding in SVG (only if showAvatar is enabled)
         if (displayAvatar && metadata.picture) {

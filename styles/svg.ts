@@ -88,6 +88,18 @@ body {
   position: relative;
   z-index: 0;
 }
+
+.duoGif{
+  width: 122px;
+  height: 152px;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+  align-self: center;
+  justify-self: center;
+  transform: scale(1.4);
+  transform-origin: center;
+}
 .crown:after {
 	content:'';
   top:4px;
