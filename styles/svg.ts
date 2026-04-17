@@ -13,7 +13,7 @@ body {
   display: grid;
   grid-template-columns: 3fr 1fr;
   color: white;
-  border: 1.5px solid #21212120;
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
   padding: 10px 20px 10px 10px;
   gap: 10px;
   border-radius: 10px;
