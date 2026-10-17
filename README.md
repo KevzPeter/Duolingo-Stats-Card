@@ -45,9 +45,12 @@ For example, if your Duolingo username is "John_Smith", add the following line:
 ![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?username=John_Smith)
 ```
 
-Want weekly XP, proficiency scores, hearts, and gems? Deploy your own instance using
+Your streak, total XP, current league, and top-three finishes appear beside the avatar
+in a 2×2 layout. The joined date sits beneath the avatar.
+
+Want weekly XP, Duolingo scores, hearts, and gems? Deploy your own instance using
 the setup below. In the card builder, choose your theme and animation, toggle the
-stats you want, then copy the Markdown.
+stats you want, then copy the Markdown or HTML.
 
 ## 🎨 Themes
 
