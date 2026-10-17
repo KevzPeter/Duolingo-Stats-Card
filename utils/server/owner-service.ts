@@ -1,4 +1,4 @@
-import { createHash } from 'crypto';
+import { createHash } from 'node:crypto';
 import { DashboardData } from '../account-models';
 import { emptyDashboard, fetchDashboard, fetchPublicUsername, normalizeDashboard, profileFrom, verifyToken } from './duolingo';
 import { AppError, UpstreamError } from './errors';

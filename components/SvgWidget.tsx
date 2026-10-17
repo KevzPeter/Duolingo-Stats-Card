@@ -21,7 +21,7 @@ function formatCreationDate(timestamp: number): string {
 /**
  * The main SVG widget.
  */
-export default function SvgWidget({ response, theme, options = { showAvatar: true, showJoined: true } }: { response: Metadata; theme?: string; options?: DisplayOptions }): JSX.Element {
+export default function SvgWidget({ response, theme, options = { showAvatar: true, showJoined: true } }: Readonly<{ response: Metadata; theme?: string; options?: DisplayOptions }>): JSX.Element {
     // Embed the animation in API cards to avoid nested network requests.
     const duoAnimationBase64 = response.duoAnimationBase64;
     const selectedAnimation = selectDuoAnimation(options.animation);
@@ -37,8 +37,9 @@ export default function SvgWidget({ response, theme, options = { showAvatar: tru
     const creationDate = response.creationDate ? formatCreationDate(response.creationDate) : null;
     const languageScores = options.showScores ? (response.languageScores || []).slice(0, 3) : [];
     const placement = animationLayout(options.animationPlacement);
-    const showIdentity = (options.showAvatar && !!avatarBase64) || (options.showJoined && !!creationDate);
-    const avatarOnly = options.showAvatar && !!avatarBase64 && !(options.showJoined && creationDate);
+    const showJoined = options.showJoined && !!creationDate;
+    const showIdentity = (options.showAvatar && !!avatarBase64) || showJoined;
+    const avatarOnly = showIdentity && !showJoined;
 
     const fillParent: React.CSSProperties & { '--summary-height': string } = {
         '--summary-height': `${SUMMARY_HEIGHT}px`,
@@ -68,17 +69,17 @@ export default function SvgWidget({ response, theme, options = { showAvatar: tru
                                         alt="User avatar"
                                     />
                                 )}
-                                {options.showJoined && creationDate && <small id="joined">{creationDate}</small>}
+                                {showJoined && <small id="joined">{creationDate}</small>}
                             </div>}
                             <div className="stats">
                                 {/* Normalize artwork padding so each icon has the same visible height. */}
                                 <div id="streak" className="statTile">
                                     <Streak height={20} width={20} viewBox="7 -10 270 270" />
-                                    <div><strong>{response.streak == null ? 'Unavailable' : response.streak}</strong><span>Day streak</span></div>
+                                    <div><strong>{response.streak ?? 'Unavailable'}</strong><span>Day streak</span></div>
                                 </div>
                                 <div id="xp" className="statTile">
                                     <Xp width={20} height={20} viewBox="2 2 52 52" />
-                                    <div><strong>{response.totalXp == null ? 'Unavailable' : response.totalXp}</strong><span>Total XP</span></div>
+                                    <div><strong>{response.totalXp ?? 'Unavailable'}</strong><span>Total XP</span></div>
                                 </div>
                                 {response.league && <div id="league" className="statTile">
                                     <Leaderboard width={20} height={20} viewBox="2 2 42 42" />

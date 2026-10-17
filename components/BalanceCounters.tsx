@@ -2,7 +2,7 @@ import { DashboardData } from '../utils/account-models';
 import { Heart, Gem } from '../utils/svgMap';
 import { numberFormatter } from '../utils/numberFormatter';
 
-export default function BalanceCounters({ hearts, gems }: { hearts?: DashboardData['hearts']; gems?: number | null }) {
+export default function BalanceCounters({ hearts, gems }: Readonly<{ hearts?: DashboardData['hearts']; gems?: number | null }>) {
   if (hearts === undefined && gems === undefined) return null;
   const heartValue = hearts?.current;
   return <>

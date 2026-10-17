@@ -1,7 +1,7 @@
 import { ActivityDay } from '../utils/account-models';
 import { numberFormatter } from '../utils/numberFormatter';
 
-export default function WeeklyXpChart({ days }: { days: ActivityDay[] | null }) {
+export default function WeeklyXpChart({ days }: Readonly<{ days: ActivityDay[] | null }>) {
   const color = 'var(--surface-text)';
   const accent = 'var(--chart-accent)';
   const maximum = Math.max(4, ...(days || []).map(day => day.xp));

@@ -1,9 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { generateSvg } from '../../utils/generateSVG';
-import { normalizeDashboard } from '../../utils/server/duolingo';
+import { normalizeDashboard, fetchPublicProfile, fetchPublicUsername } from '../../utils/server/duolingo';
 import { cardMetadata } from '../../utils/server/card-metadata';
 import { getDuoAnimationDataUri, fetchImageAsBase64 } from '../../utils/server/card-assets';
-import { fetchPublicProfile, fetchPublicUsername } from '../../utils/server/duolingo';
 import { apiError, noStore, queryString } from '../../utils/server/http';
 import { AppError } from '../../utils/server/errors';
 import { cardOptions } from '../../utils/server/card-options';

@@ -55,7 +55,7 @@ export async function fetchPublicProfile(id: string): Promise<Json> {
 }
 
 export function normalizeDashboard(profile: Json, progress: Json | null, balances: Json | null, timeZone: string, now = Date.now()): DashboardData {
-  const courses: AccountCourse[] | null = Array.isArray(profile.courses) ? profile.courses.filter(course => course && course.id != null).map(course => ({
+  const courses: AccountCourse[] | null = Array.isArray(profile.courses) ? profile.courses.filter(course => course?.id != null).map(course => ({
     id: String(course.id), subject: text(course.subject, 'language'), title: text(course.title, text(course.subject, text(course.learningLanguage, 'Course'))),
     learningLanguage: text(course.learningLanguage), xp: numberOrNull(course.xp),
   })).sort((a, b) => (b.xp ?? -1) - (a.xp ?? -1)).slice(0, 3) : null;
@@ -101,8 +101,8 @@ async function fetchLanguageScores(id: string, courses: unknown, token: string) 
   let partial = false;
   let rejected = false;
   // At most 12 courses, with only three bounded requests in flight.
-  await Promise.all(Array.from({ length: Math.min(3, languages.length) }, async () => {
-    while (index < languages.length && !rejected) {
+  async function fetchNextCourse(): Promise<void> {
+    if (index < languages.length && !rejected) {
       const course = languages[index++];
       try {
         // This endpoint ignores field filtering, so allowlist its response explicitly.
@@ -116,9 +116,12 @@ async function fetchLanguageScores(id: string, courses: unknown, token: string) 
         if (error instanceof UpstreamError && error.kind === 'auth') { rejected = true; throw error; }
         partial = true;
       }
+      await fetchNextCourse();
     }
-  }));
-  return { scores: scores.sort((a, b) => b.score - a.score || a.id.localeCompare(b.id)), partial };
+  }
+  await Promise.all(Array.from({ length: Math.min(3, languages.length) }, () => fetchNextCourse()));
+  scores.sort((a, b) => b.score - a.score || a.id.localeCompare(b.id));
+  return { scores, partial };
 }
 
 export function emptyDashboard(profile: Profile, timeZone: string, state: 'reconnect' | 'unavailable'): DashboardData {

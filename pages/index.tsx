@@ -15,6 +15,15 @@ interface HomeProps { ownerUsername: string }
 
 const USERNAME_DEBOUNCE_MS = 1000;
 
+function appendAnimationOptions(query: URLSearchParams, animation: string, placement?: AnimationPlacement) {
+  if (animation !== 'auto') query.set('animation', animation);
+  if (placement) {
+    query.set('x', String(placement.x));
+    query.set('y', String(placement.y));
+    query.set('size', String(placement.size));
+  }
+}
+
 const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
   const [username, setUsername] = useState(ownerUsername);
   const [previewUsername, setPreviewUsername] = useState(ownerUsername);
@@ -45,12 +54,7 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
   const isOwner = !!ownerUsername && previewUsername.toLowerCase() === ownerUsername.toLowerCase();
   const query = new URLSearchParams({ showAvatar: String(showAvatar), showJoined: String(showJoined) });
   if (theme !== 'default') query.set('theme', theme);
-  if (animation !== 'auto') query.set('animation', animation);
-  if (animationPlacement) {
-    query.set('x', String(animationPlacement.x));
-    query.set('y', String(animationPlacement.y));
-    query.set('size', String(animationPlacement.size));
-  }
+  appendAnimationOptions(query, animation, animationPlacement);
   if (isOwner) {
     query.set('showScores', String(showScores));
     query.set('showWeeklyXp', String(showWeeklyXp));
@@ -58,7 +62,8 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
   }
   query.set('username', previewUsername);
   const previewPath = previewUsername ? '/api?' + query.toString() : '';
-  const dataPath = previewUsername ? (isOwner ? '/api/preview' : '/api/preview?username=' + encodeURIComponent(previewUsername)) : '';
+  let dataPath = '';
+  if (previewUsername) dataPath = isOwner ? '/api/preview' : '/api/preview?username=' + encodeURIComponent(previewUsername);
   const cardUrl = origin && previewPath ? origin + previewPath : '';
   const markdown = cardUrl ? '![Duolingo Stats Card](' + cardUrl + ')' : '';
   const html = cardUrl ? `<img src="${cardUrl.replace(/&/g, '&amp;')}" alt="Duolingo Stats Card" />` : '';
@@ -67,7 +72,7 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
   const loading = !!dataPath && snapshot?.path !== dataPath && !imageError;
 
   const previewCard = useMemo(() => {
-    if (!snapshot || snapshot.path !== dataPath) return null;
+    if (snapshot?.path !== dataPath) return null;
     const { data } = snapshot;
     const metadata = { ...data.metadata };
     if (!fields.includes('hearts')) delete metadata.hearts;
@@ -152,7 +157,7 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
                     <AnimationEditor animation={selectedAnimation.id} height={previewCard.height} placement={animationPlacement} onChange={setAnimationPlacement} />
                   </div>
                 </div>}
-                {loading && <div className={styles.loading} role="status"><span className={styles.spinner} />Loading card…</div>}
+                {loading && <output className={styles.loading}><span className={styles.spinner} />Loading card…</output>}
                 {imageError && <p role="alert" className={styles.placeholder}>Couldn&apos;t load this card. Try again in a moment.</p>}
               </>}
             </div>
@@ -172,11 +177,11 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
   </>;
 };
 
-export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
+export const getServerSideProps: GetServerSideProps<HomeProps> = () => {
   const username = process.env.DUOLINGO_USERNAME?.trim() || '';
   const configured = !!process.env.DUOLINGO_JWT?.trim() && /^[\w.-]{1,100}$/.test(username);
   // Only the public username is passed to the browser; credentials stay server-side.
-  return { props: { ownerUsername: configured ? username : '' } };
+  return Promise.resolve({ props: { ownerUsername: configured ? username : '' } });
 };
 
 export default Home;

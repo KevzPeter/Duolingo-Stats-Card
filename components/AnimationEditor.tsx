@@ -11,7 +11,7 @@ interface Props {
   onChange: (placement: AnimationPlacement) => void;
 }
 
-export default function AnimationEditor({ animation, height, placement, onChange }: Props) {
+export default function AnimationEditor({ animation, height, placement, onChange }: Readonly<Props>) {
   const gesture = useRef<{ pointer: number; x: number; y: number; scale: number; start: AnimationPlacement; resize: boolean } | null>(null);
   const layout = animationLayout(placement);
   const selectedAnimation = selectDuoAnimation(animation);

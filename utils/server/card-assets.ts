@@ -1,6 +1,6 @@
 import axios from 'axios';
-import path from 'path';
-import { promises as fs } from 'fs';
+import path from 'node:path';
+import { promises as fs } from 'node:fs';
 import { DUO_ANIMATIONS, DuoAnimation, selectDuoAnimation } from '../animations';
 
 const animationCache: Partial<Record<typeof DUO_ANIMATIONS[number]['file'], Promise<string | null>>> = {};
@@ -9,7 +9,7 @@ const avatarCache = new Map<string, { until: number; promise: Promise<string | n
 export async function getDuoAnimationDataUri(animation?: DuoAnimation): Promise<string | null> {
   const selected = selectDuoAnimation(animation);
   const fileName = selected.file;
-  if (animationCache[fileName]) return animationCache[fileName];
+  if (animationCache[fileName] !== undefined) return animationCache[fileName];
   const request = fs.readFile(path.join(process.cwd(), 'public', 'webp', fileName))
     .then(bytes => `data:image/webp;base64,${bytes.toString('base64')}`)
     .catch(() => { delete animationCache[fileName]; return null; });
@@ -20,7 +20,9 @@ export async function getDuoAnimationDataUri(animation?: DuoAnimation): Promise<
 export async function fetchImageAsBase64(value: string): Promise<string | null> {
   try {
     if (typeof value !== 'string' || !value || value.length > 4096) return null;
-    const url = value.startsWith('//') ? `https:${value}` : value.startsWith('http') ? value : `https://${value}`;
+    let url = value;
+    if (value.startsWith('//')) url = `https:${value}`;
+    else if (!value.startsWith('http')) url = `https://${value}`;
     const parsed = new URL(url);
     const allowedHost = parsed.hostname === 'simg-ssl.duolingo.com' ||
       (parsed.hostname === 'd3gq3s1iyyx31w.cloudfront.net' && parsed.pathname.startsWith('/static/render/'));

@@ -13,7 +13,7 @@ export function cardOptions(query: NextApiRequest['query']) {
   const animation = requestedAnimation === undefined || requestedAnimation === 'auto' ? undefined : requestedAnimation;
   if (animation !== undefined && !DUO_ANIMATIONS.some(item => item.id === animation)) throw new AppError(400, 'animation', 'Choose a supported animation.');
   const selection = queryString(query.fields);
-  const fields = selection === undefined ? [] : Array.from(new Set(selection === '' ? [] : selection.split(',').map(field => field.trim())));
+  const fields = selection ? Array.from(new Set(selection.split(',').map(field => field.trim()))) : [];
   if (fields.some(field => !PUBLISH_FIELDS.includes(field as PublishField))) throw new AppError(400, 'fields', 'Choose supported card fields.');
   const animationPlacement: Partial<import('../animation-layout').AnimationPlacement> = {};
   for (const [key, min, max] of [['x', -Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER], ['y', -Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER], ['size', MIN_ANIMATION_SIZE, CARD_WIDTH]] as const) {

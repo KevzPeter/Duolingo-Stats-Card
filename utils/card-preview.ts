@@ -10,7 +10,7 @@ const snapshots = new Map<string, Promise<CardPreview>>();
 
 export function loadCardPreview(path: string): Promise<CardPreview> {
   const existing = snapshots.get(path);
-  if (existing) return existing;
+  if (existing !== undefined) return existing;
   const request = fetch(path, { cache: 'no-store' }).then(async response => {
     if (!response.ok) throw new Error('Card unavailable');
     return response.json() as Promise<CardPreview>;
