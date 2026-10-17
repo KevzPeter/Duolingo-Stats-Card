@@ -1,0 +1,11 @@
+onlyBuiltDependencies:
+  - esbuild
+  - '@parcel/watcher'
+  - unrs-resolver
+
+# Compatible security patches for the framework's pinned/peer dependency chain.
+overrides:
+  'postcss@>=8.0.0 <8.5.23': '8.5.23'
+  '@babel/core@>=7.0.0 <7.29.6': '7.29.6'
+  'browserslist@>=4.0.0 <4.28.7': '4.28.7'
+  'baseline-browser-mapping@>=2.0.0 <2.11.0': '2.11.0'
