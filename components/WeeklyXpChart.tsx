@@ -1,7 +1,9 @@
 import { ActivityDay } from '../utils/account-models';
 import { numberFormatter } from '../utils/numberFormatter';
 
-export default function WeeklyXpChart({ days, color, accent }: { days: ActivityDay[] | null; color: string; accent: string }) {
+export default function WeeklyXpChart({ days }: { days: ActivityDay[] | null }) {
+  const color = 'var(--surface-text)';
+  const accent = 'var(--chart-accent)';
   const maximum = Math.max(4, ...(days || []).map(day => day.xp));
   const magnitude = 10 ** Math.floor(Math.log10(maximum));
   const tickSize = Math.ceil(maximum / 4 / magnitude * 10) / 10 * magnitude;
@@ -12,7 +14,7 @@ export default function WeeklyXpChart({ days, color, accent }: { days: ActivityD
   const path = points.map((point, index) => `${index ? 'L' : 'M'}${point.x},${point.y}`).join(' ');
   return <svg xmlns="http://www.w3.org/2000/svg" className="weeklyXpChart" width="100%" height="166" viewBox="0 0 388 166" role="img" aria-label="Daily XP for the previous seven completed days">
     <title>XP earned over the previous seven completed days</title>
-    <rect x="0.5" y="0.5" width="387" height="165" rx="12" fill={color} fillOpacity="0.08" />
+    <rect x="0.5" y="0.5" width="387" height="165" rx="12" fill="var(--surface-background)" />
     <text x="14" y="24" fill={color} fontSize="12" fontWeight="600">Weekly XP</text>
     {days ? <>
       {[0, 1, 2, 3, 4].map(index => {

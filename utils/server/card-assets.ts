@@ -3,17 +3,17 @@ import path from 'path';
 import { promises as fs } from 'fs';
 import { DUO_ANIMATIONS, DuoAnimation, selectDuoAnimation } from '../animations';
 
-const gifCache: Partial<Record<typeof DUO_ANIMATIONS[number]['file'], Promise<string | null>>> = {};
+const animationCache: Partial<Record<typeof DUO_ANIMATIONS[number]['file'], Promise<string | null>>> = {};
 const avatarCache = new Map<string, { until: number; promise: Promise<string | null> }>();
 
-export async function getDuoGifDataUri(animation?: DuoAnimation): Promise<string | null> {
+export async function getDuoAnimationDataUri(animation?: DuoAnimation): Promise<string | null> {
   const selected = selectDuoAnimation(animation);
   const fileName = selected.file;
-  if (gifCache[fileName]) return gifCache[fileName];
-  const request = fs.readFile(path.join(process.cwd(), 'public', 'gif', fileName))
-    .then(bytes => `data:image/gif;base64,${bytes.toString('base64')}`)
-    .catch(() => { delete gifCache[fileName]; return null; });
-  gifCache[fileName] = request;
+  if (animationCache[fileName]) return animationCache[fileName];
+  const request = fs.readFile(path.join(process.cwd(), 'public', 'webp', fileName))
+    .then(bytes => `data:image/webp;base64,${bytes.toString('base64')}`)
+    .catch(() => { delete animationCache[fileName]; return null; });
+  animationCache[fileName] = request;
   return request;
 }
 

@@ -11,8 +11,14 @@ body {
 }
 .card{
   position: relative;
+  overflow: hidden;
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  --card-columns: minmax(0, 3fr) minmax(0, 1fr);
+  --section-inset: 14px;
+  --surface-background: rgba(255, 255, 255, .12);
+  --surface-text: currentColor;
+  --chart-accent: #1cb0f6;
+  grid-template-columns: var(--card-columns);
   color: white;
   border: 1.5px solid rgba(255, 255, 255, 0.22);
   padding: 10px 20px 10px 10px;
@@ -23,31 +29,15 @@ body {
   background-size: 200% 200%;
   animation: gradient-animation 4s ease-in-out infinite;
 }
+.card[data-theme='light'] { --surface-background: rgba(0, 112, 243, .06); }
 .content{
   display: grid;
-  grid-column: 1;
+  grid-column: 1 / -1;
   grid-row: 1;
 }
-.balanceCounters {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 12px;
-  z-index: 1;
-  font-size: 13px;
-  font-weight: bold;
-  font-variant-numeric: tabular-nums;
-}
-.balanceCounters > span {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-.balanceCounters svg { flex-shrink: 0; }
+.courseBalanceLabel { display: flex; align-items: center; height: 20px; }
+.courseBalanceValue { font-weight: bold; font-variant-numeric: tabular-nums; }
+.courseBalanceIcon { display: grid; place-items: center; width: 50px; height: 37px; }
 .duoArea {
   position: absolute;
   z-index: 2;
@@ -56,15 +46,15 @@ body {
   box-sizing: border-box;
 }
 .duoArea > svg { width: 100%; height: 100%; }
-.card { grid-template-rows: 163px; }
+.card { grid-template-rows: var(--summary-height, 163px); }
 .card.hasWeeklyXp {
-  grid-template-rows: 163px 166px;
+  grid-template-rows: var(--summary-height, 163px) 166px;
 }
 .card.hasLanguageScores {
-  grid-template-rows: 163px 54px;
+  grid-template-rows: var(--summary-height, 163px) 59px;
 }
 .card.hasLanguageScores.hasWeeklyXp {
-  grid-template-rows: 163px 54px 166px;
+  grid-template-rows: var(--summary-height, 163px) 59px 166px;
 }
 .card.hasTokenNotice { padding-bottom: 46px; }
 .tokenNotice {
@@ -82,80 +72,124 @@ body {
 .proficiencySection {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 122px;
-  grid-template-rows: 16px 32px;
+  grid-template-columns: var(--card-columns);
+  grid-template-rows: 16px 37px;
   gap: 6px 10px;
 }
 .proficiencyHeading {
   grid-column: 1 / -1;
   margin: 0;
-  padding-left: 14px;
+  padding-left: var(--section-inset);
   font-size: 12px;
   line-height: 16px;
   font-weight: 600;
 }
 .languageScores {
-  grid-column: 1;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  padding: 0 10px;
-  gap: 40px;
+  grid-column: 1 / -1;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
   align-items: center;
+  padding: 0 0 0 var(--section-inset);
+  gap: 12px;
 }
 .languageScores > span {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
+  width: 100%;
+  min-width: 0;
+  height: 37px;
+  box-sizing: border-box;
   padding: 4px 6px;
   justify-self: center;
+  justify-content: center;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.12);
-  font-size: 10px;
+  background: var(--surface-background);
+  color: var(--surface-text);
+  font-size: 12px;
   font-weight: bold;
 }
+.languageScores > span > svg { flex-shrink: 0; }
+.languageScores > span > span { min-width: 0; overflow-wrap: anywhere; line-height: 13px; }
 .weeklyXpChart {
   grid-column: 1 / -1;
   display: block;
   overflow: visible;
+  margin-left: var(--section-inset);
+  width: calc(100% - var(--section-inset));
 }
 .header{
-  display: flex;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 86px minmax(0, 1fr) 64px;
+  align-self: start;
+  align-items: stretch;
+  min-height: 90px;
   gap: 10px;
+  padding-left: var(--section-inset);
 }
+.headerWithoutIdentity { grid-template-columns: minmax(0, 1fr) 64px; }
+.avatarColumn { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.avatarColumn #joined { white-space: nowrap; text-align: center; font-size: 10px; line-height: 13px; opacity: .85; }
 .avatar{
-  width: 60px;
-  height: 60px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.5);
   object-fit: cover;
   flex-shrink: 0;
 }
-.stats{
-  display: flex;
-  flex-direction: column;
-  font-size: 16px;
-  font-weight: bold;
-  gap: 1px;
+.headerAvatarOnly { grid-template-columns: 90px minmax(0, 1fr) 64px; }
+.headerAvatarOnly .avatarColumn { position: relative; align-self: stretch; }
+.headerAvatarOnly .avatar {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  height: 100%;
+  aspect-ratio: 1;
+  box-sizing: border-box;
 }
-.stats #streak, .stats #xp, .stats #joined{
+.stats{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+.stats #league { grid-column: 1; grid-row: 2; }
+.stats #top-three-finishes { grid-column: 2; grid-row: 2; }
+.statTile {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
+  min-height: 42px;
+  min-width: 0;
+  padding: 5px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 9px;
+  background: var(--surface-background);
+  color: var(--surface-text);
 }
+.statTile > svg { flex-shrink: 0; width: 20px; height: 20px; }
+.statTile > div { min-width: 0; }
+.statTile strong { display: block; font-size: 13px; line-height: 16px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.statTile span { display: block; font-size: 9px; line-height: 12px; opacity: .75; white-space: nowrap; }
 .courses{
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 40px;
-  padding: 5px 10px 0 10px;
-  justify-content: center;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 8px;
+  padding: 5px 0 0 var(--section-inset);
 }
-.language{
+.language, .courseBalance {
   display: flex;
   flex-direction: column;
   font-size: 10px;
   align-items: center;
+  min-width: 0;
+  box-sizing: border-box;
 }
+.language #xp-count, .courseBalanceValue { line-height: 14px; }
 .language #xp-count{
   font-weight: bold;
 }
@@ -177,7 +211,7 @@ body {
   z-index: 0;
 }
 
-.duoGif{
+.duoAnimation{
   width: 100%;
   height: 100%;
   display: block;

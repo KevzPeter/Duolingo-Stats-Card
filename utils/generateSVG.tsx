@@ -4,16 +4,16 @@ import SvgWidget from '../components/SvgWidget';
 import { allStyles } from '../styles/svg';
 import { CardRow, Metadata, DisplayOptions } from './models';
 import themes from './themes.json';
-import { cardHeight } from './animation-layout';
+import { cardHeight, CARD_WIDTH, CARD_SCALE } from './animation-layout';
 /**
  * Returns SVG as a string.
  */
 export function generateSvg(metadata: Metadata, theme: string, options: DisplayOptions = { showAvatar: true, showJoined: true }, rows: CardRow[] = []): string {
     const baseHeight = cardHeight(metadata.weeklyXp !== undefined, !!(options.showScores && metadata.languageScores?.length), metadata.tokenExpired);
     const height = baseHeight + (rows.length ? rows.length * 25 + 20 : 0);
-    const width = 420;
+    const width = CARD_WIDTH;
     const svgBody = ReactDOMServer.renderToStaticMarkup(
-        <svg width={width} height={baseHeight} viewBox={`0 0 420 ${baseHeight}`}>
+        <svg width={width} height={baseHeight} viewBox={`0 0 ${width} ${baseHeight}`}>
             <SvgWidget response={metadata} theme={theme} options={options} />
         </svg>
     );
@@ -30,8 +30,8 @@ export function generateSvg(metadata: Metadata, theme: string, options: DisplayO
 
     return `
     <svg
-        width="${width}"
-        height="${height}"
+        width="${width * CARD_SCALE}"
+        height="${Number((height * CARD_SCALE).toFixed(1))}"
         viewBox="0 0 ${width} ${height}"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

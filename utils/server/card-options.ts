@@ -4,6 +4,7 @@ import { THEME_NAMES } from '../config';
 import { DUO_ANIMATIONS, DuoAnimation } from '../animations';
 import { AppError } from './errors';
 import { queryString } from './http';
+import { CARD_WIDTH, MIN_ANIMATION_SIZE } from '../animation-layout';
 
 export function cardOptions(query: NextApiRequest['query']) {
   const requested = queryString(query.theme)?.trim().toLowerCase();
@@ -15,11 +16,11 @@ export function cardOptions(query: NextApiRequest['query']) {
   const fields = selection === undefined ? [] : Array.from(new Set(selection === '' ? [] : selection.split(',').map(field => field.trim())));
   if (fields.some(field => !PUBLISH_FIELDS.includes(field as PublishField))) throw new AppError(400, 'fields', 'Choose supported card fields.');
   const animationPlacement: Partial<import('../animation-layout').AnimationPlacement> = {};
-  for (const [key, min, max] of [['x', 0, 420], ['y', 0, 425], ['size', 32, 420]] as const) {
+  for (const [key, min, max] of [['x', -Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER], ['y', -Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER], ['size', MIN_ANIMATION_SIZE, CARD_WIDTH]] as const) {
     const value = queryString(query[key]);
     if (value === undefined) continue;
-    if (!/^(?:\d+)(?:\.\d{1,2})?$/.test(value) || Number(value) < min || Number(value) > max) throw new AppError(400, 'placement', `Choose a valid ${key} between ${min} and ${max}.`);
+    if (!/^-?\d+(?:\.\d{1,2})?$/.test(value) || Number(value) < min || Number(value) > max) throw new AppError(400, 'placement', `Choose a valid ${key} between ${min} and ${max}.`);
     animationPlacement[key] = Number(value);
   }
-  return { theme, animation: animation as DuoAnimation | undefined, animationPlacement, fields: fields as PublishField[], showAvatar: queryString(query.showAvatar) !== 'false', showJoined: queryString(query.showJoined) !== 'false', showScores: queryString(query.showScores) === 'true', showWeeklyXp: queryString(query.showWeeklyXp) !== 'false' };
+  return { theme, animation: animation as DuoAnimation | undefined, animationPlacement, fields: fields as PublishField[], showAvatar: queryString(query.showAvatar) !== 'false', showJoined: queryString(query.showJoined) !== 'false', showScores: queryString(query.showScores) === 'true', showWeeklyXp: queryString(query.showWeeklyXp) === 'true' };
 }

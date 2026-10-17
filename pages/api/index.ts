@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { generateSvg } from '../../utils/generateSVG';
 import { normalizeDashboard } from '../../utils/server/duolingo';
 import { cardMetadata } from '../../utils/server/card-metadata';
-import { getDuoGifDataUri, fetchImageAsBase64 } from '../../utils/server/card-assets';
+import { getDuoAnimationDataUri, fetchImageAsBase64 } from '../../utils/server/card-assets';
 import { fetchPublicProfile, fetchPublicUsername } from '../../utils/server/duolingo';
 import { apiError, queryString } from '../../utils/server/http';
 import { AppError } from '../../utils/server/errors';
@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const profile = username ? await fetchPublicUsername(username) : await fetchPublicProfile(id);
     const normalized = normalizeDashboard(profile, null, null, 'UTC');
     const metadata = cardMetadata(normalized.profile, normalized.courses || []);
-    metadata.duoGifBase64 = await getDuoGifDataUri(options.animation);
+    metadata.duoAnimationBase64 = await getDuoAnimationDataUri(options.animation);
     if (options.showAvatar && typeof metadata.picture === 'string') metadata.avatarBase64 = await fetchImageAsBase64(metadata.picture);
     res.setHeader('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=60');
     res.setHeader('Content-Type', 'image/svg+xml');

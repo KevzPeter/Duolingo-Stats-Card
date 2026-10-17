@@ -8,7 +8,7 @@ import { FIELD_LABELS, PUBLISH_FIELDS, PublishField } from '../utils/account-mod
 import { CardPreview, loadCardPreview } from '../utils/card-preview';
 import { generateSvg } from '../utils/generateSVG';
 import AnimationEditor from '../components/AnimationEditor';
-import { AnimationPlacement, cardHeight } from '../utils/animation-layout';
+import { AnimationPlacement, cardHeight, CARD_DISPLAY_WIDTH, CARD_WIDTH } from '../utils/animation-layout';
 import styles from '../styles/Home.module.scss';
 
 interface HomeProps { ownerUsername: string }
@@ -22,7 +22,7 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
   const [showAvatar, setShowAvatar] = useState(true);
   const [showJoined, setShowJoined] = useState(true);
   const [showScores, setShowScores] = useState(false);
-  const [showWeeklyXp, setShowWeeklyXp] = useState(true);
+  const [showWeeklyXp, setShowWeeklyXp] = useState(false);
   const [fields, setFields] = useState<PublishField[]>([]);
   const [origin, setOrigin] = useState('');
   const [snapshot, setSnapshot] = useState<{ path: string; data: CardPreview } | null>(null);
@@ -66,8 +66,8 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
     if (!showWeeklyXp) delete metadata.weeklyXp;
     const scores = isOwner && showScores;
     const svg = generateSvg(metadata, theme === 'default' ? null : theme, { showAvatar, showJoined, showScores: scores, hideAnimation: true }, data.rows);
-    const height = cardHeight(metadata.weeklyXp !== undefined, !!(scores && metadata.languageScores?.length));
-    return { source: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg), height, totalHeight: cardHeight(metadata.weeklyXp !== undefined, !!(scores && metadata.languageScores?.length), metadata.tokenExpired) + (data.rows.length ? data.rows.length * 25 + 20 : 0), balances: metadata.hearts !== undefined || metadata.gems !== undefined };
+    const height = cardHeight(metadata.weeklyXp !== undefined, !!(scores && metadata.languageScores?.length), metadata.tokenExpired);
+    return { source: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg), height, totalHeight: height + (data.rows.length ? data.rows.length * 25 + 20 : 0) };
   }, [snapshot, dataPath, theme, showAvatar, showJoined, showScores, showWeeklyXp, fields, isOwner]);
   const selectedAnimation = selectDuoAnimation(animation);
 
@@ -113,7 +113,7 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
             <div className={styles.field}>
               <label htmlFor="animation">Animation</label>
               <select id="animation" value={animation} onChange={event => setAnimation(event.target.value)}>
-                <option value="auto">Default (Hopping)</option>
+                <option value="auto">Default (Waving)</option>
                 {DUO_ANIMATIONS.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
               </select>
             </div>
@@ -121,12 +121,13 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
               <legend>Show on card</legend>
               <label><input type="checkbox" checked={showAvatar} onChange={event => setShowAvatar(event.target.checked)} />Avatar</label>
               <label><input type="checkbox" checked={showJoined} onChange={event => setShowJoined(event.target.checked)} />Joined date</label>
-              {isOwner && <label><input type="checkbox" checked={showScores} onChange={event => setShowScores(event.target.checked)} />Proficiency Scores</label>}
               {isOwner && <label><input type="checkbox" checked={showWeeklyXp} onChange={event => setShowWeeklyXp(event.target.checked)} />Weekly XP</label>}
               {isOwner && PUBLISH_FIELDS.map(field => <label key={field}>
                 <input type="checkbox" checked={fields.includes(field)} onChange={event => setFields(event.target.checked ? [...fields, field] : fields.filter(item => item !== field))} />
                 {FIELD_LABELS[field]}
               </label>)}
+              {isOwner && <label><input type="checkbox" checked={showScores} onChange={event => setShowScores(event.target.checked)} />Duolingo Score</label>}
+
             </fieldset>
           </aside>
           <section className={styles.preview} aria-labelledby="preview-heading">
@@ -134,12 +135,12 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
             <div className={styles.previewArea} aria-busy={loading}>
               {!previewPath && <p className={styles.placeholder}>Enter a username to preview your card.</p>}
               {previewPath && <>
-                {previewCard && <div className={styles.cardCanvas} style={{ display: imageError ? 'none' : 'block' }}>
+                {previewCard && <div className={styles.cardCanvas} style={{ display: imageError ? 'none' : 'block', width: CARD_DISPLAY_WIDTH }}>
                   {/* Render the shared SVG locally from the cached profile snapshot. */}
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={previewCard.source} alt="Duolingo stats card" className={styles.statsImage} draggable={false} onError={() => setFailedPath(dataPath)} />
-                  <div className={styles.animationSurface} style={{ height: `${previewCard.height / previewCard.totalHeight * 100}%` }}>
-                    <AnimationEditor source={'/gif/' + selectedAnimation.file} height={previewCard.height} placement={animationPlacement} balances={previewCard.balances} onChange={setAnimationPlacement} />
+                  <div className={styles.animationSurface} style={{ height: `${previewCard.height / previewCard.totalHeight * 100}%`, borderRadius: `${10 / CARD_WIDTH * 100}% / ${10 / previewCard.height * 100}%` }}>
+                    <AnimationEditor animation={selectedAnimation.id} height={previewCard.height} placement={animationPlacement} onChange={setAnimationPlacement} />
                   </div>
                 </div>}
                 {loading && <div className={styles.loading} role="status"><span className={styles.spinner} />Loading card…</div>}
