@@ -9,7 +9,7 @@ import { cardHeight } from './animation-layout';
  * Returns SVG as a string.
  */
 export function generateSvg(metadata: Metadata, theme: string, options: DisplayOptions = { showAvatar: true, showJoined: true }, rows: CardRow[] = []): string {
-    const baseHeight = cardHeight(metadata.weeklyXp !== undefined, !!(options.showScores && metadata.languageScores?.length));
+    const baseHeight = cardHeight(metadata.weeklyXp !== undefined, !!(options.showScores && metadata.languageScores?.length), metadata.tokenExpired);
     const height = baseHeight + (rows.length ? rows.length * 25 + 20 : 0);
     const width = 420;
     const svgBody = ReactDOMServer.renderToStaticMarkup(

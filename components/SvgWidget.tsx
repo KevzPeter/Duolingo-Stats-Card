@@ -64,7 +64,7 @@ export default function SvgWidget({ response, theme, options = { showAvatar: tru
     return (
         <g>
             <foreignObject x="0" y="0" width="100%" height="100%">
-                <div {...{ xmlns: 'http://www.w3.org/1999/xhtml' }} className={`card${response.weeklyXp !== undefined ? ' hasWeeklyXp' : ''}${languageScores.length ? ' hasLanguageScores' : ''}`} style={cardStyle}>
+                <div {...{ xmlns: 'http://www.w3.org/1999/xhtml' }} className={`card${response.weeklyXp !== undefined ? ' hasWeeklyXp' : ''}${languageScores.length ? ' hasLanguageScores' : ''}${response.tokenExpired ? ' hasTokenNotice' : ''}`} style={cardStyle}>
                     <BalanceCounters hearts={response.hearts} gems={response.gems} />
                     <div className="content">
                         <div className="header">
@@ -135,6 +135,13 @@ export default function SvgWidget({ response, theme, options = { showAvatar: tru
                         </div>
                     </section>}
                     {response.weeklyXp !== undefined && <WeeklyXpChart days={response.weeklyXp} color={themes[theme]?.colorPrimary || '#ffffff'} accent={theme === 'light' ? '#009de0' : '#39c8ff'} />}
+                    {response.tokenExpired && <div className="tokenNotice" role="alert">
+                        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 3 22 21H2Z" fill="#ffc800" stroke="#6b4c00" strokeLinejoin="round" />
+                            <path d="M12 9v5m0 3v.1" stroke="#493300" strokeWidth="2" strokeLinecap="round" />
+                        </svg>
+                        <span>Duolingo token expired. Update and redeploy to view latest stats</span>
+                    </div>}
                 </div>
             </foreignObject>
         </g>

@@ -66,6 +66,19 @@ body {
 .card.hasLanguageScores.hasWeeklyXp {
   grid-template-rows: 163px 54px 166px;
 }
+.card.hasTokenNotice { padding-bottom: 46px; }
+.tokenNotice {
+  position: absolute;
+  bottom: 8px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  line-height: 14px;
+}
+.tokenNotice > svg { flex-shrink: 0; }
 .proficiencySection {
   grid-column: 1 / -1;
   display: grid;

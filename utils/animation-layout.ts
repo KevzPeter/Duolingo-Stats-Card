@@ -4,8 +4,8 @@ export const CARD_WIDTH = 420;
 export const ANIMATION_RATIO = 152 / 122;
 export const MIN_ANIMATION_SIZE = 32;
 
-export function cardHeight(weeklyXp: boolean, scores: boolean): number {
-  return (weeklyXp ? 361 : 185) + (scores ? 64 : 0);
+export function cardHeight(weeklyXp: boolean, scores: boolean, tokenExpired = false): number {
+  return (weeklyXp ? 361 : 185) + (scores ? 64 : 0) + (tokenExpired ? 36 : 0);
 }
 
 // Positions refer to the top-left of the animation in SVG pixels. Keep it inside

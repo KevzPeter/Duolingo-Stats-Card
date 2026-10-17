@@ -67,7 +67,7 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
     const scores = isOwner && showScores;
     const svg = generateSvg(metadata, theme === 'default' ? null : theme, { showAvatar, showJoined, showScores: scores, hideAnimation: true }, data.rows);
     const height = cardHeight(metadata.weeklyXp !== undefined, !!(scores && metadata.languageScores?.length));
-    return { source: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg), height, totalHeight: height + (data.rows.length ? data.rows.length * 25 + 20 : 0), balances: metadata.hearts !== undefined || metadata.gems !== undefined };
+    return { source: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg), height, totalHeight: cardHeight(metadata.weeklyXp !== undefined, !!(scores && metadata.languageScores?.length), metadata.tokenExpired) + (data.rows.length ? data.rows.length * 25 + 20 : 0), balances: metadata.hearts !== undefined || metadata.gems !== undefined };
   }, [snapshot, dataPath, theme, showAvatar, showJoined, showScores, showWeeklyXp, fields, isOwner]);
   const selectedAnimation = selectDuoAnimation(animation);
 

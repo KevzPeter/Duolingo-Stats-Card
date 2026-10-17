@@ -13,6 +13,7 @@ export interface CardRow { label: string; value: string }
 
 // Only values used by the card, never the raw upstream profile.
 export interface Metadata extends Profile {
+  tokenExpired?: boolean;
   courses: AccountCourse[];
   avatarBase64?: string | null;
   duoGifBase64?: string | null;

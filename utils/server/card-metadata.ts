@@ -9,15 +9,14 @@ export function cardMetadata(profile: Profile, courses: AccountCourse[] = []): M
 export function ownerCard(data: DashboardData): { metadata: Metadata; rows: CardRow[] } {
   const metadata = cardMetadata(data.profile, data.courses || []);
   const connected = data.state === 'connected';
-  metadata.weeklyXp = connected ? data.weeklyXp : null;
-  metadata.languageScores = connected ? data.languageScores : null;
   if (connected) {
+    metadata.weeklyXp = data.weeklyXp;
+    metadata.languageScores = data.languageScores;
     metadata.hearts = data.hearts;
     metadata.gems = data.gems;
   }
-  const rows: CardRow[] = connected ? [] : [{
-    label: 'Owner stats', value: data.state === 'reconnect' ? 'Replace JWT and redeploy' : 'Temporarily unavailable',
-  }];
-  if (data.notice === 'partial') rows.push({ label: 'Availability', value: 'Some stats unavailable' });
+  if (data.state === 'reconnect') metadata.tokenExpired = true;
+  const rows: CardRow[] = data.state === 'unavailable' ? [{ label: 'Owner stats', value: 'Temporarily unavailable' }] : [];
+  if (connected && data.notice === 'partial') rows.push({ label: 'Availability', value: 'Some stats unavailable' });
   return { metadata, rows };
 }
