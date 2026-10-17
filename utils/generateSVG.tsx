@@ -2,16 +2,31 @@ import React from 'react'
 import ReactDOMServer from 'react-dom/server';
 import SvgWidget from '../components/SvgWidget';
 import { allStyles } from '../styles/svg';
-import { Metadata, DisplayOptions } from './models';
+import { CardRow, Metadata, DisplayOptions } from './models';
+import themes from './themes.json';
+import { cardHeight } from './animation-layout';
 /**
  * Returns SVG as a string.
  */
-export function generateSvg(metadata: Metadata, theme: string, options: DisplayOptions = { showAvatar: true, showJoined: true }): string {
-    const height = 185;
+export function generateSvg(metadata: Metadata, theme: string, options: DisplayOptions = { showAvatar: true, showJoined: true }, rows: CardRow[] = []): string {
+    const baseHeight = cardHeight(metadata.weeklyXp !== undefined, !!(options.showScores && metadata.languageScores?.length));
+    const height = baseHeight + (rows.length ? rows.length * 25 + 20 : 0);
     const width = 420;
     const svgBody = ReactDOMServer.renderToStaticMarkup(
-        <SvgWidget response={metadata} theme={theme} options={options} />
+        <svg width={width} height={baseHeight} viewBox={`0 0 420 ${baseHeight}`}>
+            <SvgWidget response={metadata} theme={theme} options={options} />
+        </svg>
     );
+    const colors = themes[theme as keyof typeof themes];
+    const extraBody = rows.length ? ReactDOMServer.renderToStaticMarkup(
+        <g transform={`translate(0 ${baseHeight})`}>
+            <rect width={width} height={height - baseHeight} rx={10} fill={colors?.background?.startsWith('#') ? colors.background : '#17351f'} />
+            {rows.map((row, index) => <g key={index} transform={`translate(14 ${25 + index * 25})`} fontSize="12" fill={colors?.colorPrimary || '#ffffff'}>
+                <text><title>{row.label}</title>{row.label.length > 26 ? row.label.slice(0, 25) + '…' : row.label}</text>
+                <text x="392" textAnchor="end"><title>{row.value}</title>{row.value.length > 28 ? row.value.slice(0, 27) + '…' : row.value}</text>
+            </g>)}
+        </g>
+    ) : '';
 
     return `
     <svg
@@ -24,5 +39,6 @@ export function generateSvg(metadata: Metadata, theme: string, options: DisplayO
     >
     <style>${allStyles}</style>
     ${svgBody}
+    ${extraBody}
     </svg>`;
 }

@@ -1,8 +1,6 @@
 // Centralized SVG imports and mappings
 // Exports: flagComponents, duoIcons, Streak, Xp
 // Keep this file focused on mapping SVG assets to names used across the app.
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-nocheck
 import Duo_Waving from "../public/svg/Duo_waving.svg";
 import Duo_PencilBoarding from "../public/svg/Duo_PencilBoarding.svg";
 import Duo_Excited from "../public/svg/Duo_Excited.svg";
@@ -10,7 +8,6 @@ import Duo_Jolly from "../public/svg/Duo_Jolly.svg";
 import Duo_Amour from "../public/svg/Duo_Amour.svg";
 import Duo_Cannonball from "../public/svg/Duo_Cannonball.svg";
 import Duo_Daunting from "../public/svg/Duo_Daunting.svg";
-import Crown from "../public/svg/crown.svg";
 import Xp from "../public/svg/xp.svg";
 import Streak from "../public/svg/streak.svg";
 import Duo from "../public/svg/logo_0037_duo.svg";
@@ -58,6 +55,13 @@ import Gn from "../public/svg/logo_0050_gn.svg"; // Guarani
 import Ca from "../public/svg/logo_0051_ca.svg"; // Catalan, Valencian
 import Th from "../public/svg/logo_0052_th.svg"; // Thai
 import World from "../public/svg/logo_0036_world.svg"; // Default world language icon
+import Chess from "../public/svg/chess.svg";
+import MathCourse from "../public/svg/math.svg";
+import Music from "../public/svg/music.svg";
+import Heart from "../public/svg/heart.svg";
+import Gem from "../public/svg/gem.svg";
+
+export const courseComponents = { chess: Chess, math: MathCourse, music: Music };
 
 export const flagComponents = {
     duo: Duo,
@@ -122,11 +126,4 @@ export const duoIcons = [
     { icon: Duo_Amour, viewBox: "0 -69 194 123", style: 'flip' },
 ];
 
-export { Streak, Xp };
-
-export default {
-    flagComponents,
-    duoIcons,
-    Streak,
-    Xp,
-};
+export { Streak, Xp, Heart, Gem };

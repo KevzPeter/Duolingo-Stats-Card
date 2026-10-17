@@ -10,6 +10,7 @@ body {
   font-weight: 500;
 }
 .card{
+  position: relative;
   display: grid;
   grid-template-columns: 3fr 1fr;
   color: white;
@@ -24,6 +25,85 @@ body {
 }
 .content{
   display: grid;
+  grid-column: 1;
+  grid-row: 1;
+}
+.balanceCounters {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  z-index: 1;
+  font-size: 13px;
+  font-weight: bold;
+  font-variant-numeric: tabular-nums;
+}
+.balanceCounters > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.balanceCounters svg { flex-shrink: 0; }
+.duoArea {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+}
+.duoArea > svg { width: 100%; height: 100%; }
+.card { grid-template-rows: 163px; }
+.card.hasWeeklyXp {
+  grid-template-rows: 163px 166px;
+}
+.card.hasLanguageScores {
+  grid-template-rows: 163px 54px;
+}
+.card.hasLanguageScores.hasWeeklyXp {
+  grid-template-rows: 163px 54px 166px;
+}
+.proficiencySection {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 122px;
+  grid-template-rows: 16px 32px;
+  gap: 6px 10px;
+}
+.proficiencyHeading {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding-left: 14px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+}
+.languageScores {
+  grid-column: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 0 10px;
+  gap: 40px;
+  align-items: center;
+}
+.languageScores > span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 6px;
+  justify-self: center;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 10px;
+  font-weight: bold;
+}
+.weeklyXpChart {
+  grid-column: 1 / -1;
+  display: block;
+  overflow: visible;
 }
 .header{
   display: flex;
@@ -51,7 +131,8 @@ body {
   gap: 2px;
 }
 .courses{
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 40px;
   padding: 5px 10px 0 10px;
   justify-content: center;
@@ -62,7 +143,7 @@ body {
   font-size: 10px;
   align-items: center;
 }
-.language #crown-count, .language #xp-count{
+.language #xp-count{
   font-weight: bold;
 }
 @keyframes gradient-animation {
@@ -76,12 +157,6 @@ body {
     background-position: 0% 50%;
   }
 }
-.crown{
-  height:13px;
-  width:17px;
-  position: relative;
-  z-index: 0;
-}
 .xp{
   height:20px;
   width:20px;
@@ -90,44 +165,12 @@ body {
 }
 
 .duoGif{
-  width: 122px;
-  height: 152px;
+  width: 100%;
+  height: 100%;
   display: block;
   object-fit: contain;
   object-position: center;
   align-self: center;
   justify-self: center;
-  transform: scale(1.4);
-  transform-origin: center;
-}
-.crown:after {
-	content:'';
-  top:4px;
-  left: 0;
-	transform:translateX(100%);
-	width:80%;
-	height:9px;
-	position: absolute;
-	z-index:1;
-	animation: slide 1.5s infinite ease-in-out;
-	 
-  /* 
-  CSS Gradient - complete browser support from http://www.colorzilla.com/gradient-editor/ 
-  */
-  background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(128,186,232,0) 99%, rgba(125,185,232,0) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(50%,rgba(255,255,255,0.8)), color-stop(99%,rgba(128,186,232,0)), color-stop(100%,rgba(125,185,232,0))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%); /* IE10+ */
-	background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#007db9e8',GradientType=1 ); /* IE6-9 */
-}
-
-/* animation */
-
-@keyframes slide {
-	0% {transform:translateX(0%); opacity: 0;}
-  50% { opacity: 100%;}
-	100% {transform:translateX(20%); opacity: 0;}
 }
 `;
