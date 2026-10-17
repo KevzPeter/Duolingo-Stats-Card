@@ -55,10 +55,9 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
     query.set('showScores', String(showScores));
     query.set('showWeeklyXp', String(showWeeklyXp));
     query.set('fields', fields.join(','));
-  } else {
-    query.set('username', previewUsername);
   }
-  const previewPath = previewUsername ? (isOwner ? '/api/card?' : '/api?') + query.toString() : '';
+  query.set('username', previewUsername);
+  const previewPath = previewUsername ? '/api?' + query.toString() : '';
   const dataPath = previewUsername ? (isOwner ? '/api/preview' : '/api/preview?username=' + encodeURIComponent(previewUsername)) : '';
   const cardUrl = origin && previewPath ? origin + previewPath : '';
   const markdown = cardUrl ? '![Duolingo Stats Card](' + cardUrl + ')' : '';

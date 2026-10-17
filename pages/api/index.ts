@@ -4,9 +4,10 @@ import { normalizeDashboard } from '../../utils/server/duolingo';
 import { cardMetadata } from '../../utils/server/card-metadata';
 import { getDuoAnimationDataUri, fetchImageAsBase64 } from '../../utils/server/card-assets';
 import { fetchPublicProfile, fetchPublicUsername } from '../../utils/server/duolingo';
-import { apiError, queryString } from '../../utils/server/http';
+import { apiError, noStore, queryString } from '../../utils/server/http';
 import { AppError } from '../../utils/server/errors';
 import { cardOptions } from '../../utils/server/card-options';
+import { renderOwnerCard } from '../../utils/server/render-owner-card';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
@@ -16,6 +17,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (!username && !id) throw new AppError(400, 'input', 'Missing username / id parameter in query.');
     if (username ? !/^[\w.-]{1,100}$/.test(username) : !/^[1-9]\d{0,15}$/.test(id) || !Number.isSafeInteger(Number(id))) throw new AppError(400, 'input', 'Choose a valid username or numeric ID.');
     const options = cardOptions(req.query);
+    const ownerUsername = process.env.DUOLINGO_USERNAME?.trim();
+    // Only an exact owner username match can use the deployment's credentials.
+    // Numeric ID lookups and other usernames always stay on the public path.
+    if (username && ownerUsername && process.env.DUOLINGO_JWT?.trim() && username.toLowerCase() === ownerUsername.toLowerCase()) {
+      noStore(res);
+      res.setHeader('Content-Type', 'image/svg+xml');
+      return res.send(await renderOwnerCard(options));
+    }
     const profile = username ? await fetchPublicUsername(username) : await fetchPublicProfile(id);
     const normalized = normalizeDashboard(profile, null, null, 'UTC');
     const metadata = cardMetadata(normalized.profile, normalized.courses || []);
