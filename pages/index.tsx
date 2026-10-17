@@ -27,7 +27,7 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
   const [origin, setOrigin] = useState('');
   const [snapshot, setSnapshot] = useState<{ path: string; data: CardPreview } | null>(null);
   const [failedPath, setFailedPath] = useState('');
-  const [copyLabel, setCopyLabel] = useState('Copy Markdown');
+  const [copyLabels, setCopyLabels] = useState({ markdown: 'Copy Markdown', html: 'Copy HTML' });
 
   useEffect(() => { setOrigin(window.location.origin); }, []);
   useEffect(() => {
@@ -53,7 +53,10 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
   }
   const previewPath = previewUsername ? (isOwner ? '/api/card?' : '/api?') + query.toString() : '';
   const dataPath = previewUsername ? (isOwner ? '/api/preview' : '/api/preview?username=' + encodeURIComponent(previewUsername)) : '';
-  const markdown = origin && previewPath ? '![Duolingo Stats](' + origin + previewPath + ')' : '';
+  const cardUrl = origin && previewPath ? origin + previewPath : '';
+  const markdown = cardUrl ? '![Duolingo Stats Card](' + cardUrl + ')' : '';
+  const html = cardUrl ? `<img src="${cardUrl.replace(/&/g, '&amp;')}" alt="Duolingo Stats Card" />` : '';
+  const snippets = [{ id: 'markdown', label: 'Markdown', value: markdown }, { id: 'html', label: 'HTML', value: html }] as const;
   const imageError = !!dataPath && failedPath === dataPath;
   const loading = !!dataPath && snapshot?.path !== dataPath && !imageError;
 
@@ -71,7 +74,7 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
   }, [snapshot, dataPath, theme, showAvatar, showJoined, showScores, showWeeklyXp, fields, isOwner]);
   const selectedAnimation = selectDuoAnimation(animation);
 
-  useEffect(() => { setCopyLabel('Copy Markdown'); }, [markdown]);
+  useEffect(() => { setCopyLabels({ markdown: 'Copy Markdown', html: 'Copy HTML' }); }, [cardUrl]);
   useEffect(() => {
     if (!dataPath) return;
     let active = true;
@@ -82,9 +85,9 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
     return () => { active = false; };
   }, [dataPath]);
 
-  async function copyMarkdown() {
-    try { await navigator.clipboard.writeText(markdown); setCopyLabel('Copied!'); }
-    catch { setCopyLabel('Select and copy below'); }
+  async function copySnippet(format: 'markdown' | 'html', value: string) {
+    try { await navigator.clipboard.writeText(value); setCopyLabels(labels => ({ ...labels, [format]: 'Copied!' })); }
+    catch { setCopyLabels(labels => ({ ...labels, [format]: 'Select and copy below' })); }
   }
 
   return <>
@@ -148,13 +151,13 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
               </>}
             </div>
             {previewCard && !imageError && <div className={styles.animationHelp}><span>Drag Duo to move. Drag the corner to resize.</span><button type="button" onClick={() => setAnimationPlacement(undefined)} disabled={!animationPlacement}>Reset position &amp; size</button></div>}
-            <div className={styles.share}>
+            {snippets.map(snippet => <div className={styles.share} key={snippet.id}>
               <div className={styles.shareHeading}>
-                <label htmlFor="markdown">Markdown</label>
-                <button type="button" onClick={copyMarkdown} disabled={!markdown || imageError}>{copyLabel}</button>
+                <label htmlFor={snippet.id}>{snippet.label}</label>
+                <button type="button" onClick={() => copySnippet(snippet.id, snippet.value)} disabled={!snippet.value || imageError}>{copyLabels[snippet.id]}</button>
               </div>
-              <textarea id="markdown" readOnly value={markdown} rows={3} spellCheck={false} onFocus={event => event.target.select()} />
-            </div>
+              <textarea id={snippet.id} readOnly value={snippet.value} rows={3} spellCheck={false} onFocus={event => event.target.select()} />
+            </div>)}
           </section>
         </div>
       </div>
