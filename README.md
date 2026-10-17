@@ -1,4 +1,4 @@
-<a username="readme-top"></a>
+<a id="readme-top"></a>
 
 <!-- PROJECT LOGO -->
 <br />
@@ -30,20 +30,59 @@
 Add the following line to your Github README.md page / website / any markdown file and replace {your-duolingo-username} ⤵️
 
 ```html
-<img src="https://duolingo-stats-card.vercel.app/api?username={your-duolingo-username}" alt="Duolingo Stats" />
+<img src="https://duolingo-stats-card.vercel.app/api?username={your-duolingo-username}" alt="Duolingo Stats Card" />
 ```
 
 Or even this way ⤵️
 
-```mark
-![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?username={your-duolingo-username})
+```markdown
+![Duolingo Stats Card](https://duolingo-stats-card.vercel.app/api?username={your-duolingo-username})
 ```
 
 For example, if your Duolingo username is "John_Smith", add the following line:
 
-```mark
-![Duolingo Stats](https://duolingo-stats-card.vercel.app/api?username=John_Smith)
+```markdown
+![Duolingo Stats Card](https://duolingo-stats-card.vercel.app/api?username=John_Smith)
 ```
+
+Want weekly XP, Duolingo scores, hearts, and gems? Deploy your own instance below.
+
+<div align="center">
+  <img src="https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&amp;showAvatar=true&amp;showJoined=true&amp;showScores=true&amp;showWeeklyXp=true&amp;fields=hearts,gems" alt="Duolingo Stats Card" />
+</div>
+
+<!--DEPLOYMENT-->
+
+## 🚀 Deploy using Vercel
+
+1. Fork this repository and import your fork into [Vercel](https://vercel.com/).
+2. Add these server-only environment variables:
+   - `DUOLINGO_JWT`: your Duolingo JWT.
+   - `DUOLINGO_USERNAME`: the username belonging to that JWT.
+   - `DUOLINGO_TIMEZONE`: optional time zone, such as `America/Los_Angeles`; defaults to `UTC`.
+3. Deploy, open your card builder, customize the card, and copy its Markdown or HTML. Use your own deployment's URL for owner stats.
+
+### 🔑 Get your Duolingo JWT
+
+Sign in to [Duolingo](https://www.duolingo.com/). Open browser developer tools →
+Application (or Storage) → Cookies → `https://www.duolingo.com`, then copy
+`jwt_token` into your `DUOLINGO_JWT` setting. Replace it and redeploy when it expires.
+
+> [!IMPORTANT]
+> Configuring your token makes all supported owner stats publicly readable, even if hidden on the card.
+> Keep the token secret: never commit it or use a `NEXT_PUBLIC_` variable. Token renewal is manual.
+
+### 💻 Run locally
+
+Use Node.js 22+ and pnpm 10.30.3. For owner stats, copy `.env.example` to `.env.local`
+and fill in your variables before starting the server. Keep `.env.local` out of commits.
+
+```sh
+pnpm install --frozen-lockfile
+pnpm dev
+```
+
+Open [localhost:3000](http://localhost:3000). Restart the server after changing environment variables.
 
 ## 🎨 Themes
 
@@ -53,7 +92,7 @@ You can choose your favorite among 15 different themes!
 Simply add the _theme_ parameter to the url like so:
 
 ```html
-<img src="https://duolingo-stats-card.vercel.app/api?username={your-duolingo-username}&theme={your-theme}" alt="Duolingo Stats" />
+<img src="https://duolingo-stats-card.vercel.app/api?username={your-duolingo-username}&amp;theme={your-theme}" alt="Duolingo Stats Card" />
 ```
 
 > [!NOTE]
@@ -66,7 +105,6 @@ Simply add the _theme_ parameter to the url like so:
 |       `onedark` ![onedark][onedark]       | `shades-of-purple` ![shades-of-purple][shades-of-purple] |       `dracula` ![dracula][dracula]       |
 |       `cobalt2` ![cobalt2][cobalt2]       |                    `sky` ![sky][sky]                     |          `beach` ![beach][beach]          |
 | `purple-gang` ![purple-gang][purple-gang] |                   `mint` ![mint][mint]                   |          `leafy` ![leafy][leafy]          |
-| `jolly` ![jolly][jolly]
 
 [light]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=light
 [dark]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=dark
@@ -83,18 +121,6 @@ Simply add the _theme_ parameter to the url like so:
 [purple-gang]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=purple-gang
 [mint]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=mint
 [leafy]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=leafy
-[jolly]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=jolly
-
-<!-- ### Getting your Duolingo ID
-
-1. Login at [duolingo.com](duolingo.com)
-2. Go to Developer Tools in your browser (hit F12 key)
-3. Go to Application tab ➡️ Local Storage ➡️ duolingo.com
-4. The number that you see here 👇🏽 repeated multiple times is your Duolingo profile id
-
-   <img src="media/devtools.png" alt="Devtools" height="200" width="697">
-
-<br /> -->
 
 <!-- BUILT WITH -->
 
@@ -103,15 +129,6 @@ Simply add the _theme_ parameter to the url like so:
 - [![Next][Next.js]][Next-url]
 - [![React][React.js]][React-url]
 - [![Duolingo][Duolingo]][Duolingo-url]
-- [![Docker][Docker]][Docker-url]
-
-<!--DEPLOYMENT-->
-
-## 🐋 Deploy using Docker
-
-- Using docker compose
-  - Run `docker compose -f docker-compose.production.yml up -d`
-  - Go to http://localhost:3000 to use the app
 
 <!-- CONTRIBUTING -->
 
@@ -131,23 +148,9 @@ Don't forget to give the project a star! Thanks again!
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
-[Docker]: https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
-[Docker-url]: https://docker.com/
 [Duolingo]: https://img.shields.io/badge/Duolingo-%234DC730.svg?style=for-the-badge&logo=Duolingo&logoColor=white
 [Duolingo-url]: https://duolingo.com/

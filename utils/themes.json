@@ -73,10 +73,5 @@
     "background": "#193549",
     "colorPrimary": "#FFC600",
     "colorSecondary": "#fff"
-  },
-  "jolly": {
-    "background": "#291b3e",
-    "colorPrimary": "#ff64da",
-    "colorSecondary": "#fff"
   }
 }
