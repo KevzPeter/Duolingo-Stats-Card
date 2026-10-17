@@ -13,6 +13,8 @@ import styles from '../styles/Home.module.scss';
 
 interface HomeProps { ownerUsername: string }
 
+const USERNAME_DEBOUNCE_MS = 1000;
+
 const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
   const [username, setUsername] = useState(ownerUsername);
   const [previewUsername, setPreviewUsername] = useState(ownerUsername);
@@ -28,12 +30,17 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
   const [snapshot, setSnapshot] = useState<{ path: string; data: CardPreview } | null>(null);
   const [failedPath, setFailedPath] = useState('');
   const [copyLabels, setCopyLabels] = useState({ markdown: 'Copy Markdown', html: 'Copy HTML' });
+  const lookupUsername = username.trim().toLowerCase();
 
   useEffect(() => { setOrigin(window.location.origin); }, []);
   useEffect(() => {
-    const timer = setTimeout(() => setPreviewUsername(username.trim()), 300);
+    if (!/^[\w.-]{1,100}$/.test(lookupUsername)) {
+      setPreviewUsername('');
+      return;
+    }
+    const timer = setTimeout(() => setPreviewUsername(lookupUsername), USERNAME_DEBOUNCE_MS);
     return () => clearTimeout(timer);
-  }, [username]);
+  }, [lookupUsername]);
 
   const isOwner = !!ownerUsername && previewUsername.toLowerCase() === ownerUsername.toLowerCase();
   const query = new URLSearchParams({ showAvatar: String(showAvatar), showJoined: String(showJoined) });
