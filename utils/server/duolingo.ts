@@ -3,6 +3,7 @@ import { AccountCourse, DashboardData, LanguageScore, Profile } from '../account
 import { UpstreamError } from './errors';
 import { readTokenClaims } from './security';
 import { weeklyXpFrom } from './weekly-xp';
+import { fetchLeagueStats, LEAGUE_NAMES } from './league-stats';
 
 type Json = Record<string, any>;
 const ROOT = 'https://www.duolingo.com';
@@ -35,7 +36,9 @@ export function profileFrom(data: Json): Profile {
     // Generated avatar URLs encode appearance in the path and can exceed 200
     // characters. Reject oversized URLs rather than truncating valid paths.
     picture: typeof data.picture === 'string' && data.picture.length <= 4096 ? data.picture : '',
-    streak: numberOrNull(data.streak), totalXp: numberOrNull(data.totalXp), creationDate: numberOrNull(data.creationDate) };
+    streak: numberOrNull(data.streak), totalXp: numberOrNull(data.totalXp), creationDate: numberOrNull(data.creationDate),
+    league: typeof data.league === 'string' && LEAGUE_NAMES.includes(data.league) ? data.league : null,
+    topThreeFinishes: Number.isSafeInteger(data.topThreeFinishes) && data.topThreeFinishes >= 0 ? data.topThreeFinishes : null };
 }
 
 export async function verifyToken(token: string): Promise<{ profile: Profile; expiresAt: Date }> {
@@ -48,7 +51,7 @@ export async function verifyToken(token: string): Promise<{ profile: Profile; ex
 export async function fetchPublicProfile(id: string): Promise<Json> {
   const data = await request(`/2017-06-30/users/${id}`);
   if (String(data.id) !== id || !data.username) throw new UpstreamError('network');
-  return data;
+  return { ...data, ...await fetchLeagueStats(id) };
 }
 
 export function normalizeDashboard(profile: Json, progress: Json | null, balances: Json | null, timeZone: string, now = Date.now()): DashboardData {
@@ -72,13 +75,15 @@ export async function fetchDashboard(id: string, username: string, token: string
     request(`/2023-05-23/users/${id}`, token, { fields: 'xpGains' }),
     request(`/2023-05-23/users/${id}`, token, { fields: 'health,gems' }),
     fetchLanguageScores(id, profile.courses, token),
+    fetchLeagueStats(id),
   ]);
   // A rejected credential invalidates the entire authenticated snapshot.
   if (results.some(result => result.status === 'rejected' && result.reason instanceof UpstreamError && result.reason.kind === 'auth')) throw new UpstreamError('auth');
-  const data = results.map(result => result.status === 'fulfilled' ? result.value : null);
-  const dashboard = normalizeDashboard(profile, data[0], data[1], timeZone);
-  dashboard.languageScores = data[2]?.scores ?? null;
-  if (results.some(result => result.status === 'rejected') || data[2]?.partial) dashboard.notice = 'partial';
+  const [progress, balances, scores, league] = results;
+  const dashboard = normalizeDashboard(profile, progress.status === 'fulfilled' ? progress.value : null, balances.status === 'fulfilled' ? balances.value : null, timeZone);
+  dashboard.languageScores = scores.status === 'fulfilled' ? scores.value.scores : null;
+  if (league.status === 'fulfilled') Object.assign(dashboard.profile, league.value);
+  if (results.some(result => result.status === 'rejected') || (scores.status === 'fulfilled' && scores.value.partial)) dashboard.notice = 'partial';
   return dashboard;
 }
 
@@ -125,5 +130,5 @@ export async function fetchPublicUsername(username: string): Promise<Json> {
   const data = await request('/2017-06-30/users', undefined, { username });
   const profile = data.users?.[0];
   if (!profile || typeof profile.username !== 'string' || profile.username.toLowerCase() !== username.toLowerCase() || !/^[1-9]\d*$/.test(String(profile.id))) throw new UpstreamError('network');
-  return profile;
+  return { ...profile, ...await fetchLeagueStats(String(profile.id)) };
 }

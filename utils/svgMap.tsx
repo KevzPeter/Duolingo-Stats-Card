@@ -60,6 +60,8 @@ import MathCourse from "../public/svg/math.svg";
 import Music from "../public/svg/music.svg";
 import Heart from "../public/svg/heart.svg";
 import Gem from "../public/svg/gem.svg";
+import Leaderboard from "../public/svg/leaderboard.svg";
+import Podium from "../public/svg/podium.svg";
 
 export const courseComponents = { chess: Chess, math: MathCourse, music: Music };
 
@@ -126,4 +128,4 @@ export const duoIcons = [
     { icon: Duo_Amour, viewBox: "0 -69 194 123", style: 'flip' },
 ];
 
-export { Streak, Xp, Heart, Gem };
+export { Streak, Xp, Heart, Gem, Leaderboard, Podium };

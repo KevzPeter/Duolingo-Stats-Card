@@ -9,6 +9,8 @@ export interface Profile {
   streak: number | null;
   totalXp: number | null;
   creationDate: number | null;
+  league: string | null;
+  topThreeFinishes: number | null;
 }
 export interface AccountCourse {
   id: string;
