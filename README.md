@@ -27,19 +27,13 @@
 
 <br/>
 
-Add the following line to your Github README.md page / website / any markdown file and replace {your-duolingo-username} ⤵️
+Use the [demo website](https://duolingo-stats-card.vercel.app/) to create your customized card! Add the following line to your Github README.md page / website / any markdown file and replace {your-duolingo-username}
 
 ```html
 <img src="https://duolingo-stats-card.vercel.app/api?username={your-duolingo-username}" alt="Duolingo Stats Card" />
 ```
 
-Or even this way ⤵️
-
-```markdown
-![Duolingo Stats Card](https://duolingo-stats-card.vercel.app/api?username={your-duolingo-username})
-```
-
-For example, if your Duolingo username is "John_Smith", add the following line:
+For example, if your Duolingo username is "John_Smith", add the following line (this is in Markdown mode):
 
 ```markdown
 ![Duolingo Stats Card](https://duolingo-stats-card.vercel.app/api?username=John_Smith)
@@ -47,15 +41,22 @@ For example, if your Duolingo username is "John_Smith", add the following line:
 
 Want weekly XP, Duolingo scores, hearts, and gems? Deploy your own instance below.
 
-<div align="center">
-  <img src="https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&amp;showAvatar=true&amp;showJoined=true&amp;showScores=true&amp;showWeeklyXp=true&amp;fields=hearts,gems" alt="Duolingo Stats Card" />
-</div>
-
 <!--DEPLOYMENT-->
 
 ## 🚀 Deploy using Vercel
 
 To access private Duolingo stats, like your Duolingo proficiency scores, gems, hearts, weekly XP etc, you will need to provide your Duolingo JWT Token. To keep your token secure, you will need to deploy your own Duolingo Stats Card.
+
+<table>
+  <tr>
+    <th>Public stats</th>
+    <th>Public + private stats</th>
+  </tr>
+  <tr>
+    <td valign="top"><img src="https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&amp;showAvatar=true&amp;showJoined=true" alt="Public Duolingo Stats Card" width="360" /></td>
+    <td valign="top"><img src="https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&amp;showAvatar=true&amp;showJoined=true&amp;showScores=true&amp;showWeeklyXp=true&amp;fields=hearts,gems" alt="Duolingo Stats Card with weekly XP, Duolingo scores, hearts, and gems" width="360" /></td>
+  </tr>
+</table>
 
 1. Click **Fork** at the top of this repository, then **Create fork** to make a copy under your GitHub account.
 2. Sign in to [Vercel](https://vercel.com/) with GitHub. Select **Add New → Project**, find your fork, and click **Import**. If it isn't listed, allow Vercel to access it through the GitHub permissions prompt.
