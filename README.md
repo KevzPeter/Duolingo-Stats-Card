@@ -71,7 +71,7 @@ You'll need a GitHub account, a Vercel account, and your Duolingo login. You can
 
 5. Go to **Deployments**, open the latest production deployment's **⋯** menu, and select **Redeploy** so it picks up your saved variables.
 6. Once it's ready, open the project's **Overview** and click its production domain. Your URL will look like `https://your-project-name.vercel.app` (Vercel may add a suffix if the name is taken). Use this address for your card builder and embeds.
-   ![Demo](./media/demo.png)
+   <img src="./media/demo.png" alt="Card builder demo" width="480" />
 7. In your deployed card builder, enter the username you configured, choose a theme and animation, and tick the fields you want to show. Drag Duo to position it and use its corner handle to resize it. Click **Copy Markdown** for a GitHub README or **Copy HTML** for a website, then paste the result into your page.
 
 The copied code already includes your deployment's address and your selected options. To change your card later, reopen the same builder, customize it, and replace the old embed with the newly copied code. The extra stats checkboxes appear only for your configured username when both required variables are set.
@@ -84,18 +84,6 @@ The copied code already includes your deployment's address and your selected opt
 4. Find `jwt_token` and copy its **Value** into the `DUOLINGO_JWT` setting in Vercel. Don't copy the cookie name or share the value.
 
 When the token expires, repeat these steps, update the saved value in Vercel, and redeploy from **Deployments → ⋯ → Redeploy**.
-
-### 💻 Run locally
-
-Use Node.js 22+ and pnpm 10.30.3. For owner stats, copy `.env.example` to `.env.local`
-and fill in your variables before starting the server. Keep `.env.local` out of commits.
-
-```sh
-pnpm install --frozen-lockfile
-pnpm dev
-```
-
-Open [localhost:3000](http://localhost:3000). Restart the server after changing environment variables.
 
 ## 🎨 Themes
 
@@ -135,13 +123,17 @@ Simply add the _theme_ parameter to the url like so:
 [mint]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=mint
 [leafy]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=leafy
 
-<!-- BUILT WITH -->
+### 💻 Run locally
 
-## 🔧 Built With
+Use Node.js 22+ and pnpm 10.30.3. For owner stats, copy `.env.example` to `.env.local`
+and fill in your variables before starting the server. Keep `.env.local` out of commits.
 
-- [![Next][Next.js]][Next-url]
-- [![React][React.js]][React-url]
-- [![Duolingo][Duolingo]][Duolingo-url]
+```sh
+pnpm install --frozen-lockfile
+pnpm dev
+```
+
+Open [localhost:3000](http://localhost:3000). Restart the server after changing environment variables.
 
 <!-- CONTRIBUTING -->
 

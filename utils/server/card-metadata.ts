@@ -17,6 +17,5 @@ export function ownerCard(data: DashboardData): { metadata: Metadata; rows: Card
   }
   if (data.state === 'reconnect') metadata.tokenExpired = true;
   const rows: CardRow[] = data.state === 'unavailable' ? [{ label: 'Owner stats', value: 'Temporarily unavailable' }] : [];
-  if (connected && data.notice === 'partial') rows.push({ label: 'Availability', value: 'Some stats unavailable' });
   return { metadata, rows };
 }
