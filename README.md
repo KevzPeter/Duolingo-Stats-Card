@@ -55,22 +55,35 @@ Want weekly XP, Duolingo scores, hearts, and gems? Deploy your own instance belo
 
 ## 🚀 Deploy using Vercel
 
-1. Fork this repository and import your fork into [Vercel](https://vercel.com/).
-2. Add these server-only environment variables:
-   - `DUOLINGO_JWT`: your Duolingo JWT.
-   - `DUOLINGO_USERNAME`: the username belonging to that JWT.
-   - `DUOLINGO_TIMEZONE`: optional time zone, such as `America/Los_Angeles`; defaults to `UTC`.
-3. Deploy, open your card builder, customize the card, and copy its Markdown or HTML. Use your own deployment's URL for owner stats.
+To access private Duolingo stats, like your Duolingo proficiency scores, gems, hearts, weekly XP etc. You will need to provide a JWT Token. To access these stats, you will need to deploy your own Duolingo Stats Card.
+You'll need a GitHub account, a Vercel account, and your Duolingo login. You can do everything in your browser.
+
+1. Click **Fork** at the top of this repository, then **Create fork** to make a copy under your GitHub account.
+2. Sign in to [Vercel](https://vercel.com/) with GitHub. Select **Add New → Project**, find your fork, and click **Import**. If it isn't listed, allow Vercel to access it through the GitHub permissions prompt.
+3. Choose a project name, leave the detected **Next.js** settings as they are, and click **Deploy**. Wait for the deployment to finish.
+4. Open your new project's **Settings → Environment Variables**. Add the variables below, selecting **Production** as the environment for each, and save. Get your token using the steps in the next section.
+
+   | Name                | Value                                                                                           |
+   | ------------------- | ----------------------------------------------------------------------------------------------- |
+   | `DUOLINGO_JWT`      | Your Duolingo `jwt_token`. Treat this like a password.                                          |
+   | `DUOLINGO_USERNAME` | Your Duolingo username, not your display name. It must belong to the same account as the token. |
+   | `DUOLINGO_TIMEZONE` | Optional: your time zone, such as `America/Los_Angeles`. Leave it unset to use `UTC`.           |
+
+5. Go to **Deployments**, open the latest production deployment's **⋯** menu, and select **Redeploy** so it picks up your saved variables.
+6. Once it's ready, open the project's **Overview** and click its production domain. Your URL will look like `https://your-project-name.vercel.app` (Vercel may add a suffix if the name is taken). Use this address for your card builder and embeds.
+   ![Demo](./media/demo.png)
+7. In your deployed card builder, enter the username you configured, choose a theme and animation, and tick the fields you want to show. Drag Duo to position it and use its corner handle to resize it. Click **Copy Markdown** for a GitHub README or **Copy HTML** for a website, then paste the result into your page.
+
+The copied code already includes your deployment's address and your selected options. To change your card later, reopen the same builder, customize it, and replace the old embed with the newly copied code. The extra stats checkboxes appear only for your configured username when both required variables are set.
 
 ### 🔑 Get your Duolingo JWT
 
-Sign in to [Duolingo](https://www.duolingo.com/). Open browser developer tools →
-Application (or Storage) → Cookies → `https://www.duolingo.com`, then copy
-`jwt_token` into your `DUOLINGO_JWT` setting. Replace it and redeploy when it expires.
+1. Sign in to [Duolingo](https://www.duolingo.com/) in your browser.
+2. Right-click the page and select **Inspect** to open developer tools.
+3. Open **Application** (Chrome/Edge) or **Storage** (Firefox), expand **Cookies**, and select `https://www.duolingo.com`.
+4. Find `jwt_token` and copy its **Value** into the `DUOLINGO_JWT` setting in Vercel. Don't copy the cookie name or share the value.
 
-> [!IMPORTANT]
-> Configuring your token makes all supported owner stats publicly readable, even if hidden on the card.
-> Keep the token secret: never commit it or use a `NEXT_PUBLIC_` variable. Token renewal is manual.
+When the token expires, repeat these steps, update the saved value in Vercel, and redeploy from **Deployments → ⋯ → Redeploy**.
 
 ### 💻 Run locally
 
