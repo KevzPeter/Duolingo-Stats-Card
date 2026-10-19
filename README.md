@@ -55,8 +55,7 @@ Want weekly XP, Duolingo scores, hearts, and gems? Deploy your own instance belo
 
 ## 🚀 Deploy using Vercel
 
-To access private Duolingo stats, like your Duolingo proficiency scores, gems, hearts, weekly XP etc. You will need to provide a JWT Token. To access these stats, you will need to deploy your own Duolingo Stats Card.
-You'll need a GitHub account, a Vercel account, and your Duolingo login. You can do everything in your browser.
+To access private Duolingo stats, like your Duolingo proficiency scores, gems, hearts, weekly XP etc, you will need to provide your Duolingo JWT Token. To keep your token secure, you will need to deploy your own Duolingo Stats Card.
 
 1. Click **Fork** at the top of this repository, then **Create fork** to make a copy under your GitHub account.
 2. Sign in to [Vercel](https://vercel.com/) with GitHub. Select **Add New → Project**, find your fork, and click **Import**. If it isn't listed, allow Vercel to access it through the GitHub permissions prompt.
