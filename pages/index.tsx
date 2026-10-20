@@ -9,6 +9,7 @@ import { CardPreview, loadCardPreview } from '../utils/card-preview';
 import { generateSvg } from '../utils/generateSVG';
 import AnimationEditor from '../components/AnimationEditor';
 import { AnimationPlacement, cardHeight, CARD_DISPLAY_WIDTH, CARD_WIDTH } from '../utils/animation-layout';
+import { CardDimensions, CARD_DIMENSION_HELP, cardDimensionStyle, parseCardDimension } from '../utils/card-dimensions';
 import styles from '../styles/Home.module.scss';
 
 interface HomeProps { ownerUsername: string }
@@ -35,6 +36,8 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
   const [showScores, setShowScores] = useState(false);
   const [showWeeklyXp, setShowWeeklyXp] = useState(false);
   const [fields, setFields] = useState<PublishField[]>([]);
+  const [width, setWidth] = useState('');
+  const [height, setHeight] = useState('');
   const [origin, setOrigin] = useState('');
   const [snapshot, setSnapshot] = useState<{ path: string; data: CardPreview } | null>(null);
   const [failedPath, setFailedPath] = useState('');
@@ -52,7 +55,15 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
   }, [lookupUsername]);
 
   const isOwner = !!ownerUsername && previewUsername.toLowerCase() === ownerUsername.toLowerCase();
+  const dimensions: CardDimensions = {};
+  let dimensionError = '';
+  try {
+    dimensions.width = parseCardDimension(width);
+    dimensions.height = parseCardDimension(height);
+  } catch { dimensionError = CARD_DIMENSION_HELP; }
   const query = new URLSearchParams({ showAvatar: String(showAvatar), showJoined: String(showJoined) });
+  if (dimensions.width) query.set('width', dimensions.width);
+  if (dimensions.height) query.set('height', dimensions.height);
   if (theme !== 'default') query.set('theme', theme);
   appendAnimationOptions(query, animation, animationPlacement);
   if (isOwner) {
@@ -64,9 +75,11 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
   const previewPath = previewUsername ? '/api?' + query.toString() : '';
   let dataPath = '';
   if (previewUsername) dataPath = isOwner ? '/api/preview' : '/api/preview?username=' + encodeURIComponent(previewUsername);
-  const cardUrl = origin && previewPath ? origin + previewPath : '';
+  const cardUrl = origin && previewPath && !dimensionError ? origin + previewPath : '';
   const markdown = cardUrl ? '![Duolingo Stats Card](' + cardUrl + ')' : '';
-  const html = cardUrl ? `<img src="${cardUrl.replace(/&/g, '&amp;')}" alt="Duolingo Stats Card" />` : '';
+  const dimensionStyle = dimensionError ? '' : cardDimensionStyle(dimensions);
+  const sizeStyle = dimensionStyle ? ` style="${dimensionStyle}"` : '';
+  const html = cardUrl ? `<img src="${cardUrl.replace(/&/g, '&amp;')}" alt="Duolingo Stats Card"${sizeStyle} />` : '';
   const snippets = [{ id: 'markdown', label: 'Markdown', value: markdown }, { id: 'html', label: 'HTML', value: html }] as const;
   const imageError = !!dataPath && failedPath === dataPath;
   const loading = !!dataPath && snapshot?.path !== dataPath && !imageError;
@@ -131,6 +144,20 @@ const Home: NextPage<HomeProps> = ({ ownerUsername }) => {
                 {DUO_ANIMATIONS.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
               </select>
             </div>
+            <fieldset className={styles.sizing} aria-describedby="sizing-help">
+              <legend>Image size</legend>
+              <div className={styles.field}>
+                <label htmlFor="card-width">Width</label>
+                <input id="card-width" type="text" value={width} placeholder={`Default (${CARD_DISPLAY_WIDTH}px)`} maxLength={20} aria-invalid={!!dimensionError} onChange={event => setWidth(event.target.value)} />
+              </div>
+              <div className={styles.field}>
+                <label htmlFor="card-height">Height</label>
+                <input id="card-height" type="text" value={height} placeholder="Automatic" maxLength={20} aria-invalid={!!dimensionError} onChange={event => setHeight(event.target.value)} />
+              </div>
+              <button type="button" className={styles.fitButton} onClick={() => { setWidth('100%'); setHeight('auto'); }}>Fit container</button>
+              <p id="sizing-help" className={styles.sizingHelp}>Use pixels, percentages, or auto. Leave both blank for the original size. Sizing applies to the exported image; the editing preview keeps its original scale.</p>
+              {dimensionError && <p className={styles.dimensionError} role="alert">{dimensionError}</p>}
+            </fieldset>
             <fieldset className={styles.options}>
               <legend>Show on card</legend>
               <label><input type="checkbox" checked={showAvatar} onChange={event => setShowAvatar(event.target.checked)} />Avatar</label>

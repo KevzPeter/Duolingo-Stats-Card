@@ -34,6 +34,13 @@
   font-size: .9rem;
 }
 .options { border: 0; padding: 0; margin: 0; }
+.sizing { border: 0; padding: 0; margin: 0 0 1.5rem; }
+.sizing legend { padding: 0; margin-bottom: .75rem; font-size: .85rem; font-weight: 700; }
+.sizing .field { margin-bottom: .8rem; }
+.fitButton { padding: .55rem .75rem; border: 1px solid #a8c997; border-radius: 8px; background: #edf6e7; color: #285913; font: inherit; font-size: .8rem; cursor: pointer; }
+.fitButton:focus-visible { outline: 3px solid #82c547; outline-offset: 3px; }
+.sizingHelp { font-size: .75rem; line-height: 1.5; color: #58694f; margin: .75rem 0 0; }
+.dimensionError { font-size: .75rem; line-height: 1.5; color: #a32525; margin: .75rem 0 0; }
 .options legend { padding: 0; margin-bottom: .6rem; }
 .options label { display: flex; align-items: center; gap: .65rem; padding: .5rem 0; font-size: .9rem; line-height: 1.4; cursor: pointer; }
 .options input { width: 17px; height: 17px; margin: 0; accent-color: #58a700; flex-shrink: 0; cursor: pointer; }

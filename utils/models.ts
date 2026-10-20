@@ -1,8 +1,9 @@
 import type { AccountCourse, DashboardData, Profile } from './account-models';
 import type { AnimationPlacement } from './animation-layout';
 import type { DuoAnimation } from './animations';
+import type { CardDimensions } from './card-dimensions';
 
-export interface DisplayOptions {
+export interface DisplayOptions extends CardDimensions {
   animation?: DuoAnimation;
   animationPlacement?: Partial<AnimationPlacement>;
   hideAnimation?: boolean;

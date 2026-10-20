@@ -27,7 +27,7 @@ export function ownerRequest(req: NextApiRequest, res: NextApiResponse) {
     res.setHeader('Allow', 'GET');
     throw new AppError(405, 'method', 'Method not allowed.');
   }
-  if (Object.keys(req.query).some(key => !['theme', 'animation', 'x', 'y', 'size', 'showAvatar', 'showJoined', 'showScores', 'showWeeklyXp', 'fields'].includes(key))) {
+  if (Object.keys(req.query).some(key => !['theme', 'animation', 'x', 'y', 'size', 'width', 'height', 'showAvatar', 'showJoined', 'showScores', 'showWeeklyXp', 'fields'].includes(key))) {
     throw new AppError(400, 'query', 'Owner endpoints do not accept account selectors.');
   }
 }

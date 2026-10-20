@@ -13,6 +13,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test": "node --test tests/card-dimensions.test.mjs",
     "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {

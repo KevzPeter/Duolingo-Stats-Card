@@ -5,6 +5,7 @@ import { allStyles } from '../styles/svg';
 import { CardRow, Metadata, DisplayOptions } from './models';
 import themes from './themes.json';
 import { cardHeight, CARD_WIDTH, CARD_SCALE } from './animation-layout';
+import { cardDimensions } from './card-dimensions';
 /**
  * Returns SVG as a string.
  */
@@ -14,6 +15,7 @@ export function generateSvg(metadata: Metadata, theme: string, options: DisplayO
     const baseHeight = cardHeight(metadata.weeklyXp !== undefined, !!(options.showScores && metadata.languageScores?.length), metadata.tokenExpired);
     const height = baseHeight + (rows.length ? rows.length * 25 + 20 : 0);
     const width = CARD_WIDTH;
+    const dimensions = cardDimensions(width * CARD_SCALE, Number((height * CARD_SCALE).toFixed(1)), options);
     const svgBody = ReactDOMServer.renderToStaticMarkup(
         <svg width={width} height={baseHeight} viewBox={`0 0 ${width} ${baseHeight}`} aria-label="Duolingo Stats Card">
             <SvgWidget response={metadata} theme={theme} options={options} />
@@ -32,9 +34,10 @@ export function generateSvg(metadata: Metadata, theme: string, options: DisplayO
 
     return `
     <svg
-        width="${width * CARD_SCALE}"
-        height="${Number((height * CARD_SCALE).toFixed(1))}"
+        width="${dimensions.width}"
+        height="${dimensions.height}"
         viewBox="0 0 ${width} ${height}"
+        preserveAspectRatio="xMidYMid meet"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         role="img"

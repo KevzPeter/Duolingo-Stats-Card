@@ -47,6 +47,30 @@ For example, if your Duolingo username is "John_Smith", add the following line:
 
 Want weekly XP, Duolingo scores, hearts, and gems? Deploy your own instance below.
 
+### Responsive image size
+
+Use **Image size → Fit container** in the card builder for a full-width image with automatic height. Or set the optional `width` and `height` query parameters on `/api` or `/api/card`:
+
+| Value | Example | Behavior |
+| --- | --- | --- |
+| Pixels | `width=600` or `width=600px` | Set a dimension from 1 to 10000 pixels. |
+| Percentage | `width=100%25` | Set a percentage above 0 and up to 100%; encode `%` as `%25` in URLs. |
+| Automatic | `height=auto` | Derive that dimension from the SVG's aspect ratio. |
+
+If only one dimension is supplied, the other becomes `auto`. Omitting both preserves the original 420-pixel width and content-dependent height. When both dimensions are fixed, the card scales to fit without cropping or stretching. Malformed, repeated, negative, zero, and out-of-range dimensions return HTTP 400. Account selection and authentication rules are unchanged.
+
+For a responsive embed in Homepage or another website:
+
+```html
+<img
+  src="https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&amp;width=100%25&amp;height=auto"
+  alt="Duolingo stats for Kevin_Peter"
+  style="width:100%;height:auto;"
+/>
+```
+
+The SVG keeps its original `viewBox`, so text, charts, and Duo scale together. The host page must also allow its `<img>` element to fill the container; API sizing cannot override a host's fixed CSS dimensions. Standard Markdown hosts may choose their own image layout. The builder's HTML snippet includes both the API parameters and the image's sizing styles.
+
 <div align="center">
   <img src="https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&amp;showAvatar=true&amp;showJoined=true&amp;showScores=true&amp;showWeeklyXp=true&amp;fields=hearts,gems" alt="Duolingo Stats Card" />
 </div>
