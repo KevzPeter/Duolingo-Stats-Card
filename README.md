@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/KevzPeter/Duolingo-Stats-Card">
-    <img src="https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter" alt="Logo">
+    <img src="https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter" alt="Duolingo Stats Card preview" width="420">
   </a>
 
   <h3 align="center">Duolingo Stats Card</h3>
@@ -53,8 +53,8 @@ To access private Duolingo stats, like your Duolingo proficiency scores, gems, h
     <th>Public + private stats</th>
   </tr>
   <tr>
-    <td valign="top"><img src="https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&amp;showAvatar=true&amp;showJoined=true" alt="Public Duolingo Stats Card" width="360" /></td>
-    <td valign="top"><img src="https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&amp;showAvatar=true&amp;showJoined=true&amp;showScores=true&amp;showWeeklyXp=true&amp;fields=hearts,gems" alt="Duolingo Stats Card with weekly XP, Duolingo scores, hearts, and gems" width="360" /></td>
+    <td valign="top"><img src="./media/cards/public.png" alt="Public Duolingo Stats Card" width="360" /></td>
+    <td valign="top"><img src="./media/cards/private.png" alt="Duolingo Stats Card with weekly XP, Duolingo scores, hearts, and gems" width="360" /></td>
   </tr>
 </table>
 
@@ -107,21 +107,21 @@ Simply add the _theme_ parameter to the url like so:
 |       `cobalt2` ![cobalt2][cobalt2]       |                    `sky` ![sky][sky]                     |          `beach` ![beach][beach]          |
 | `purple-gang` ![purple-gang][purple-gang] |                   `mint` ![mint][mint]                   |          `leafy` ![leafy][leafy]          |
 
-[light]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=light
-[dark]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=dark
-[github-dark]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=github-dark
-[monokai]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=monokai
-[tokyonight]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=tokyonight
-[nightowl]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=nightowl
-[onedark]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=onedark
-[shades-of-purple]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=shades-of-purple
-[dracula]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=dracula
-[cobalt2]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=cobalt2
-[sky]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=sky
-[beach]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=beach
-[purple-gang]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=purple-gang
-[mint]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=mint
-[leafy]: https://duolingo-stats-card.vercel.app/api?username=Kevin_Peter&theme=leafy
+[light]: ./media/cards/light.png
+[dark]: ./media/cards/dark.png
+[github-dark]: ./media/cards/github-dark.png
+[monokai]: ./media/cards/monokai.png
+[tokyonight]: ./media/cards/tokyonight.png
+[nightowl]: ./media/cards/nightowl.png
+[onedark]: ./media/cards/onedark.png
+[shades-of-purple]: ./media/cards/shades-of-purple.png
+[dracula]: ./media/cards/dracula.png
+[cobalt2]: ./media/cards/cobalt2.png
+[sky]: ./media/cards/sky.png
+[beach]: ./media/cards/beach.png
+[purple-gang]: ./media/cards/purple-gang.png
+[mint]: ./media/cards/mint.png
+[leafy]: ./media/cards/leafy.png
 
 ### 💻 Run locally
 
