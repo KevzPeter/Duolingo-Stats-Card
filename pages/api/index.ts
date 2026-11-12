@@ -29,7 +29,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const metadata = cardMetadata(normalized.profile, normalized.courses || []);
     metadata.duoAnimationBase64 = await getDuoAnimationDataUri(options.animation);
     if (options.showAvatar && typeof metadata.picture === 'string') metadata.avatarBase64 = await fetchImageAsBase64(metadata.picture);
-    res.setHeader('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=60');
+    res.setHeader('Cache-Control', 'public, max-age=3600');
+    res.setHeader('Vercel-CDN-Cache-Control', 'public, s-maxage=86400');
     res.setHeader('Content-Type', 'image/svg+xml');
     res.setHeader('X-Content-Type-Options', 'nosniff');
     return res.send(generateSvg(metadata, options.theme, options));

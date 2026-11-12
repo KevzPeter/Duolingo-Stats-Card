@@ -11,5 +11,5 @@ export const DUO_ANIMATIONS = [
 export type DuoAnimation = typeof DUO_ANIMATIONS[number]['id'];
 
 export function selectDuoAnimation(animation?: string) {
-  return DUO_ANIMATIONS.find(item => item.id === animation) || DUO_ANIMATIONS.find(item => item.id === 'waving')!;
+  return DUO_ANIMATIONS.find(item => item.id === animation) || DUO_ANIMATIONS.find(item => item.id === 'hop')!;
 }
