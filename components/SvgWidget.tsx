@@ -1,13 +1,15 @@
 /* eslint-disable @next/next/no-img-element -- SVG images must embed their assets directly. */
 import React from 'react';
-import { courseComponents, duoIcons, flagComponents, Streak, Xp, Leaderboard, Podium } from "../utils/svgMap";
+import { courseComponents, duoIcons, flagComponents, leagueComponents, Streak, Xp, Leaderboard, Podium } from "../utils/svgMap";
 import themes from "../utils/themes.json";
 import { DisplayOptions, Metadata } from "../utils/models";
 import { numberFormatter } from "../utils/numberFormatter";
 import WeeklyXpChart from './WeeklyXpChart';
 import BalanceCounters from './BalanceCounters';
+import { CustomLeagueBadge, hasCustomLeagueBadge } from './CustomLeagueBadge';
 import { animationLayout, SUMMARY_HEIGHT } from '../utils/animation-layout';
 import { selectDuoAnimation } from '../utils/animations';
+import { cefrFromScore } from '../utils/cefr';
 
 /**
  * Formats a Unix timestamp to a readable date string (e.g., "Jan 2014")
@@ -16,6 +18,37 @@ function formatCreationDate(timestamp: number): string {
     const date = new Date(timestamp * 1000);
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     return `${months[date.getMonth()]} ${date.getFullYear()}`;
+}
+
+function LeagueTile({ league }: Readonly<{ league: string }>): JSX.Element {
+    const LeagueIcon = leagueComponents[league];
+    let icon = <Leaderboard width={20} height={20} viewBox="2 2 42 42" />;
+    if (LeagueIcon) icon = <LeagueIcon width={20} height={20} />;
+    else if (hasCustomLeagueBadge(league)) icon = <CustomLeagueBadge league={league} />;
+    return <div id="league" className="statTile">
+        {icon}
+        <div><strong>{league}</strong><span>Current league</span></div>
+    </div>;
+}
+
+function LanguageScoreTiles({ scores }: Readonly<{ scores: NonNullable<Metadata['languageScores']> }>): JSX.Element {
+    return <section className="proficiencySection" aria-label="Duolingo Score">
+        <h3 className="proficiencyHeading">Duolingo Score</h3>
+        <div className="languageScores">
+            {scores.map(score => {
+                const FlagComponent = flagComponents[score.language] || flagComponents.world;
+                const cefr = cefrFromScore(score.score);
+                const detail = cefr ? `, ${cefr.detail} course content` : '';
+                return <span key={score.id} title={`${score.title}: Duolingo Score ${score.score}${detail}`}>
+                    <FlagComponent height={23} width={28} viewBox="0 0 82 66" />
+                    <span className="languageScoreText">
+                        <span className="languageScoreName">{score.title}</span>
+                        <span className="languageScoreValue">{cefr?.level ?? 'Unavailable'} <small>{score.score}</small></span>
+                    </span>
+                </span>;
+            })}
+        </div>
+    </section>;
 }
 
 /**
@@ -81,10 +114,7 @@ export default function SvgWidget({ response, theme, options = { showAvatar: tru
                                     <Xp width={20} height={20} viewBox="2 2 52 52" />
                                     <div><strong>{response.totalXp ?? 'Unavailable'}</strong><span>Total XP</span></div>
                                 </div>
-                                {response.league && <div id="league" className="statTile">
-                                    <Leaderboard width={20} height={20} viewBox="2 2 42 42" />
-                                    <div><strong>{response.league}</strong><span>Current league</span></div>
-                                </div>}
+                                {response.league && <LeagueTile league={response.league} />}
                                 {response.topThreeFinishes != null && <div id="top-three-finishes" className="statTile">
                                     <Podium width={20} height={20} viewBox="-5 -3 29 29" />
                                     <div><strong>{response.topThreeFinishes.toLocaleString('en-US')}</strong><span>Top 3 finishes</span></div>
@@ -122,18 +152,7 @@ export default function SvgWidget({ response, theme, options = { showAvatar: tru
                                 style={{ 'display': 'block', 'transform': 'scale(-1, 1)' }} /> :
                             <DuoIconComponent height={152} width={122} viewBox={viewBox} />
                     )}</div>}
-                    {languageScores.length > 0 && <section className="proficiencySection" aria-label="Duolingo Score">
-                        <h3 className="proficiencyHeading">Duolingo Score</h3>
-                        <div className="languageScores">
-                            {languageScores.map(score => {
-                                const FlagComponent = flagComponents[score.language] || flagComponents.world;
-                                return <span key={score.id} title={`${score.title}: Duolingo Score ${score.score}`}>
-                                    <FlagComponent height={23} width={28} viewBox="0 0 82 66" />
-                                    <span>{score.title}: {score.score}</span>
-                                </span>;
-                            })}
-                        </div>
-                    </section>}
+                    {languageScores.length > 0 && <LanguageScoreTiles scores={languageScores} />}
                     {response.weeklyXp !== undefined && <WeeklyXpChart days={response.weeklyXp} />}
                     {response.tokenExpired && <div className="tokenNotice" role="alert">
                         <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">

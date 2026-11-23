@@ -13,6 +13,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test": "node --experimental-strip-types --test utils/server/*.test.mjs",
     "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {

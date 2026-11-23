@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const LEAGUE_NAMES = ['Bronze', 'Silver', 'Gold', 'Sapphire', 'Ruby', 'Emerald', 'Amethyst', 'Pearl', 'Obsidian', 'Diamond'];
+export const LEAGUE_NAMES = ['Bronze', 'Silver', 'Gold', 'Sapphire', 'Ruby', 'Emerald', 'Amber', 'Amethyst', 'Aqua', 'Pearl', 'Jade', 'Indigo', 'Obsidian', 'Platinum', 'Diamond'];
 export interface LeagueStats { league: string | null; topThreeFinishes: number | null }
 const empty = (): LeagueStats => ({ league: null, topThreeFinishes: null });
 const cache = new Map<string, { until: number; promise: Promise<LeagueStats> }>();
@@ -8,8 +8,10 @@ const cache = new Map<string, { until: number; promise: Promise<LeagueStats> }>(
 export function leagueStatsFrom(value: unknown): LeagueStats {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return empty();
   const data = value as Record<string, unknown>;
+  const name = Array.isArray(data.league_ids) && Number.isSafeInteger(data.tier) && Number(data.tier) >= 0
+    ? data.league_ids[Number(data.tier)] : null;
   return {
-    league: Number.isInteger(data.tier) && Number(data.tier) >= 0 ? LEAGUE_NAMES[Number(data.tier)] ?? null : null,
+    league: typeof name === 'string' && LEAGUE_NAMES.includes(name) ? name : null,
     topThreeFinishes: typeof data.top_three_finishes === 'number' && Number.isSafeInteger(data.top_three_finishes) && data.top_three_finishes >= 0 ? data.top_three_finishes : null,
   };
 }

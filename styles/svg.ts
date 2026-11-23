@@ -111,7 +111,10 @@ body {
   font-weight: bold;
 }
 .languageScores > span > svg { flex-shrink: 0; }
-.languageScores > span > span { min-width: 0; overflow-wrap: anywhere; line-height: 13px; }
+.languageScoreText { display: flex; flex-direction: column; min-width: 0; line-height: 13px; }
+.languageScoreName { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.languageScoreValue { white-space: nowrap; }
+.languageScoreValue small { font-size: 9px; font-weight: 500; opacity: .8; }
 .weeklyXpChart {
   grid-column: 1 / -1;
   display: block;
