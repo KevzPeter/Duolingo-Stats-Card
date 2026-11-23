@@ -62,8 +62,21 @@ import Heart from "../public/svg/heart.svg";
 import Gem from "../public/svg/gem.svg";
 import Leaderboard from "../public/svg/leaderboard.svg";
 import Podium from "../public/svg/podium.svg";
+import Bronze from "../public/svg/leagues/bronze.svg";
+import Silver from "../public/svg/leagues/silver.svg";
+import Gold from "../public/svg/leagues/gold.svg";
+import Sapphire from "../public/svg/leagues/sapphire.svg";
+import Ruby from "../public/svg/leagues/ruby.svg";
+import Emerald from "../public/svg/leagues/emerald.svg";
+import Amethyst from "../public/svg/leagues/amethyst.svg";
+import Pearl from "../public/svg/leagues/pearl.svg";
+import Obsidian from "../public/svg/leagues/obsidian.svg";
+import Diamond from "../public/svg/leagues/diamond.svg";
 
 export const courseComponents = { chess: Chess, math: MathCourse, music: Music };
+export const leagueComponents: Record<string, typeof Leaderboard> = {
+    Bronze, Silver, Gold, Sapphire, Ruby, Emerald, Amethyst, Pearl, Obsidian, Diamond,
+};
 
 export const flagComponents = {
     duo: Duo,

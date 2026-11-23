@@ -1,13 +1,15 @@
 /* eslint-disable @next/next/no-img-element -- SVG images must embed their assets directly. */
 import React from 'react';
-import { courseComponents, duoIcons, flagComponents, Streak, Xp, Leaderboard, Podium } from "../utils/svgMap";
+import { courseComponents, duoIcons, flagComponents, leagueComponents, Streak, Xp, Leaderboard, Podium } from "../utils/svgMap";
 import themes from "../utils/themes.json";
 import { DisplayOptions, Metadata } from "../utils/models";
 import { numberFormatter } from "../utils/numberFormatter";
 import WeeklyXpChart from './WeeklyXpChart';
 import BalanceCounters from './BalanceCounters';
+import { CustomLeagueBadge, hasCustomLeagueBadge } from './CustomLeagueBadge';
 import { animationLayout, SUMMARY_HEIGHT } from '../utils/animation-layout';
 import { selectDuoAnimation } from '../utils/animations';
+import { cefrFromScore } from '../utils/cefr';
 
 /**
  * Formats a Unix timestamp to a readable date string (e.g., "Jan 2014")
@@ -40,6 +42,7 @@ export default function SvgWidget({ response, theme, options = { showAvatar: tru
     const showJoined = options.showJoined && !!creationDate;
     const showIdentity = (options.showAvatar && !!avatarBase64) || showJoined;
     const avatarOnly = showIdentity && !showJoined;
+    const LeagueIcon = response.league ? leagueComponents[response.league] : undefined;
 
     const fillParent: React.CSSProperties & { '--summary-height': string } = {
         '--summary-height': `${SUMMARY_HEIGHT}px`,
@@ -82,7 +85,9 @@ export default function SvgWidget({ response, theme, options = { showAvatar: tru
                                     <div><strong>{response.totalXp ?? 'Unavailable'}</strong><span>Total XP</span></div>
                                 </div>
                                 {response.league && <div id="league" className="statTile">
-                                    <Leaderboard width={20} height={20} viewBox="2 2 42 42" />
+                                    {LeagueIcon ? <LeagueIcon width={20} height={20} /> : hasCustomLeagueBadge(response.league)
+                                        ? <CustomLeagueBadge league={response.league} />
+                                        : <Leaderboard width={20} height={20} viewBox="2 2 42 42" />}
                                     <div><strong>{response.league}</strong><span>Current league</span></div>
                                 </div>}
                                 {response.topThreeFinishes != null && <div id="top-three-finishes" className="statTile">
@@ -127,9 +132,13 @@ export default function SvgWidget({ response, theme, options = { showAvatar: tru
                         <div className="languageScores">
                             {languageScores.map(score => {
                                 const FlagComponent = flagComponents[score.language] || flagComponents.world;
-                                return <span key={score.id} title={`${score.title}: Duolingo Score ${score.score}`}>
+                                const cefr = cefrFromScore(score.score);
+                                return <span key={score.id} title={`${score.title}: Duolingo Score ${score.score}${cefr ? `, ${cefr.detail} course content` : ''}`}>
                                     <FlagComponent height={23} width={28} viewBox="0 0 82 66" />
-                                    <span>{score.title}: {score.score}</span>
+                                    <span className="languageScoreText">
+                                        <span className="languageScoreName">{score.title}</span>
+                                        <span className="languageScoreValue">{cefr?.level ?? 'Unavailable'} <small>{score.score}</small></span>
+                                    </span>
                                 </span>;
                             })}
                         </div>

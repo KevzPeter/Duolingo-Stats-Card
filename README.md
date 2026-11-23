@@ -134,6 +134,7 @@ pnpm dev
 ```
 
 Open [localhost:3000](http://localhost:3000). Restart the server after changing environment variables.
+Run `pnpm test` with Node.js 22.6 or newer to check the league parser.
 
 <!-- CONTRIBUTING -->
 
