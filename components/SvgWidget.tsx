@@ -20,6 +20,37 @@ function formatCreationDate(timestamp: number): string {
     return `${months[date.getMonth()]} ${date.getFullYear()}`;
 }
 
+function LeagueTile({ league }: Readonly<{ league: string }>): JSX.Element {
+    const LeagueIcon = leagueComponents[league];
+    let icon = <Leaderboard width={20} height={20} viewBox="2 2 42 42" />;
+    if (LeagueIcon) icon = <LeagueIcon width={20} height={20} />;
+    else if (hasCustomLeagueBadge(league)) icon = <CustomLeagueBadge league={league} />;
+    return <div id="league" className="statTile">
+        {icon}
+        <div><strong>{league}</strong><span>Current league</span></div>
+    </div>;
+}
+
+function LanguageScoreTiles({ scores }: Readonly<{ scores: NonNullable<Metadata['languageScores']> }>): JSX.Element {
+    return <section className="proficiencySection" aria-label="Duolingo Score">
+        <h3 className="proficiencyHeading">Duolingo Score</h3>
+        <div className="languageScores">
+            {scores.map(score => {
+                const FlagComponent = flagComponents[score.language] || flagComponents.world;
+                const cefr = cefrFromScore(score.score);
+                const detail = cefr ? `, ${cefr.detail} course content` : '';
+                return <span key={score.id} title={`${score.title}: Duolingo Score ${score.score}${detail}`}>
+                    <FlagComponent height={23} width={28} viewBox="0 0 82 66" />
+                    <span className="languageScoreText">
+                        <span className="languageScoreName">{score.title}</span>
+                        <span className="languageScoreValue">{cefr?.level ?? 'Unavailable'} <small>{score.score}</small></span>
+                    </span>
+                </span>;
+            })}
+        </div>
+    </section>;
+}
+
 /**
  * The main SVG widget.
  */
@@ -42,7 +73,6 @@ export default function SvgWidget({ response, theme, options = { showAvatar: tru
     const showJoined = options.showJoined && !!creationDate;
     const showIdentity = (options.showAvatar && !!avatarBase64) || showJoined;
     const avatarOnly = showIdentity && !showJoined;
-    const LeagueIcon = response.league ? leagueComponents[response.league] : undefined;
 
     const fillParent: React.CSSProperties & { '--summary-height': string } = {
         '--summary-height': `${SUMMARY_HEIGHT}px`,
@@ -84,12 +114,7 @@ export default function SvgWidget({ response, theme, options = { showAvatar: tru
                                     <Xp width={20} height={20} viewBox="2 2 52 52" />
                                     <div><strong>{response.totalXp ?? 'Unavailable'}</strong><span>Total XP</span></div>
                                 </div>
-                                {response.league && <div id="league" className="statTile">
-                                    {LeagueIcon ? <LeagueIcon width={20} height={20} /> : hasCustomLeagueBadge(response.league)
-                                        ? <CustomLeagueBadge league={response.league} />
-                                        : <Leaderboard width={20} height={20} viewBox="2 2 42 42" />}
-                                    <div><strong>{response.league}</strong><span>Current league</span></div>
-                                </div>}
+                                {response.league && <LeagueTile league={response.league} />}
                                 {response.topThreeFinishes != null && <div id="top-three-finishes" className="statTile">
                                     <Podium width={20} height={20} viewBox="-5 -3 29 29" />
                                     <div><strong>{response.topThreeFinishes.toLocaleString('en-US')}</strong><span>Top 3 finishes</span></div>
@@ -127,22 +152,7 @@ export default function SvgWidget({ response, theme, options = { showAvatar: tru
                                 style={{ 'display': 'block', 'transform': 'scale(-1, 1)' }} /> :
                             <DuoIconComponent height={152} width={122} viewBox={viewBox} />
                     )}</div>}
-                    {languageScores.length > 0 && <section className="proficiencySection" aria-label="Duolingo Score">
-                        <h3 className="proficiencyHeading">Duolingo Score</h3>
-                        <div className="languageScores">
-                            {languageScores.map(score => {
-                                const FlagComponent = flagComponents[score.language] || flagComponents.world;
-                                const cefr = cefrFromScore(score.score);
-                                return <span key={score.id} title={`${score.title}: Duolingo Score ${score.score}${cefr ? `, ${cefr.detail} course content` : ''}`}>
-                                    <FlagComponent height={23} width={28} viewBox="0 0 82 66" />
-                                    <span className="languageScoreText">
-                                        <span className="languageScoreName">{score.title}</span>
-                                        <span className="languageScoreValue">{cefr?.level ?? 'Unavailable'} <small>{score.score}</small></span>
-                                    </span>
-                                </span>;
-                            })}
-                        </div>
-                    </section>}
+                    {languageScores.length > 0 && <LanguageScoreTiles scores={languageScores} />}
                     {response.weeklyXp !== undefined && <WeeklyXpChart days={response.weeklyXp} />}
                     {response.tokenExpired && <div className="tokenNotice" role="alert">
                         <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
